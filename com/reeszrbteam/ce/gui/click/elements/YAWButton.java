@@ -1,20 +1,19 @@
 package com.reeszrbteam.ce.gui.click.elements;
 
-import com.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
-
 import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.ModuleBase;
+import com.kodehawa.module.core.CheatingEssentialsModule;
+import com.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
 import com.reeszrbteam.ce.util.CEUtils;
 
 public class YAWButton {
 	private YAWWindow window;
-	private ModuleBase mod;
+	private CheatingEssentialsModule mod;
 	private int xPos;
 	private int yPos;
 	
 	public boolean isOverButton;
 	
-	public YAWButton(YAWWindow window, ModuleBase mod, int xPos, int yPos) {
+	public YAWButton(YAWWindow window, CheatingEssentialsModule mod, int xPos, int yPos) {
 		this.window = window;
 		this.mod = mod;
 		this.xPos = xPos;

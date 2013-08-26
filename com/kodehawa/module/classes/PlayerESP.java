@@ -9,11 +9,11 @@ import org.lwjgl.opengl.GL11;
 
 import com.kodehawa.CheatingEssentials;
 import com.kodehawa.chestfinder.AltAxisAlignedBB;
-import com.kodehawa.module.ModuleBase;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
 import com.reeszrbteam.ce.util.EntitySpectator;
 
-public class PlayerESP extends ModuleBase{
+public class PlayerESP extends CheatingEssentialsModule {
 
 	public PlayerESP() {
 		super("Player ESP", "Draws an ESP around Players", "1.6.2", 0, EnumGuiCategory.RENDER, true);

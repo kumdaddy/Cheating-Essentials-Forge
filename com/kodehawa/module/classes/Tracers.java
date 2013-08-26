@@ -9,13 +9,13 @@ import org.lwjgl.opengl.GL11;
 
 import com.kodehawa.CheatingEssentials;
 import com.kodehawa.chestfinder.AltAxisAlignedBB;
-import com.kodehawa.module.ModuleBase;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
 import com.kodehawa.playerrelations.Enemy;
 import com.kodehawa.playerrelations.Friend;
 import com.reeszrbteam.ce.util.EntitySpectator;
 
-public class Tracers extends ModuleBase{
+public class Tracers extends CheatingEssentialsModule{
 
 	public Tracers()
 	{

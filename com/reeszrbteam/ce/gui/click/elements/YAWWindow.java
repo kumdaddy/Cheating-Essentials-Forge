@@ -3,7 +3,7 @@ package com.reeszrbteam.ce.gui.click.elements;
 import java.util.ArrayList;
 
 import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.ModuleBase;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
 import com.reeszrbteam.ce.util.CEUtils;
 import com.reeszrbteam.ce.util.Value;
@@ -18,8 +18,8 @@ public class YAWWindow
 	private boolean isExtended;
 	private boolean isPinned;
 	
-	public static int dragX;
-	public static int dragY;
+	public int dragX;
+	public int dragY;
 	public int lastDragX;
 	public int lastDragY;
 	protected boolean dragging;
@@ -43,7 +43,7 @@ public class YAWWindow
 	
 	private int buttonCount = 0, sliderCount = 0;
 	
-	public void addButton(ModuleBase mod) {
+	public void addButton(CheatingEssentialsModule mod) {
 		buttons.add(new YAWButton(this, mod, xPos + 2, yPos + (11 * buttons.size()) + 16));
 	}
 	

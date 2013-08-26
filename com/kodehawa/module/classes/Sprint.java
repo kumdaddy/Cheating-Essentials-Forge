@@ -2,13 +2,11 @@ package com.kodehawa.module.classes;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.ModuleBase;
 import com.kodehawa.module.annotations.ModuleLoader;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
-import com.kodehawa.util.Tickable;
 
-public class Sprint extends ModuleBase {
+public class Sprint extends CheatingEssentialsModule {
 
 	@ModuleLoader(type = "Module")
 	public Sprint( ) {
@@ -20,10 +18,9 @@ public class Sprint extends ModuleBase {
 	@Override
 	public void tick() {
 		// TODO Auto-generated method stub
-		  if(getMinecraft().theWorld != null ){
 		if(getPlayer().movementInput.moveForward > 0){
 			getPlayer().setSprinting(true);
-		} }
+		}
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.kodehawa.module;
+package com.kodehawa.module.core;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -27,8 +27,10 @@ import com.kodehawa.event.events.EventRender3D;
 import com.kodehawa.event.events.EventTick;
 import com.kodehawa.module.annotations.ModuleRetention;
 import com.kodehawa.module.enums.EnumGuiCategory;
+import com.kodehawa.module.handlers.ModuleManager;
 import com.kodehawa.util.Tickable;
 
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -37,7 +39,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author Kodehawa
  */
 @SideOnly(Side.CLIENT)
-public abstract class ModuleBase implements Listener, Tickable {
+public abstract class CheatingEssentialsModule implements Listener, Tickable {
 
     public EnumGuiCategory type;
     public boolean enabled;
@@ -51,23 +53,23 @@ public abstract class ModuleBase implements Listener, Tickable {
     private boolean tick;
     public int color;
     private boolean ortho;
-    private final LinkedList<Class<? extends ModuleBase>> incompat = new LinkedList<Class<? extends ModuleBase>>();
+    private final LinkedList<Class<? extends CheatingEssentialsModule>> incompat = new LinkedList<Class<? extends CheatingEssentialsModule>>();
 
 
     @ModuleRetention( type = "Base" )
-    public ModuleBase(final String name, final String desc, final int key) {
+    public CheatingEssentialsModule(final String name, final String desc, final int key) {
        this(name, desc, "1.6.2", key, EnumGuiCategory.UTILS, true);
         EventHandler.getInstance().registerListener( EventKey.class, this );
         EventHandler.getInstance().registerListener( EventRender3D.class, this );
       }
 
-    public ModuleBase(final String name, final String desc, final EnumGuiCategory type) {
+    public CheatingEssentialsModule(final String name, final String desc, final EnumGuiCategory type) {
        this(name, desc, "1.6.2", -1, type, true);
         EventHandler.getInstance().registerListener( EventKey.class, this );
         EventHandler.getInstance().registerListener( EventRender3D.class, this );
        }
 
-    public ModuleBase(final String name, final String desc, final String version, final int key, final EnumGuiCategory type, final boolean enabled) {
+    public CheatingEssentialsModule(final String name, final String desc, final String version, final int key, final EnumGuiCategory type, final boolean enabled) {
        this.name = name;
        this.desc = desc;
        this.keybind = key;
@@ -120,7 +122,7 @@ public abstract class ModuleBase implements Listener, Tickable {
           }
     	}
     	catch( Exception e ){
-    		for(ModuleBase m : ModuleManager.getInstance().modules){
+    		for(CheatingEssentialsModule m : ModuleManager.getInstance().modules){
     		CheatingEssentials.CELogAgent("Can't load module " + m.getName() + " - Because of " + e.toString());
     		}
     		e.printStackTrace();
@@ -241,7 +243,7 @@ public abstract class ModuleBase implements Listener, Tickable {
      }
 
      protected static void sendPacket(final Packet packet) {
-        getSendQueue().addToSendQueue(packet);
+    	 PacketDispatcher.sendPacketToServer(packet);
      }
 
      protected static void sendChatMessage(final String message) {
@@ -300,20 +302,20 @@ public abstract class ModuleBase implements Listener, Tickable {
         return list;
            }
 
-     protected void incompat(final Class<? extends ModuleBase> module) {
+     protected void incompat(final Class<? extends CheatingEssentialsModule> module) {
         incompat.add(module);
         }
 
 
      private void disableIncompat() {
-        for (final Class<? extends ModuleBase> e : incompat) {
-                this.disableIncompat(e);
+        for (final Class<? extends CheatingEssentialsModule> e : incompat) {
+                this.disableIncompat();
         }
          }
 
 
-     private void disableIncompat(final Class<? extends ModuleBase> module) {
-      final ModuleBase incompat = ModuleManager.getInstance().getModuleByClass(module);
+     private void disableIncompat(final Class<? extends CheatingEssentialsModule> module) {
+      final CheatingEssentialsModule incompat = ModuleManager.getInstance().getModuleByClass(module);
 
         if (!incompat.isActive()) {
                 return;
@@ -331,5 +333,6 @@ public abstract class ModuleBase implements Listener, Tickable {
 	  public void onRenderInModule( ){}
       public void tick(){}
       public void utilGui(){}
-
 }
+
+

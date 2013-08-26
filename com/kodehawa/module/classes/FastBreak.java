@@ -5,11 +5,11 @@ import net.minecraft.potion.PotionEffect;
 import org.lwjgl.input.Keyboard;
 
 import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.ModuleBase;
 import com.kodehawa.module.annotations.ModuleLoader;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
 
-public class FastBreak extends ModuleBase {
+public class FastBreak extends CheatingEssentialsModule {
 
 	@ModuleLoader(type = "Module")
 	public FastBreak( ) {

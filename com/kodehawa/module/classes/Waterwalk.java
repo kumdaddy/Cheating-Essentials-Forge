@@ -8,10 +8,10 @@ import org.lwjgl.input.Keyboard;
 
 import com.kodehawa.CheatingEssentials;
 import com.kodehawa.api.reflection.ReflectorHelper;
-import com.kodehawa.module.ModuleBase;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
 
-public class Waterwalk extends ModuleBase {
+public class Waterwalk extends CheatingEssentialsModule {
 
 	public Waterwalk( ) {
 		super("Water Walk", "", "1.6.2", Keyboard.KEY_J, EnumGuiCategory.WORLD, true);
@@ -22,13 +22,11 @@ public class Waterwalk extends ModuleBase {
 	public void tick() {
 		if (getPlayer().isInWater())
         {
-			  if(getMinecraft().theWorld != null ){
             getPlayer().setSprinting(false);
             try{
                 for(Object o : getMinecraft().theWorld.loadedEntityList)  {
                     if(o instanceof EntityPlayerSP || o instanceof EntityClientPlayerMP){
-                       ReflectorHelper.getPrivateMethod(EntityLivingBase.class, o,
-                       /* Obfuscated name, normally jump. */ "bd" /* "jump" */);
+                       ReflectorHelper.getPrivateMethod(EntityLivingBase.class, o, "jump" );
                     }
                 }
             }
@@ -36,7 +34,7 @@ public class Waterwalk extends ModuleBase {
                 CheatingEssentials.CELogAgent("First failures in reflection code.");
             }
             getPlayer().motionY /= 2;
-        } }
+        } 
 	}
 
 	@Override

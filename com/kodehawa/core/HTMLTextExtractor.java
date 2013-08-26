@@ -16,7 +16,7 @@ public class HTMLTextExtractor extends HTMLEditorKit.ParserCallback {
         s = new StringBuffer( );
         ParserDelegator delegator = new ParserDelegator( );
         // the third parameter is TRUE to ignore charset directive
-        delegator.parse( in, this, Boolean.TRUE );
+        delegator.parse( in, this, true );
     }
     
     @Override

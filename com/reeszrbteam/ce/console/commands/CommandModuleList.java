@@ -1,10 +1,10 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.module.ModuleBase;
-import com.kodehawa.module.ModuleManager;
 import org.lwjgl.input.Keyboard;
 
 import com.kodehawa.CheatingEssentials;
+import com.kodehawa.module.core.CheatingEssentialsModule;
+import com.kodehawa.module.handlers.ModuleManager;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandModuleList extends BaseCommand{
@@ -16,7 +16,7 @@ public class CommandModuleList extends BaseCommand{
 	@Override
 	public void runCommand(String s, String[] args) {
 		try{
-			for(ModuleBase m: ModuleManager.getInstance().modules){
+			for(CheatingEssentialsModule m: ModuleManager.getInstance().modules){
 				String derp = m.name + " - " + Keyboard.getKeyName(m.getKeybinding());
 				CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage(derp);
 			}

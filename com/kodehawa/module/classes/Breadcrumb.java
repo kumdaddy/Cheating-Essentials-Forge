@@ -1,6 +1,5 @@
 package com.kodehawa.module.classes;
 
-
 import java.util.ArrayList;
 
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -9,10 +8,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import org.lwjgl.opengl.GL11;
 
 import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.ModuleBase;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
 
-public class Breadcrumb extends ModuleBase{
+public class Breadcrumb extends CheatingEssentialsModule {
 
     public static ArrayList<double[]> positionsList = new ArrayList<double[]>();
 

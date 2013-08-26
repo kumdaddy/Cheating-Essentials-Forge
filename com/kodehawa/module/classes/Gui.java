@@ -3,11 +3,11 @@ package com.kodehawa.module.classes;
 import org.lwjgl.input.Keyboard;
 
 import com.kodehawa.gui.api.components.ModuleGui;
-import com.kodehawa.module.ModuleBase;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
 import com.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
 
-public class Gui extends ModuleBase {
+public class Gui extends CheatingEssentialsModule {
 
     public static int guimode = 0;
     public ModuleGui kodehawagui;

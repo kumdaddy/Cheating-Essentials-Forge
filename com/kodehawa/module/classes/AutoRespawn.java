@@ -2,12 +2,10 @@ package com.kodehawa.module.classes;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.ModuleBase;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
-import com.kodehawa.util.Tickable;
 
-public class AutoRespawn extends ModuleBase {
+public class AutoRespawn extends CheatingEssentialsModule {
 
 	public AutoRespawn( ) {
 		super("Auto Respawn", "", "1.6.2", Keyboard.KEY_NUMPAD0, EnumGuiCategory.WORLD, true);
@@ -16,10 +14,9 @@ public class AutoRespawn extends ModuleBase {
 
 	@Override
 	public void tick() {
-		  if(getMinecraft().theWorld != null ){
 		if(getPlayer().isDead){
 			getPlayer().respawnPlayer();
-		} }
+		}
 	}
 
 	@Override

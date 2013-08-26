@@ -8,10 +8,10 @@ import org.lwjgl.opengl.GL11;
 
 import com.kodehawa.CheatingEssentials;
 import com.kodehawa.chestfinder.AltAxisAlignedBB;
-import com.kodehawa.module.ModuleBase;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
 
-public class MobESP extends ModuleBase{
+public class MobESP extends CheatingEssentialsModule{
 
 	public MobESP() {
 		super("Mob ESP", "Draws an ESP around All Mobs", "1.6.2", 0, EnumGuiCategory.RENDER, true);

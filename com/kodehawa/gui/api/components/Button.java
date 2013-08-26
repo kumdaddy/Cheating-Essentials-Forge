@@ -2,12 +2,12 @@ package com.kodehawa.gui.api.components;
 
 import com.kodehawa.CheatingEssentials;
 import com.kodehawa.gui.api.render.ModGuiUtils;
-import com.kodehawa.module.ModuleBase;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 
 public class Button extends Item
 {
     Frame parent;
-    ModuleBase m = null;
+    CheatingEssentialsModule m = null;
     int oldColor = 0;
 
     public Button(String s, int color, int color2)
@@ -15,7 +15,7 @@ public class Button extends Item
         this(s, color, color2, null);
     }
 
-    public Button(String s, int color, int color2, ModuleBase m)
+    public Button(String s, int color, int color2, CheatingEssentialsModule m)
     {
         this.text = s;
         this.bgcolor = color;

@@ -5,12 +5,12 @@ import net.minecraft.entity.EntityLiving;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.module.ModuleBase;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
 import com.kodehawa.util.EntityUtils;
 import com.kodehawa.util.Watcher;
 
-public class Mobaura extends ModuleBase {
+public class Mobaura extends CheatingEssentialsModule {
 
 	public Mobaura( ) {
 		super("Mob Aura", "", "1.6.2", Keyboard.KEY_L,
@@ -26,7 +26,6 @@ public class Mobaura extends ModuleBase {
 	
 	@Override
 	public void tick() {
-		  if(getMinecraft().theWorld != null ){
 		for (int i = 0; i < getMinecraft().theWorld.loadedEntityList.size(); i++)
         {
             Entity ent = (Entity) getMinecraft().theWorld.loadedEntityList.get(i);
@@ -54,7 +53,7 @@ public class Mobaura extends ModuleBase {
             	getMinecraft().playerController.attackEntity(getMinecraft().thePlayer, ent);
             	
             }
-        } }
+        } 
 	}
 
 	@Override

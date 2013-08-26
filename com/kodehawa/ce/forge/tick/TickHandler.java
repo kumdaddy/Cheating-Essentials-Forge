@@ -17,15 +17,12 @@ import cpw.mods.fml.common.TickType;
 
 public class TickHandler implements IScheduledTickHandler {
 
-	private CheatingEssentials cheatingEssentials;
     private ModuleGui Gui;
     YouAlwaysWinClickGui yaw;
     private GuiConsole Console;
-	public static int tick = 0;
 	public static int guimode = 0;
 	
 	public TickHandler( ){
-		 cheatingEssentials = new CheatingEssentials( );
 	     Gui = new ModuleGui();
 	     yaw = new YouAlwaysWinClickGui();
 	     Console = new GuiConsole();
@@ -33,9 +30,14 @@ public class TickHandler implements IScheduledTickHandler {
 	
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) {
-		CheatingEssentials.getCheatingEssentials().tick();
+		
+		if( CheatingEssentials.getMinecraftInstance().theWorld != null ){
+		      CheatingEssentials.getCheatingEssentials().tick(); 
+		}
+		
 		if( KeyboardListener.getInstance().getKeyStateFromMap(Keyboard.KEY_GRAVE)){
 			CheatingEssentials.getMinecraftInstance().displayGuiScreen(Console);
+		}
 
         switch (guimode){
             case 0: for(Frame e : Gui.frames){
@@ -45,14 +47,11 @@ public class TickHandler implements IScheduledTickHandler {
                     if(window.isPinned()){ window.draw(0, 0); }} break;
             }
         }
-		}
 	}
 
 	@Override
-	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
+	public void tickEnd(EnumSet<TickType> type, Object... tickData) {}
 		
-	}
-
 	@Override
 	public EnumSet<TickType> ticks() {
 		// TODO Auto-generated method stub
@@ -70,5 +69,4 @@ public class TickHandler implements IScheduledTickHandler {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 }

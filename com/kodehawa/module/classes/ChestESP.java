@@ -7,12 +7,12 @@ import net.minecraft.tileentity.TileEntityEnderChest;
 import org.lwjgl.input.Keyboard;
 
 import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.ModuleBase;
 import com.kodehawa.module.annotations.ModuleLoader;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
 import com.reeszrbteam.ce.util.CEUtils;
 
-public class ChestESP extends ModuleBase {
+public class ChestESP extends CheatingEssentialsModule {
 
 	@ModuleLoader(type = "Module")
 	public ChestESP( ) {

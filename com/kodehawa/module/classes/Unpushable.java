@@ -2,12 +2,10 @@ package com.kodehawa.module.classes;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.ModuleBase;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
-import com.kodehawa.util.Tickable;
 
-public class Unpushable extends ModuleBase {
+public class Unpushable extends CheatingEssentialsModule {
 
 	public Unpushable( ) {
 		super("Unpushable", "", "1.6.2", Keyboard.KEY_NUMPAD7, EnumGuiCategory.PLAYER , true );

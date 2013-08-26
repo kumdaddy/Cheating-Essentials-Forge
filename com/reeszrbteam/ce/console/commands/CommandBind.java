@@ -1,12 +1,11 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.module.ModuleBase;
-import com.kodehawa.module.ModuleManager;
-import com.kodehawa.util.FileManager;
 import org.lwjgl.input.Keyboard;
 
 import com.kodehawa.CheatingEssentials;
-
+import com.kodehawa.module.core.CheatingEssentialsModule;
+import com.kodehawa.module.handlers.ModuleManager;
+import com.kodehawa.util.FileManager;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandBind extends BaseCommand{
@@ -19,7 +18,7 @@ public class CommandBind extends BaseCommand{
 	public void runCommand(String s, String[] args) {
 		try {
 			if(args[0].equalsIgnoreCase("add")) {
-				for(ModuleBase m : ModuleManager.getInstance().modules) {
+				for(CheatingEssentialsModule m : ModuleManager.getInstance().modules) {
 					if(m.name.replace(" ", "").equalsIgnoreCase(args[1])) {
 						if(Keyboard.getKeyIndex(args[2].toUpperCase()) == 0) {
 							CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Invalid key.");
@@ -33,7 +32,7 @@ public class CommandBind extends BaseCommand{
 				}
 			}
 			if(args[0].equalsIgnoreCase("del")) {
-				for(ModuleBase m : ModuleManager.getInstance().modules) {
+				for(CheatingEssentialsModule m : ModuleManager.getInstance().modules) {
 					if(m.getKeybinding() == Keyboard.getKeyIndex(args[1].toUpperCase())) {
 						m.setKeybinding(0);
                         FileManager.saveKeybinding();
@@ -43,7 +42,7 @@ public class CommandBind extends BaseCommand{
 				}
 			}
 			if(args[0].equalsIgnoreCase("clearall")) {
-				for(ModuleBase m : ModuleManager.getInstance().modules) {
+				for(CheatingEssentialsModule m : ModuleManager.getInstance().modules) {
 					m.setKeybinding(0);
                     FileManager.saveKeybinding();
                     CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("All Keys Unbound.");

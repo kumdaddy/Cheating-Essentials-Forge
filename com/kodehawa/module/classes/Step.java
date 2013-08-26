@@ -2,11 +2,11 @@ package com.kodehawa.module.classes;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.module.ModuleBase;
 import com.kodehawa.module.annotations.ModuleLoader;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
 
-public class Step extends ModuleBase {
+public class Step extends CheatingEssentialsModule {
 
 	public static float STEP_HEIGHT = 1.0F;
 

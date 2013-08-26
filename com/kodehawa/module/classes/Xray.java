@@ -10,10 +10,10 @@ import com.kodehawa.CheatingEssentials;
 import com.kodehawa.event.Event;
 import com.kodehawa.event.EventHandler;
 import com.kodehawa.event.events.EventBlockRender;
-import com.kodehawa.module.ModuleBase;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
 
-public class Xray extends ModuleBase {
+public class Xray extends CheatingEssentialsModule {
 	
 	public static ArrayList< Integer > xrayBlocks = new ArrayList< Integer >( );
 

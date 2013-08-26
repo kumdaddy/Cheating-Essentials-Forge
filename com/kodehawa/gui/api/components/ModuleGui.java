@@ -2,9 +2,7 @@ package com.kodehawa.gui.api.components;
 
 import java.util.ArrayList;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.MathHelper;
 
@@ -13,9 +11,9 @@ import org.lwjgl.opengl.GL11;
 
 import com.kodehawa.CheatingEssentials;
 import com.kodehawa.gui.api.render.ModGuiUtils;
-import com.kodehawa.module.ModuleBase;
-import com.kodehawa.module.ModuleManager;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
+import com.kodehawa.module.handlers.ModuleManager;
 
 public class ModuleGui extends GuiScreen
 {
@@ -141,7 +139,7 @@ public class ModuleGui extends GuiScreen
     {
         Frame wFrame = new Frame(CheatingEssentials.modinstance, 10, 10, 120, 20, /*0xFF000055*/0x96777777, 0xaa000000, "World");
 
-        for (ModuleBase m : ModuleManager.getInstance().modules)
+        for (CheatingEssentialsModule m : ModuleManager.getInstance().modules)
         {
             if(m.getType() == EnumGuiCategory.WORLD){
                 Button b = new Button(m.name, 0x00007700, 0xffffff, m);
@@ -159,7 +157,7 @@ public class ModuleGui extends GuiScreen
     {
         Frame rFrame = new Frame(CheatingEssentials.modinstance, 130, 50, 120, 20, 0x96777777, 0xaa000000, "Render");
 
-        for (ModuleBase m : ModuleManager.getInstance().modules)
+        for (CheatingEssentialsModule m : ModuleManager.getInstance().modules)
         {
             if(m.getType() == EnumGuiCategory.RENDER){
                 Button b = new Button(m.name, 0x00007700, 0xffffff, m);
@@ -177,7 +175,7 @@ public class ModuleGui extends GuiScreen
     public void makeF3UtilsFrame(){
     	Frame f3Frame = new Frame(CheatingEssentials.getCheatingEssentials(), 10, 50, 120, 20, 0x96777777, 0xaa000000, "Utils");
     	
-    	for (ModuleBase m : ModuleManager.getInstance().modules)
+    	for (CheatingEssentialsModule m : ModuleManager.getInstance().modules)
         {
             if(m.getType() == EnumGuiCategory.UTILS){
                 Button b = new Button(m.name, 0x00007700, 0xffffff, m);
@@ -196,7 +194,7 @@ public class ModuleGui extends GuiScreen
     {
         Frame pFrame = new Frame(CheatingEssentials.modinstance, 130, 10, 120, 20, 0x96777777, 0xaa000000, "Player");
 
-        for (ModuleBase m : ModuleManager.getInstance().modules)
+        for (CheatingEssentialsModule m : ModuleManager.getInstance().modules)
         {
             if(m.getType() == EnumGuiCategory.PLAYER){
             Button b = new Button(m.name, 0x00007700, 0xffffff, m);
@@ -220,7 +218,7 @@ public class ModuleGui extends GuiScreen
                 this.draw();
                 this.children.clear();
 
-                for (ModuleBase m : ModuleManager.getInstance().modules)
+                for (CheatingEssentialsModule m : ModuleManager.getInstance().modules)
                 {
                     Label l = new Label(m.name + " - " + Keyboard.getKeyName(m.keybind), 0xffffff);
                     l.setParent(this, (x) + 3, (y) - 21);

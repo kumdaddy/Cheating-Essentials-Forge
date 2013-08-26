@@ -4,9 +4,8 @@ import java.util.logging.Level;
 
 import net.minecraft.client.Minecraft;
 
-import com.kodehawa.api.CJarLoader;
 import com.kodehawa.core.Strings;
-import com.kodehawa.module.ModuleManager;
+import com.kodehawa.module.handlers.ModuleManager;
 import com.kodehawa.module.loader.BaseLoader;
 import com.kodehawa.playerrelations.Enemy;
 import com.kodehawa.playerrelations.Friend;
@@ -24,27 +23,20 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public final class CheatingEssentials {
 
+	/**
+	 * Basic mod methods.
+	 */
+	
     public volatile static CheatingEssentials modinstance;
     public int tick = 0;
     
 	public CheatingEssentials( ) {
         modinstance = this;
-    	FMLLog.log("Cheating Essentials", Level.INFO, "Cheating Essentials "+Strings.MOD_VERSION+" starting in Minecraft 1.6.2 with MC Forge...");
-        initializeSingletons();
 	}
 
 	public static void onStart(){
         CommandManager.getInstance();
 	}
-
-    private void initializeSingletons(){
-        ModuleManager.getInstance();
-        BaseLoader.getInstance();
-        Enemy.getInstance();
-        Friend.getInstance();
-        FileManager.getInstance();
-    	FMLLog.log("Cheating Essentials", Level.INFO, "Cheating Essentials "+Strings.MOD_VERSION+" started in Minecraft 1.6.2 with MC Forge");
-    }
 
 	public static CheatingEssentials getCheatingEssentials(){
 		return modinstance;
@@ -78,5 +70,4 @@ public final class CheatingEssentials {
 	public static void CELogErrorAgent(String elog){
     	FMLLog.log("Cheating Essentials", Level.WARNING, elog);
 	}
-
 }

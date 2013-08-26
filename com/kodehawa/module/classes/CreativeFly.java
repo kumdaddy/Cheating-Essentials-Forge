@@ -2,11 +2,11 @@ package com.kodehawa.module.classes;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.module.ModuleBase;
 import com.kodehawa.module.annotations.ModuleLoader;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
 
-public class CreativeFly extends ModuleBase {
+public class CreativeFly extends CheatingEssentialsModule {
 
 	@ModuleLoader(type = "Module")
 	public CreativeFly( ) {
@@ -26,9 +26,6 @@ public class CreativeFly extends ModuleBase {
 	
 	@Override
 	public void tick() {
-		  if(getMinecraft().theWorld != null ){
-		super.setFly(true); }
-	}
-	
-
+		super.setFly(true); 
+		}	
 }

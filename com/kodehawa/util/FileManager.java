@@ -9,13 +9,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import com.kodehawa.module.ModuleBase;
-import com.kodehawa.module.ModuleManager;
-import com.kodehawa.module.classes.BlockESP;
-import com.kodehawa.module.classes.Xray;
+import org.lwjgl.input.Keyboard;
 
 import com.kodehawa.CheatingEssentials;
-import org.lwjgl.input.Keyboard;
+import com.kodehawa.module.classes.BlockESP;
+import com.kodehawa.module.classes.Xray;
+import com.kodehawa.module.core.CheatingEssentialsModule;
+import com.kodehawa.module.handlers.ModuleManager;
 
 public class FileManager {
     public static File mainDir;
@@ -113,7 +113,7 @@ public class FileManager {
            CheatingEssentials.CELogAgent("Writing keybinding configuration file...");
             File file = new File(keyDir, "");
             BufferedWriter bufferedwriter = new BufferedWriter( new FileWriter( file ));
-            for(ModuleBase m : ModuleManager.getInstance().modules){
+            for(CheatingEssentialsModule m : ModuleManager.getInstance().modules){
                 bufferedwriter.write("cekey-" + m.getName().toLowerCase().replace(" ", "") + ":" + Keyboard.getKeyName(m.getKeybinding()));
                 bufferedwriter.write("\r\n");
             }
@@ -137,7 +137,7 @@ public class FileManager {
                 String[ ] s = line1.split(":");
                 String mod = s[0];
                int key = Keyboard.getKeyIndex(s[1].toUpperCase());
-               for(ModuleBase m : ModuleManager.getInstance().modules){
+               for(CheatingEssentialsModule m : ModuleManager.getInstance().modules){
                    if(mod.equalsIgnoreCase("cekey-" + m.getName().toLowerCase().replace(" ", ""))) {
                        m.setKeybinding(key);
                    //CheatingEssentials.CELogAgent("Binded " + m.getName() + " to: " + Keyboard.getKeyName(key) + " succefully" );

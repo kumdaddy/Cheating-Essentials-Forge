@@ -31,10 +31,8 @@ public class ReflectorHelper {
         try
         {
             Method[] methods = class1.getDeclaredMethods();
-            //Exalm's things.
             for (int i = 0; i < methods.length; i++){
                 if (methods[i].getName().equals(s)){
-                    CheatingEssentials.CELogAgent("Fix reflection usage for obfuscated: Please use \""+i+"\" instead of \""+s+"\"!");
                     getPrivateMethod(class1, obj, i);
                 }
         }

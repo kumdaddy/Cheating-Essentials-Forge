@@ -6,11 +6,11 @@ import net.minecraft.network.packet.Packet13PlayerLookMove;
 import org.lwjgl.input.Keyboard;
 
 import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.ModuleBase;
 import com.kodehawa.module.annotations.ModuleLoader;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
 
-public class Fly extends ModuleBase {
+public class Fly extends CheatingEssentialsModule {
 
 	@ModuleLoader(type = "Module")
 	public Fly( ) {
@@ -32,7 +32,6 @@ public class Fly extends ModuleBase {
 	
 	@Override
 	public void tick() {
-		  if(getMinecraft().theWorld != null ){
 		if(!CheatingEssentials.getMinecraftInstance().thePlayer.capabilities.isFlying){
 			CheatingEssentials.getMinecraftInstance().thePlayer.capabilities.isFlying = true;
 		}
@@ -41,6 +40,4 @@ public class Fly extends ModuleBase {
         ep.sendQueue.addToSendQueue(new Packet13PlayerLookMove(ep.motionX, -999.0D, -999.0D, ep.motionZ,
                 ep.rotationYaw, ep.rotationPitch, !ep.onGround));
 	}
-	}
-
 }

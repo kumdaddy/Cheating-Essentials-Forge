@@ -4,13 +4,13 @@ import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.entity.EntityPlayerSP;
 
 import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.ModuleBase;
-import com.kodehawa.module.ModuleManager;
 import com.kodehawa.module.annotations.ModuleExperimental;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
+import com.kodehawa.module.handlers.ModuleManager;
 import com.reeszrbteam.ce.util.EntitySpectator;
 
-public class Spectator extends ModuleBase {
+public class Spectator extends CheatingEssentialsModule {
 
 	private EntityOtherPlayerMP entity = /* new EntityOtherPlayerMP(CheatingEssentials.getMinecraftInstance().theWorld, "") */ null;
 	public EntitySpectator freecamEnt = /* new EntitySpectator(CheatingEssentials.getMinecraftInstance().theWorld, "")*/ null;

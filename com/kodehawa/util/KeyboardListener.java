@@ -1,13 +1,11 @@
 package com.kodehawa.util;
 
-import com.kodehawa.module.ModuleBase;
-import com.kodehawa.module.ModuleManager;
-import com.kodehawa.module.loader.BaseLoader;
 import org.lwjgl.input.Keyboard;
 
 import com.kodehawa.CheatingEssentials;
-import com.kodehawa.event.EventHandler;
-import com.kodehawa.event.events.EventKey;
+import com.kodehawa.module.core.CheatingEssentialsModule;
+import com.kodehawa.module.handlers.ModuleManager;
+import com.kodehawa.module.loader.BaseLoader;
 
 public class KeyboardListener {
 
@@ -32,7 +30,7 @@ public class KeyboardListener {
 	
     public void handleKeys( ) {
     	//TODO: Module Keys
-        for(ModuleBase m : ModuleManager.getInstance().modules) {
+        for(CheatingEssentialsModule m : ModuleManager.getInstance().modules) {
             int key = m.getKeybinding();
             if( getKeyStateFromMap( key ) ) {
                m.toggleModule();

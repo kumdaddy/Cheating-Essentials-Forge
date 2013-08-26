@@ -1,6 +1,7 @@
 package com.reeszrbteam.ce.util;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 
 public class BlockFilter {
 
@@ -27,6 +28,22 @@ public class BlockFilter {
 			   String s = e.getLocalizedName().replaceAll(" ", "").toLowerCase();
 			   if(name.equalsIgnoreCase(s)){
 				   return e.blockID;
+			   }
+		 }
+		 
+		 return 90000;
+	}
+	
+	public static int testItem(String name){
+		for (final Item e : Item.itemsList) {
+			   if (e == null) {
+			    continue;
+			   }
+			   
+			   String s = e.getUnlocalizedName().replace("item.", "");
+			   if(name.equalsIgnoreCase(s)){
+				   System.out.println("Apetecan");
+				   return e.itemID;
 			   }
 		 }
 		 

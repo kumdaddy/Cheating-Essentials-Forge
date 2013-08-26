@@ -8,11 +8,11 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.lwjgl.input.Keyboard;
 
 import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.ModuleBase;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 import com.kodehawa.module.enums.EnumGuiCategory;
 import com.reeszrbteam.ce.util.CEUtils;
 
-public class BlockESP extends ModuleBase{
+public class BlockESP extends CheatingEssentialsModule{
 
 	private int size = 0;
 

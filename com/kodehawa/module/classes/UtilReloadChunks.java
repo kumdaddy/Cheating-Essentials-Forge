@@ -2,9 +2,9 @@ package com.kodehawa.module.classes;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.module.ModuleBase;
+import com.kodehawa.module.core.CheatingEssentialsModule;
 
-public class UtilReloadChunks extends ModuleBase {
+public class UtilReloadChunks extends CheatingEssentialsModule {
 
 	public UtilReloadChunks( ) {
 		super("Reload Chunks", "", Keyboard.KEY_NUMPAD9);
