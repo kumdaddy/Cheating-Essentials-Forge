@@ -53,15 +53,6 @@ public final class CheatingEssentials {
 	public static Minecraft getMinecraftInstance(){
 		return Minecraft.getMinecraft();
 	}
-
-	public void tick() {
-
-		for(Tickable tickable : ModuleManager.getInstance().modInternalTicksArray){
-			tickable.tick();
-		}
-
-		KeyboardListener.getInstance().handleKeys();
-	}
 	
 	public static void CELogAgent(String log){
     	FMLLog.log("Cheating Essentials", Level.INFO, log);

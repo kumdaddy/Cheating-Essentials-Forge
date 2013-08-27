@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -50,11 +51,6 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.RotationHelper;
-
-import com.kodehawa.event.EventHandler;
-import com.kodehawa.event.events.EventBlockRender;
-import com.kodehawa.module.classes.Xray;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -532,13 +528,24 @@ public class Block
     public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
     	//TODO: X-Ray handler - Cheating Essentials
-        
-        EventBlockRender renderAsNormal = ( EventBlockRender ) EventHandler.getInstance()
-                .call( new EventBlockRender( this, EventBlockRender.EventType.RENDER_XRAY, blockID ) );
+        if(Minecraft.getMinecraft().theWorld != null){
+        com.kodehawa.event.events.EventBlockRender renderAsNormal = 
+        		(  com.kodehawa.event.events.EventBlockRender ) 
+        		com.kodehawa.event.EventHandler.getInstance()
+                .call( new com.kodehawa.event.events.EventBlockRender( this,
+                		com.kodehawa.event.events.EventBlockRender.EventType.RENDER_XRAY,
+                           blockID ) );
         if( renderAsNormal.isCancelled( ) ) {
-            return Xray.xrayBlocks.contains( blockID );
+            return com.kodehawa.module.classes.Xray.xrayBlocks.contains( blockID );
+            	}
         }
-        return par5 == 0 && this.minY > 0.0D ? true : (par5 == 1 && this.maxY < 1.0D ? true : (par5 == 2 && this.minZ > 0.0D ? true : (par5 == 3 && this.maxZ < 1.0D ? true : (par5 == 4 && this.minX > 0.0D ? true : (par5 == 5 && this.maxX < 1.0D ? true : !par1IBlockAccess.isBlockOpaqueCube(par2, par3, par4))))));
+        return par5 == 0 && this.minY > 0.0D ? 
+        		true : (par5 == 1 && this.maxY < 1.0D ?
+        				true : (par5 == 2 && this.minZ > 0.0D ? 
+        						true : (par5 == 3 && this.maxZ < 1.0D ? 
+        								true : (par5 == 4 && this.minX > 0.0D ?
+        										true : (par5 == 5 && this.maxX < 1.0D ?
+        												true : !par1IBlockAccess.isBlockOpaqueCube(par2, par3, par4))))));
     }
 
     /**

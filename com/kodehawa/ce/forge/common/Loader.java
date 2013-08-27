@@ -2,6 +2,7 @@ package com.kodehawa.ce.forge.common;
 
 import java.util.logging.Level;
 
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
@@ -10,16 +11,13 @@ import net.minecraftforge.event.ForgeSubscribe;
 import org.apache.commons.lang3.StringUtils;
 
 import com.kodehawa.CheatingEssentials;
-import com.kodehawa.ce.forge.packet.PacketHandler;
 import com.kodehawa.ce.forge.tick.TickHandler;
-import com.kodehawa.core.Strings;
-import com.kodehawa.module.core.CheatingEssentialsModule;
+import com.kodehawa.event.events.EventRender3D;
 import com.kodehawa.module.handlers.ModuleManager;
 import com.kodehawa.module.loader.BaseLoader;
 import com.kodehawa.playerrelations.Enemy;
 import com.kodehawa.playerrelations.Friend;
 import com.kodehawa.util.FileManager;
-import com.reeszrbteam.ce.util.BlockFilter;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -49,9 +47,9 @@ public class Loader {
 	
 	public CheatingEssentials ce;
     public static TickHandler tickHandler = new TickHandler();
-    private static final int majorVersion = 3;
-    private static final int minorVersion = 2;
-    private static final int revisionVersion = 1;
+    private static final int MAJOR_VERSION = 3;
+    private static final int MINOR_VERSION = 2;
+    private static final int REVISION_VERSION = 1;
 	
     @Instance("Cheating-Essentials")
     public static Loader instance;
@@ -61,13 +59,17 @@ public class Loader {
    
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-    	FMLLog.info("Cheating Essentials", "Attempting early Cheating Essentials initialization.");
+    	
+    	FMLLog.log("Cheating Essentials", Level.INFO, "Attempting a early Cheating Essentials initialization");
     	ce = new CheatingEssentials( );
-    	FMLLog.log("Cheating Essentials", Level.INFO, "Cheating Essentials Forge Loader: " + StringUtils.defaultString(Loader.class.getName()) + " in Minecraft Forge " + ForgeVersion.getVersion());
-    	FMLLog.log("Cheating Essentials", Level.INFO, "Loading instances...");
+    	FMLLog.log("Cheating Essentials", Level.INFO,
+    			"Cheating Essentials Forge Loader: " + StringUtils.defaultString(Loader.class.getName()) +
+    			" in Minecraft Forge " + ForgeVersion.getVersion());
+    	FMLLog.log("Cheating Essentials", Level.INFO, "Loading mod instances...");
         initializeSingletons();
     	TickRegistry.registerScheduledTickHandler(tickHandler, Side.CLIENT);
-    	FMLLog.log("Cheating Essentials", Level.INFO, "Started Cheating Essentials "+getForgeCEVersion()+" in Minecraft 1.6.2 with Minecraft Forge " + ForgeVersion.getVersion());
+    	FMLLog.log("Cheating Essentials", Level.INFO,
+    			"Started Cheating Essentials "+getForgeCEVersion()+" in Minecraft 1.6.2 with Minecraft Forge " + ForgeVersion.getVersion());
     }
    
     @EventHandler
@@ -81,12 +83,15 @@ public class Loader {
 
 	@ForgeSubscribe
 	public void onRenderWorldLastEvent(RenderWorldLastEvent e){
-		for(CheatingEssentialsModule m : ModuleManager.getInstance().modules){
-			m.onRenderInModule();
-		}
+		com.kodehawa.event.EventHandler.getInstance().call(new EventRender3D(this));
 	}
 	
-	void initializeSingletons(){
+    @ForgeSubscribe
+	public void renderOverlay(RenderGameOverlayEvent event){
+		//TickHandler.instance().startGuiRendering();
+	}
+	
+	private void initializeSingletons(){
         ModuleManager.getInstance();
         BaseLoader.getInstance();
         Enemy.getInstance();
@@ -95,6 +100,6 @@ public class Loader {
     }
 	
 	public static String getForgeCEVersion(){
-		return majorVersion+"."+minorVersion+"."+revisionVersion;
+		return MAJOR_VERSION+"."+MINOR_VERSION+"."+REVISION_VERSION; //Return current version
 	}
 }

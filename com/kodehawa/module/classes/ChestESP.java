@@ -16,7 +16,9 @@ public class ChestESP extends CheatingEssentialsModule {
 
 	@ModuleLoader(type = "Module")
 	public ChestESP( ) {
-		super("Chest Finder", "Find ALL chests!", "1.6.2", Keyboard.KEY_N, EnumGuiCategory.RENDER, true);
+		super("Chest Finder", "Find ALL chests!", "1.6.2", Keyboard.KEY_N,
+				EnumGuiCategory.RENDER, true);
+		super.setRender(true);
 	}
 	
 	@Override

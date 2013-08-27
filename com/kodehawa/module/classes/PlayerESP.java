@@ -16,7 +16,9 @@ import com.reeszrbteam.ce.util.EntitySpectator;
 public class PlayerESP extends CheatingEssentialsModule {
 
 	public PlayerESP() {
-		super("Player ESP", "Draws an ESP around Players", "1.6.2", 0, EnumGuiCategory.RENDER, true);
+		super("Player ESP", "Draws an ESP around Players", "1.6.2", 0,
+				EnumGuiCategory.RENDER, true);
+		super.setRender(true);
 	}
 
 	@Override

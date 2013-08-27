@@ -1,5 +1,7 @@
 package com.reeszrbteam.ce.util;
 
+import java.util.Scanner;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 

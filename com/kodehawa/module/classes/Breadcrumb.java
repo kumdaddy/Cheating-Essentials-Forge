@@ -18,6 +18,7 @@ public class Breadcrumb extends CheatingEssentialsModule {
         public Breadcrumb() {
             super("Breadcrumb", "Draws a trail behind the player.", "", 0, EnumGuiCategory.WORLD, true);
             super.setTick(true);
+    		super.setRender(true);
         }
 
         static int count = 0;

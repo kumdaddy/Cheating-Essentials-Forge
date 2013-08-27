@@ -20,7 +20,9 @@ public class BlockESP extends CheatingEssentialsModule{
 	public static BlockCoord[] espBlocks = new BlockCoord[10000000];
 	
 	public BlockESP() {
-		super("Block ESP", "Draws ESP on Blocks", "1.6.2", Keyboard.KEY_NUMPAD8, EnumGuiCategory.RENDER, true);
+		super("Block ESP", "Draws ESP on Blocks", "1.6.2", Keyboard.KEY_NUMPAD8,
+				EnumGuiCategory.RENDER, true);
+		super.setRender(true);
 	}
 
 	@Override

@@ -7,7 +7,9 @@ import org.lwjgl.input.Keyboard;
 import com.kodehawa.CheatingEssentials;
 import com.kodehawa.gui.api.components.Frame;
 import com.kodehawa.gui.api.components.ModuleGui;
+import com.kodehawa.module.handlers.ModuleManager;
 import com.kodehawa.util.KeyboardListener;
+import com.kodehawa.util.Tickable;
 import com.reeszrbteam.ce.console.GuiConsole;
 import com.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
 import com.reeszrbteam.ce.gui.click.elements.YAWWindow;
@@ -17,7 +19,8 @@ import cpw.mods.fml.common.TickType;
 
 public class TickHandler implements IScheduledTickHandler {
 
-    private ModuleGui Gui;
+	volatile static TickHandler instance;
+    ModuleGui Gui;
     YouAlwaysWinClickGui yaw;
     private GuiConsole Console;
 	public static int guimode = 0;
@@ -31,12 +34,15 @@ public class TickHandler implements IScheduledTickHandler {
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) {
 		
-		if( CheatingEssentials.getMinecraftInstance().theWorld != null ){
-		      CheatingEssentials.getCheatingEssentials().tick(); 
-		}
-		
 		if( KeyboardListener.getInstance().getKeyStateFromMap(Keyboard.KEY_GRAVE)){
 			CheatingEssentials.getMinecraftInstance().displayGuiScreen(Console);
+		}
+		
+		if( CheatingEssentials.getMinecraftInstance().theWorld != null ){
+		for(Tickable tickable : ModuleManager.getInstance().modInternalTicksArray){
+			tickable.tick();
+		}
+		     /* Handle keys */    KeyboardListener.getInstance().handleKeys();
 		}
 
         switch (guimode){
@@ -55,7 +61,7 @@ public class TickHandler implements IScheduledTickHandler {
 	@Override
 	public EnumSet<TickType> ticks() {
 		// TODO Auto-generated method stub
-		return EnumSet.of(TickType.CLIENT);
+		return EnumSet.of(TickType.CLIENT, TickType.RENDER, TickType.WORLD);
 	}
 
 	@Override
@@ -68,5 +74,15 @@ public class TickHandler implements IScheduledTickHandler {
 	public int nextTickSpacing() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	public void startGuiRendering(){
+	}
+	
+	public static TickHandler instance(){
+		if(instance == null){
+			instance = new TickHandler();
+		}
+		return instance;
 	}
 }

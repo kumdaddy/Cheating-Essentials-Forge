@@ -14,18 +14,16 @@ import com.kodehawa.module.enums.EnumGuiCategory;
 public class MobESP extends CheatingEssentialsModule{
 
 	public MobESP() {
-		super("Mob ESP", "Draws an ESP around All Mobs", "1.6.2", 0, EnumGuiCategory.RENDER, true);
+		super("Mob ESP", "Draws an ESP around All Mobs", "1.6.2", 0,
+				EnumGuiCategory.RENDER, true);
+		super.setRender(true);
 	}
 
 	@Override
-	public void onEnableModule() {
-		
-	}
+	public void onEnableModule() {}
 
 	@Override
-	public void onDisableModule() {
-		
-	}
+	public void onDisableModule() {}
 	
 	@Override
 	public void onRenderInModule(){

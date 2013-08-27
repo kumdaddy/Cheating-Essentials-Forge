@@ -137,7 +137,7 @@ public class ModuleGui extends GuiScreen
 
     public void makeWorldFrame()
     {
-        Frame wFrame = new Frame(CheatingEssentials.modinstance, 10, 10, 120, 20, /*0xFF000055*/0x96777777, 0xaa000000, "World");
+        Frame wFrame = new Frame(CheatingEssentials.modinstance, 10, 10, 120, 20, 0x96777777, 0xaa000000, "World");
 
         for (CheatingEssentialsModule m : ModuleManager.getInstance().modules)
         {

@@ -19,7 +19,9 @@ public class Tracers extends CheatingEssentialsModule{
 
 	public Tracers()
 	{
-		super("Tracers", "Draws a line to nearby players.", "1.6.2", 0, EnumGuiCategory.RENDER, true);
+		super("Tracers", "Draws a line to nearby players.", "1.6.2", 0,
+				EnumGuiCategory.RENDER, true);
+		super.setRender(true);
 	}
 	
 	@Override
