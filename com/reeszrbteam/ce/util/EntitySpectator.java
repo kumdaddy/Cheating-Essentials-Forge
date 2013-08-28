@@ -6,7 +6,7 @@ import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MovementInput;
 import net.minecraft.world.World;
 
-import com.kodehawa.CheatingEssentials;
+import com.kodehawa.ce.CheatingEssentials;
 
 public class EntitySpectator extends EntityPlayer
 {

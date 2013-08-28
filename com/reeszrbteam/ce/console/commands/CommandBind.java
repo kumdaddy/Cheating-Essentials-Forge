@@ -2,10 +2,10 @@ package com.reeszrbteam.ce.console.commands;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.core.CheatingEssentialsModule;
-import com.kodehawa.module.handlers.ModuleManager;
-import com.kodehawa.util.FileManager;
+import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.module.core.CheatingEssentialsModule;
+import com.kodehawa.ce.module.handlers.ModuleManager;
+import com.kodehawa.ce.util.FileManager;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandBind extends BaseCommand{

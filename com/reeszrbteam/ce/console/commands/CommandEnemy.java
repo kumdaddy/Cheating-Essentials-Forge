@@ -1,8 +1,7 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.CheatingEssentials;
-import com.kodehawa.playerrelations.Enemy;
-
+import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.playerrelations.Enemy;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandEnemy extends BaseCommand{

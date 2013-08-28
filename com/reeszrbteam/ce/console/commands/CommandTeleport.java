@@ -1,6 +1,6 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.CheatingEssentials;
+import com.kodehawa.ce.CheatingEssentials;
 import com.reeszrbteam.ce.console.BaseCommand;
 import com.reeszrbteam.ce.util.Teleport;
 

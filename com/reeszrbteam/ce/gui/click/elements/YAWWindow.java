@@ -2,8 +2,8 @@ package com.reeszrbteam.ce.gui.click.elements;
 
 import java.util.ArrayList;
 
-import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.core.CheatingEssentialsModule;
+import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
 import com.reeszrbteam.ce.util.CEUtils;
 import com.reeszrbteam.ce.util.Value;

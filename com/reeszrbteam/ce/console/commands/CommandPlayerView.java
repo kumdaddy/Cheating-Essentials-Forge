@@ -2,7 +2,7 @@ package com.reeszrbteam.ce.console.commands;
 
 import net.minecraft.entity.player.EntityPlayer;
 
-import com.kodehawa.CheatingEssentials;
+import com.kodehawa.ce.CheatingEssentials;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandPlayerView extends BaseCommand {

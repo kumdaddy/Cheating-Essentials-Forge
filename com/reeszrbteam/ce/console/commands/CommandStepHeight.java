@@ -1,7 +1,7 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.classes.Step;
+import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.module.classes.Step;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandStepHeight extends BaseCommand {

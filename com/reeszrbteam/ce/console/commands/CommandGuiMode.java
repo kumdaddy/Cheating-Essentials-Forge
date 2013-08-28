@@ -1,8 +1,8 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.CheatingEssentials;
+import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.forge.tick.TickHandler;
-import com.kodehawa.module.classes.Gui;
+import com.kodehawa.ce.module.classes.Gui;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandGuiMode extends BaseCommand{

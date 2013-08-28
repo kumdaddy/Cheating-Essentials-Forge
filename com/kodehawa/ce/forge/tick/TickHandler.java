@@ -4,12 +4,12 @@ import java.util.EnumSet;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.CheatingEssentials;
-import com.kodehawa.gui.api.components.Frame;
-import com.kodehawa.gui.api.components.ModuleGui;
-import com.kodehawa.module.handlers.ModuleManager;
-import com.kodehawa.util.KeyboardListener;
-import com.kodehawa.util.Tickable;
+import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.gui.api.components.Frame;
+import com.kodehawa.ce.gui.api.components.ModuleGui;
+import com.kodehawa.ce.module.handlers.ModuleManager;
+import com.kodehawa.ce.util.KeyboardListener;
+import com.kodehawa.ce.util.Tickable;
 import com.reeszrbteam.ce.console.GuiConsole;
 import com.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
 import com.reeszrbteam.ce.gui.click.elements.YAWWindow;

@@ -1,10 +1,9 @@
 package com.kodehawa.ce.forge.packet;
 
 import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
-import com.kodehawa.CheatingEssentials;
+import com.kodehawa.ce.CheatingEssentials;
 
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;

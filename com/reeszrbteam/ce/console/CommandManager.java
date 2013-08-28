@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.reeszrbteam.ce.console.commands.*;
 
-import com.kodehawa.CheatingEssentials;
+import com.kodehawa.ce.CheatingEssentials;
 
 public class CommandManager
 {

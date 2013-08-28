@@ -1,7 +1,7 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.classes.Mobaura;
+import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.module.classes.Mobaura;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandAuraDistance extends BaseCommand {

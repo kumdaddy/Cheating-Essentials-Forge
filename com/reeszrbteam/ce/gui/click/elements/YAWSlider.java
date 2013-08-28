@@ -2,7 +2,7 @@ package com.reeszrbteam.ce.gui.click.elements;
 
 import java.text.DecimalFormat;
 
-import com.kodehawa.CheatingEssentials;
+import com.kodehawa.ce.CheatingEssentials;
 import com.reeszrbteam.ce.util.CEUtils;
 import com.reeszrbteam.ce.util.Value;
 

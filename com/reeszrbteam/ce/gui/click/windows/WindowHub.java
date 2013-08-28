@@ -1,6 +1,6 @@
 package com.reeszrbteam.ce.gui.click.windows;
 
-import com.kodehawa.CheatingEssentials;
+import com.kodehawa.ce.CheatingEssentials;
 import com.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
 import com.reeszrbteam.ce.gui.click.elements.YAWWindow;
 import com.reeszrbteam.ce.util.CEUtils;

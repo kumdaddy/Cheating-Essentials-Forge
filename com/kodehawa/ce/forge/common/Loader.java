@@ -10,14 +10,14 @@ import net.minecraftforge.event.ForgeSubscribe;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.kodehawa.CheatingEssentials;
+import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.event.events.EventRender3D;
 import com.kodehawa.ce.forge.tick.TickHandler;
-import com.kodehawa.event.events.EventRender3D;
-import com.kodehawa.module.handlers.ModuleManager;
-import com.kodehawa.module.loader.BaseLoader;
-import com.kodehawa.playerrelations.Enemy;
-import com.kodehawa.playerrelations.Friend;
-import com.kodehawa.util.FileManager;
+import com.kodehawa.ce.module.handlers.ModuleManager;
+import com.kodehawa.ce.module.loader.BaseLoader;
+import com.kodehawa.ce.playerrelations.Enemy;
+import com.kodehawa.ce.playerrelations.Friend;
+import com.kodehawa.ce.util.FileManager;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -83,7 +83,7 @@ public class Loader {
 
 	@ForgeSubscribe
 	public void onRenderWorldLastEvent(RenderWorldLastEvent e){
-		com.kodehawa.event.EventHandler.getInstance().call(new EventRender3D(this));
+		com.kodehawa.ce.event.EventHandler.getInstance().call(new EventRender3D(this));
 	}
 	
     @ForgeSubscribe

@@ -8,7 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import com.kodehawa.CheatingEssentials;
+import com.kodehawa.ce.CheatingEssentials;
 import com.reeszrbteam.ce.gui.click.elements.YAWButton;
 import com.reeszrbteam.ce.gui.click.elements.YAWWindow;
 import com.reeszrbteam.ce.util.CEUtils;

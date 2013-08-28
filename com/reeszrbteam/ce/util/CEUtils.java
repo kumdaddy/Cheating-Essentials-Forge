@@ -12,8 +12,8 @@ import net.minecraft.network.packet.Packet;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 
-import com.kodehawa.CheatingEssentials;
-import com.kodehawa.chestfinder.AltAxisAlignedBB;
+import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.chestfinder.AltAxisAlignedBB;
 
 public class CEUtils {
 	

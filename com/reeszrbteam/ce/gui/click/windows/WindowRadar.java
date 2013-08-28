@@ -2,7 +2,7 @@ package com.reeszrbteam.ce.gui.click.windows;
 
 import net.minecraft.entity.player.EntityPlayer;
 
-import com.kodehawa.CheatingEssentials;
+import com.kodehawa.ce.CheatingEssentials;
 import com.reeszrbteam.ce.gui.click.elements.YAWButton;
 import com.reeszrbteam.ce.gui.click.elements.YAWWindow;
 import com.reeszrbteam.ce.util.CEUtils;

@@ -1,8 +1,8 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.CheatingEssentials;
-import com.kodehawa.module.classes.BlockESP;
-import com.kodehawa.util.FileManager;
+import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.module.classes.BlockESP;
+import com.kodehawa.ce.util.FileManager;
 import com.reeszrbteam.ce.console.BaseCommand;
 import com.reeszrbteam.ce.util.BlockFilter;
 

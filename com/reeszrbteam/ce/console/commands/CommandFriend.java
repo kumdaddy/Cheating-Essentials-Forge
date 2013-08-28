@@ -1,7 +1,7 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.CheatingEssentials;
-import com.kodehawa.playerrelations.Friend;
+import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.playerrelations.Friend;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandFriend extends BaseCommand {
