@@ -24,15 +24,12 @@ public final class ModuleManager {
 	
 	public ModuleManager( ){
         modules = new CopyOnWriteArrayList<CheatingEssentialsModule>();
-
-        CheatingEssentials.CELogAgent(
-                "Module System: Starting in Cheating Essentials " + Strings.MOD_VERSION + " for Minecraft 1.6.2...");
     }
 	
 	public void addModule(final CheatingEssentialsModule e) {
         synchronized (modules) {
             modules.add( e );
-            if (e.getClass().isAnnotationPresent(ModuleExperimental.class)) {
+              if (e.getClass().isAnnotationPresent(ModuleExperimental.class)) {
            	 CheatingEssentials.CELogAgent("Module \"" + e.getName() + "\" is WIP! Use at own risk!");
            }
         }

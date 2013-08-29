@@ -38,7 +38,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author Kodehawa
  */
 @SideOnly(Side.CLIENT)
-public abstract class CheatingEssentialsModule implements Listener, Tickable {
+public class CheatingEssentialsModule implements Listener, Tickable {
 
     public EnumGuiCategory type;
     public boolean enabled;
@@ -77,6 +77,8 @@ public abstract class CheatingEssentialsModule implements Listener, Tickable {
        EventHandler.getInstance().registerListener( EventKey.class, this );
        EventHandler.getInstance().registerListener( EventRender3D.class, this );
     }
+    
+    public CheatingEssentialsModule( ) {}
     
     public void toggleModule( ){
     	try{
@@ -295,8 +297,8 @@ public abstract class CheatingEssentialsModule implements Listener, Tickable {
          }
 
       //Things for register module things.
-      public abstract void onEnableModule( );
-	  public abstract void onDisableModule( );
+      public void onEnableModule( ){}
+	  public void onDisableModule( ){}
 	  public void onRenderInModule( ){}
       public void tick(){}
       public void utilGui(){}

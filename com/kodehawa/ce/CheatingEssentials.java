@@ -19,6 +19,8 @@ public final class CheatingEssentials {
 
     public volatile static CheatingEssentials modinstance;
     public int tick = 0;
+    //Future hardcore cheating mode. Crafting and stuff like that
+    public boolean isHardcoreModeEnabled;
     
 	public CheatingEssentials( ) {
         modinstance = this;
@@ -29,6 +31,10 @@ public final class CheatingEssentials {
 	}
 
 	public static CheatingEssentials getCheatingEssentials(){
+		return modinstance;
+	}
+	
+	public static CheatingEssentials instance(){
 		return modinstance;
 	}
 

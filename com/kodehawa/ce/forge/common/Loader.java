@@ -2,16 +2,13 @@ package com.kodehawa.ce.forge.common;
 
 import java.util.logging.Level;
 
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeSubscribe;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.kodehawa.ce.CheatingEssentials;
-import com.kodehawa.ce.event.events.EventRender3D;
+import com.kodehawa.ce.forge.common.events.EventRegisterer;
 import com.kodehawa.ce.forge.tick.TickHandler;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 import com.kodehawa.ce.module.loader.BaseLoader;
@@ -38,7 +35,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * @author Kodehawa
  */
 
-@Mod(modid="Cheating-Essentials", name="Cheating Essentials", version="3.2.1", useMetadata=true) //Gets mod data
+@Mod(modid="Cheating-Essentials", name="Cheating Essentials", version="3.2.2", useMetadata=true) //Gets mod data
 @NetworkMod(clientSideRequired=true, serverSideRequired=false) 
 @SideOnly(Side.CLIENT)
 //I don't like this to be loaded in a server envirioment. It works in servers, but it can't be installed in servers.
@@ -49,7 +46,7 @@ public class Loader {
     public static TickHandler tickHandler = new TickHandler();
     private static final int MAJOR_VERSION = 3;
     private static final int MINOR_VERSION = 2;
-    private static final int REVISION_VERSION = 1;
+    private static final int REVISION_VERSION = 2;
 	
     @Instance("Cheating-Essentials")
     public static Loader instance;
@@ -59,7 +56,7 @@ public class Loader {
    
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-    	
+    	FMLLog.log("Cheating Essentials", Level.INFO, "Cheating Essentials main: " + StringUtils.defaultString(CheatingEssentials.class.getName()));
     	FMLLog.log("Cheating Essentials", Level.INFO, "Attempting a early Cheating Essentials initialization");
     	ce = new CheatingEssentials( );
     	FMLLog.log("Cheating Essentials", Level.INFO,
@@ -75,22 +72,12 @@ public class Loader {
     @EventHandler
     public void load(FMLInitializationEvent event) {
         proxyHandler.registerRenderers();
-        MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new EventRegisterer());
     }
    
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {}
 
-	@ForgeSubscribe
-	public void onRenderWorldLastEvent(RenderWorldLastEvent e){
-		com.kodehawa.ce.event.EventHandler.getInstance().call(new EventRender3D(this));
-	}
-	
-    @ForgeSubscribe
-	public void renderOverlay(RenderGameOverlayEvent event){
-		//TickHandler.instance().startGuiRendering();
-	}
-	
 	private void initializeSingletons(){
         ModuleManager.getInstance();
         BaseLoader.getInstance();

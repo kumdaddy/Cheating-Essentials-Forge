@@ -32,13 +32,14 @@ public final class BaseLoader {
 	
 	@ModuleLoader(type = "Charger")
     public BaseLoader( ){
+		ModuleManager.getInstance().modules.clear();
 		ModuleManager.getInstance().addModule(new CreativeFly( ) );
 		ModuleManager.getInstance().addModule(new Fly( ) );
 		ModuleManager.getInstance().addModule(new NoFall( ));
 		ModuleManager.getInstance().addModule(new Sprint( ));
         ModuleManager.getInstance().addModule(new Unpushable( ));
-        ModuleManager.getInstance().addModule(new Waterwalk( ));
         ModuleManager.getInstance().addModule(new Mobaura());
+        ModuleManager.getInstance().addModule(new Waterwalk());
         ModuleManager.getInstance().addModule(new AutoRespawn( ));
         ModuleManager.getInstance().addModule(new Xray( ));
         ModuleManager.getInstance().addModule(new Fullbright( ));

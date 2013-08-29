@@ -44,15 +44,6 @@ public class TickHandler implements IScheduledTickHandler {
 		}
 		     /* Handle keys */    KeyboardListener.getInstance().handleKeys();
 		}
-
-        switch (guimode){
-            case 0: for(Frame e : Gui.frames){
-                if(e.pinned){ e.update(); e.draw(); }} break;
-            case 1: for(YAWWindow window: YouAlwaysWinClickGui.windows){
-                if(!(CheatingEssentials.getMinecraftInstance().currentScreen instanceof YouAlwaysWinClickGui)) {
-                    if(window.isPinned()){ window.draw(0, 0); }} break;
-            }
-        }
 	}
 
 	@Override
@@ -77,6 +68,14 @@ public class TickHandler implements IScheduledTickHandler {
 	}
 	
 	public void startGuiRendering(){
+        switch (guimode){
+            case 0: for(Frame e : Gui.frames){
+                if(e.pinned){ e.update(); e.draw(); }} break;
+            case 1: for(YAWWindow window: YouAlwaysWinClickGui.windows){
+                if(!(CheatingEssentials.getMinecraftInstance().currentScreen instanceof YouAlwaysWinClickGui)) {
+                    if(window.isPinned()){ window.draw(0, 0); }} break;
+            }
+        }
 	}
 	
 	public static TickHandler instance(){
