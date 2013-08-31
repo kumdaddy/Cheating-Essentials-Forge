@@ -16,6 +16,7 @@ public class CommandBind extends BaseCommand{
 
 	@Override
 	public void runCommand(String s, String[] args) {
+		if(!CheatingEssentials.getCheatingEssentials().isHardcoreModeEnabled){
 		try {
 			if(args[0].equalsIgnoreCase("add")) {
 				for(CheatingEssentialsModule m : ModuleManager.getInstance().modules) {
@@ -51,6 +52,9 @@ public class CommandBind extends BaseCommand{
 		} catch(Exception e) {
 			e.printStackTrace();
 			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Usage: " + getSyntax());
+		}}
+		else{
+			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Heh, don't try to bind something in hardcore!");
 		}
 	}
 

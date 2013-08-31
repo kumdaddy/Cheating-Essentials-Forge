@@ -62,7 +62,7 @@ public class CheatingEssentialsModule implements Listener, Tickable {
       }
 
     public CheatingEssentialsModule(final String name, final String desc, final EnumGuiCategory type) {
-       this(name, desc, "1.6.2", -1, type, true);
+       this(name, desc, "1.6.2", 0, type, true);
         EventHandler.getInstance().registerListener( EventKey.class, this );
         EventHandler.getInstance().registerListener( EventRender3D.class, this );
        }
@@ -77,9 +77,7 @@ public class CheatingEssentialsModule implements Listener, Tickable {
        EventHandler.getInstance().registerListener( EventKey.class, this );
        EventHandler.getInstance().registerListener( EventRender3D.class, this );
     }
-    
-    public CheatingEssentialsModule( ) {}
-    
+        
     public void toggleModule( ){
     	try{
     	active = !active;

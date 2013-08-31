@@ -2,9 +2,23 @@ package com.reeszrbteam.ce.console;
 
 import java.util.ArrayList;
 
-import com.reeszrbteam.ce.console.commands.*;
-
 import com.kodehawa.ce.CheatingEssentials;
+import com.reeszrbteam.ce.console.commands.CommandAuraDistance;
+import com.reeszrbteam.ce.console.commands.CommandBind;
+import com.reeszrbteam.ce.console.commands.CommandBlockESP;
+import com.reeszrbteam.ce.console.commands.CommandBreadcrumb;
+import com.reeszrbteam.ce.console.commands.CommandEnemy;
+import com.reeszrbteam.ce.console.commands.CommandFlySpeed;
+import com.reeszrbteam.ce.console.commands.CommandFriend;
+import com.reeszrbteam.ce.console.commands.CommandGuiMode;
+import com.reeszrbteam.ce.console.commands.CommandHardcoreMode;
+import com.reeszrbteam.ce.console.commands.CommandHelp;
+import com.reeszrbteam.ce.console.commands.CommandModuleEnable;
+import com.reeszrbteam.ce.console.commands.CommandModuleList;
+import com.reeszrbteam.ce.console.commands.CommandPlayerView;
+import com.reeszrbteam.ce.console.commands.CommandStepHeight;
+import com.reeszrbteam.ce.console.commands.CommandTeleport;
+import com.reeszrbteam.ce.console.commands.CommandXray;
 
 public class CommandManager
 {
@@ -21,7 +35,6 @@ public class CommandManager
 	public void addCommands()
 	{
 		commands.clear();
-		commands.add(new CommandBind());
 		commands.add(new CommandEnemy());
 		commands.add(new CommandHelp());
 		commands.add(new CommandModuleList());
@@ -29,13 +42,14 @@ public class CommandManager
 		commands.add(new CommandTeleport());
 		commands.add(new CommandXray());
 		commands.add(new CommandFriend());
-		commands.add(new CommandStepHeight());
 		commands.add(new CommandAuraDistance());
         commands.add(new CommandFlySpeed());
         commands.add(new CommandBlockESP());
         commands.add(new CommandBreadcrumb());
         commands.add(new CommandGuiMode());
         commands.add(new CommandModuleEnable());
+        commands.add(new CommandHardcoreMode());
+		commands.add(new CommandBind()); 
 	}
 
 	public void runCommands(String s)

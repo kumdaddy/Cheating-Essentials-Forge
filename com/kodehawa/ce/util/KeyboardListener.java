@@ -11,10 +11,8 @@ public class KeyboardListener {
 
 	private volatile static KeyboardListener instance;
     private boolean[ ] keymap;
-
 	
 	public KeyboardListener(){
-		
         keymap = new boolean[ 256 ];
         BaseLoader.keyInit();
         handleKeys();

@@ -58,11 +58,11 @@ public class BlockESP extends CheatingEssentialsModule{
 		if(isActive()) {
             timer++;
 
-			if(timer >= 60) {
+			if(timer >= 50) {
 				refresh();
 				timer = 0;
 			}
-
+			
 			for(int cur = 0; cur < size; cur++) {
 				BlockCoord curBlock = espBlocks[cur];
 				CEUtils.drawESP(curBlock.getDeltaX(), curBlock.getDeltaY(), curBlock.getDeltaZ(), 0.0F, 0.0F, 1.0F);

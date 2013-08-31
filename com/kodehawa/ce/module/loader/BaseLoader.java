@@ -6,6 +6,7 @@ import com.kodehawa.ce.module.classes.AutoRespawn;
 import com.kodehawa.ce.module.classes.BlockESP;
 import com.kodehawa.ce.module.classes.Breadcrumb;
 import com.kodehawa.ce.module.classes.ChestESP;
+import com.kodehawa.ce.module.classes.Console;
 import com.kodehawa.ce.module.classes.CreativeFly;
 import com.kodehawa.ce.module.classes.FastBreak;
 import com.kodehawa.ce.module.classes.Fly;
@@ -54,6 +55,7 @@ public final class BaseLoader {
         ModuleManager.getInstance().addModule(new UtilReloadChunks( ));
         ModuleManager.getInstance().addModule(new UtilAdvancedTooltips(  ));
         ModuleManager.getInstance().addModule(new Gui());
+        ModuleManager.getInstance().addModule(new Console());
         disableModules();
         CheatingEssentials.CELogAgent("Loaded " + ModuleManager.getInstance().modules.size() + " modules in Cheating Essentials" );
     }

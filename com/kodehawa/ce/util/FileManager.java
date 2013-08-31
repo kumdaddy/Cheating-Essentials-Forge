@@ -69,7 +69,7 @@ public class FileManager {
         	CheatingEssentials.getCheatingEssentials().CELogAgent("Writting X-Ray list configuration file...");
             File file = new File( mainDir, "" );
             BufferedWriter bufferedwritter = new BufferedWriter( new FileWriter( file ) );
-            for( int i : Xray.xrayBlocks ) {
+            for( int i : Xray.xrayList ) {
             	bufferedwritter.write( i + "\r\n" );
             }
             bufferedwritter.close( );
@@ -185,7 +185,7 @@ public class FileManager {
             while( ( line = br.readLine( ) ) != null ) {
                 String curLine = line.toLowerCase( ).trim( );
                 int id = Integer.parseInt( curLine );
-                Xray.xrayBlocks.add( id );
+                Xray.xrayList.add( id );
             }
             br.close( );
         } catch( Exception ex ) {

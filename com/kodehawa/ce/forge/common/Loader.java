@@ -2,6 +2,9 @@ package com.kodehawa.ce.forge.common;
 
 import java.util.logging.Level;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -9,6 +12,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.forge.common.events.EventRegisterer;
+import com.kodehawa.ce.forge.common.item.CEItemHardcoreConsole;
+import com.kodehawa.ce.forge.common.item.CEItemHardcoreGui;
 import com.kodehawa.ce.forge.tick.TickHandler;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 import com.kodehawa.ce.module.loader.BaseLoader;
@@ -25,6 +30,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -46,11 +53,15 @@ public class Loader {
     public static TickHandler tickHandler = new TickHandler();
     private static final int MAJOR_VERSION = 3;
     private static final int MINOR_VERSION = 2;
-    private static final int REVISION_VERSION = 2;
+    private static final int REVISION_VERSION = 31;
 	
     @Instance("Cheating-Essentials")
     public static Loader instance;
-   
+    private final static Item hardcoreItem = new CEItemHardcoreGui(8235).setCreativeTab(CECreativeTabs.tabHardcore).
+    		setFull3D().setNoRepair().setMaxDamage(2510).func_111206_d("cheating-essentials:hardcoreWand");
+    private final static Item hardcoreItemC = new CEItemHardcoreConsole(8236).setCreativeTab(CECreativeTabs.tabHardcore).
+    		setFull3D().setNoRepair().setMaxDamage(2510).func_111206_d("cheating-essentials:hardcoreWandConsole");
+    
     @SidedProxy(clientSide="com.kodehawa.ce.forge.common.ClientProxy", serverSide="com.kodehawa.ce.forge.common.CommonProxy")
     public static CommonProxy proxyHandler;
    
@@ -68,10 +79,20 @@ public class Loader {
     	FMLLog.log("Cheating Essentials", Level.INFO,
     			"Started Cheating Essentials "+getForgeCEVersion()+" in Minecraft 1.6.2 with Minecraft Forge " + ForgeVersion.getVersion());
     }
+    
+    ItemStack emeraldBlock = new ItemStack(Block.blockEmerald);
+    ItemStack diamondBlock = new ItemStack(Block.blockDiamond);
    
     @EventHandler
     public void load(FMLInitializationEvent event) {
         proxyHandler.registerRenderers();
+        LanguageRegistry.instance().addStringLocalization("itemGroup.tabHardcore", "en_US", "Cheating Essentials");
+        LanguageRegistry.addName(hardcoreItem, "Cheating GUI Wand");
+        LanguageRegistry.addName(hardcoreItemC, "Cheating Console Wand");
+        GameRegistry.addRecipe(new ItemStack(hardcoreItem), "xyx", "xyx", "xxx",
+                'x', emeraldBlock , 'y', diamondBlock);
+        GameRegistry.addRecipe(new ItemStack(hardcoreItemC), "xyx", "xyx", "xxx",
+                'x', diamondBlock , 'y', emeraldBlock);
         MinecraftForge.EVENT_BUS.register(new EventRegisterer());
     }
    

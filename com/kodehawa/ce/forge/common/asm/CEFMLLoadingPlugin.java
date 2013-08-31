@@ -2,10 +2,11 @@ package com.kodehawa.ce.forge.common.asm;
 
 import java.util.Map;
 
+import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin.MCVersion;
 
 @MCVersion(value = "1.6.2")
-public class CEFMLLoadingPlugin implements cpw.mods.fml.relauncher.IFMLLoadingPlugin {
+public class CEFMLLoadingPlugin implements IFMLLoadingPlugin {
 
     public static final String BlockTransformer = "com.kodehawa.ce.forge.common.asm.BlockTransformer";
 	

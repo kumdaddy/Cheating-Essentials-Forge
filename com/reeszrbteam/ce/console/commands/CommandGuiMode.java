@@ -15,12 +15,10 @@ public class CommandGuiMode extends BaseCommand{
 	public void runCommand(String s, String[] args) {
 		try{
 			if(args[0].equalsIgnoreCase("ReesZRB")){
-				TickHandler.guimode = 1;
                 Gui.guimode = 1;
                 CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Gui Mode is set to ReesZRB.");
 			}
 			if(args[0].equalsIgnoreCase("Kodehawa")){
-				TickHandler.guimode = 0;
                 Gui.guimode = 0;
                 CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Gui Mode is set to Kodehawa.");
 			}

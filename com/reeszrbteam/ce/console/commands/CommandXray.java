@@ -22,9 +22,9 @@ public class CommandXray extends BaseCommand
 			{
 				int id = BlockFilter.BlockNametoID(args[1]);
 				String blockname = BlockFilter.IDtoBlockName(id);
-				if(!Xray.xrayBlocks.contains(id))
+				if(!Xray.xrayList.contains(id))
 				{
-					Xray.xrayBlocks.add(id);
+					Xray.xrayList.add(id);
 					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Added " + blockname + "(" + id + ") to xray list.");
 					CheatingEssentials.getMinecraftInstance().renderGlobal.loadRenderers();
 					FileManager.saveXrayList();
@@ -36,9 +36,9 @@ public class CommandXray extends BaseCommand
 			{
 				int id = BlockFilter.BlockNametoID(args[1]);
 				String blockname = BlockFilter.IDtoBlockName(id);
-				if(Xray.xrayBlocks.contains(id))
+				if(Xray.xrayList.contains(id))
 				{
-					Xray.xrayBlocks.remove(Xray.xrayBlocks.indexOf(id));
+					Xray.xrayList.remove(Xray.xrayList.indexOf(id));
 					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Removed " + blockname + "(" + id + ") from xray list.");
 					CheatingEssentials.getMinecraftInstance().renderGlobal.loadRenderers();
 					FileManager.saveXrayList();

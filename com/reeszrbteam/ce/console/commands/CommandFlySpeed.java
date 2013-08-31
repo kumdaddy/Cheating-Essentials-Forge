@@ -1,6 +1,5 @@
 package com.reeszrbteam.ce.console.commands;
 
-
 import com.kodehawa.ce.CheatingEssentials;
 import com.reeszrbteam.ce.console.BaseCommand;
 

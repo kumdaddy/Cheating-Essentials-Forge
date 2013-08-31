@@ -1,81 +1,127 @@
 package com.kodehawa.ce.module.classes;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.entity.RenderManager;
 
 import org.lwjgl.input.Keyboard;
 
 import com.kodehawa.ce.CheatingEssentials;
-import com.kodehawa.ce.event.Event;
-import com.kodehawa.ce.event.EventHandler;
-import com.kodehawa.ce.event.events.EventBlockRender;
+import com.kodehawa.ce.module.classes.BlockESP.BlockCoord;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
+import com.reeszrbteam.ce.util.BlockFilter;
+import com.reeszrbteam.ce.util.CEUtils;
 
-public class Xray extends CheatingEssentialsModule {
-	
-	public static ArrayList< Integer > xrayBlocks = new ArrayList< Integer >( );
+	public class Xray extends CheatingEssentialsModule{
 
-	public Xray( ) {
-		super("X-Ray", "See all valuable stuff", "1.6.2", Keyboard.KEY_X, EnumGuiCategory.WORLD, true);
+		private int size = 0;
 
-        xrayBlocks.add( 8 );
-        xrayBlocks.add( 9 );
-        xrayBlocks.add( 10 );
-        xrayBlocks.add( 11 );
-        xrayBlocks.add( 14 );
-        xrayBlocks.add( 15 );
-        xrayBlocks.add( 16 );
-        xrayBlocks.add( 89 );
-        xrayBlocks.add( 57 );
-        xrayBlocks.add( 73 );
-        xrayBlocks.add( 74 );
-        xrayBlocks.add( 152 );
-        xrayBlocks.add( 153 );
-        xrayBlocks.add( 56 );
-        xrayBlocks.add( 41 );
-        xrayBlocks.add( 42 );
-        xrayBlocks.add( 133 );
-        xrayBlocks.add( 129 );
-        xrayBlocks.add( 137 );
-        xrayBlocks.add( 120 );
-        xrayBlocks.add( 97 );
-        xrayBlocks.add( 88 );
-        xrayBlocks.add( 89 );
-        xrayBlocks.add( 112 );
-        super.setTick(true);
-	}
-	
-	public void onEnableModule(){
-		EventHandler.getInstance().registerListener( EventBlockRender.class, this );
-        CheatingEssentials.getCheatingEssentials().getMinecraftInstance().renderGlobal.loadRenderers();
-	}
- 
-	public void onDisableModule(){
-		EventHandler.getInstance().unRegisterListener( EventBlockRender.class, this );
-        CheatingEssentials.getCheatingEssentials().getMinecraftInstance().renderGlobal.loadRenderers();
-        CheatingEssentials.getMinecraftInstance().theWorld.provider.registerWorld(Minecraft.getMinecraft().theWorld);
-	}
-	
-	@Override
-	public void onEvent(Event e) {
-		super.onEvent(e);
+		public static List<Integer> xrayList = new ArrayList<Integer>();
+		public static BlockCoord[] xrayBlocks = new BlockCoord[10000000];
 		
-		if( e instanceof EventBlockRender ) {
-            EventBlockRender rEvent = ( EventBlockRender ) e;
-            if( rEvent.getType( ).equals( EventBlockRender.EventType.RENDER_XRAY ) ) {
-                rEvent.setCancelled( isActive( ) ? true : false );
-            }
-        }
-	}
+		public Xray() {
+			super("X-Ray", "", "1.6.2", Keyboard.KEY_X,
+					EnumGuiCategory.WORLD, true);
+			xrayList.add(14);
+			xrayList.add(56);
+			xrayList.add(73);
+			super.setRender(true);
+		}
 
-    @Override
-    public void tick() {
-        //To change body of implemented methods use File | Settings | File Templates.
-        float[] brightness = CheatingEssentials.getMinecraftInstance().theWorld.provider.lightBrightnessTable;
-        for(int i = 0; i < brightness.length; i++) {
-            brightness[i] = 1.0F;
-        }
-    }
+		@Override
+		public void onEnableModule() {}
+
+		@Override
+		public void onDisableModule() {}
+		
+		/*private int timer = 0;
+
+		public void refresh() {
+			size = 0;
+			int radius = 72;
+			for(int y = 0; y < 128; y++) {
+				for(int x = 0; x < radius; x++) {
+					for(int z = 0; z < radius; z++) {
+
+						int cX = (int)CheatingEssentials.getMinecraftInstance().thePlayer.posX - (int)radius/2+x;
+						int cY = y;
+						int cZ = (int)CheatingEssentials.getMinecraftInstance().thePlayer.posZ - (int)radius/2+z;
+						int ids = CheatingEssentials.getMinecraftInstance().theWorld.getBlockId(cX, cY, cZ);
+
+						if (xrayList.contains(ids)) {
+							xrayBlocks[size++] = new BlockCoord(cX, cY, cZ);
+						}
+					}
+				}
+			}
+		}
+
+		@Override
+		public void onRenderInModule() {
+			if(isActive()) {
+	            timer++;
+
+				if(timer >= 50) {
+					refresh();
+					timer = 0;
+				}
+				
+				for(int cur = 0; cur < size; cur++) {
+					BlockCoord curBlock = xrayBlocks[cur];
+						if(xrayList.contains(14)){ //Gold
+	        				CEUtils.drawESP(curBlock.getDeltaX(), curBlock.getDeltaY(), curBlock.getDeltaZ(), 1.0F, 1.0F, 0.0F);
+						}
+	                   /* if(xrayList.contains("15")){ //Iron
+	        				CEUtils.drawESP(curBlock.getDeltaX(), curBlock.getDeltaY(), curBlock.getDeltaZ(), 0.01F, 0.05F, 1.0F);
+						}
+	                    if(xrayList.contains("16")){ //Coal
+	        				CEUtils.drawESP(curBlock.getDeltaX(), curBlock.getDeltaY(), curBlock.getDeltaZ(), 0.0F, 0.5F, 0.0F);
+						}
+	                    if(xrayList.contains(56)){ // Diamond
+	        				CEUtils.drawESP(curBlock.getDeltaX(), curBlock.getDeltaY(), curBlock.getDeltaZ(), 0.0F, 0.0F, 1.0F);
+						}
+	                    if((xrayList.contains(73))){ // Redstone
+	        				CEUtils.drawESP(curBlock.getDeltaX(), curBlock.getDeltaY(), curBlock.getDeltaZ(), 1.0F, 0.0F, 0.0F);
+						}
+	                    else{}
+					}
+				}
+			}*/
+		
+	    public class BlockCoord {
+			private int x, y, z;
+
+			public BlockCoord(int x, int y, int z) {
+				this.x = x;
+				this.y = y;
+				this.z = z;
+			}
+
+			public int getX() {
+				return x;
+			}
+
+			public int getY() {
+				return y;
+			}
+
+			public int getZ() {
+				return z;
+			}
+
+			public double getDeltaX() {
+				return getX() - RenderManager.renderPosX;
+			}
+
+			public double getDeltaY() {
+				return getY() - RenderManager.renderPosY;
+			}
+
+			public double getDeltaZ() {
+				return getZ() - RenderManager.renderPosZ;
+				}
+			}
 }
