@@ -40,7 +40,7 @@ public class CommandManager
 		commands.add(new CommandModuleList());
 		commands.add(new CommandPlayerView());
 		commands.add(new CommandTeleport());
-		commands.add(new CommandXray());
+		//commands.add(new CommandXray());
 		commands.add(new CommandFriend());
 		commands.add(new CommandAuraDistance());
         commands.add(new CommandFlySpeed());

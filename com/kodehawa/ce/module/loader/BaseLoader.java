@@ -35,7 +35,6 @@ public final class BaseLoader {
 
 	private volatile static BaseLoader instance;
 	
-	@ModuleLoader(type = "Charger")
     public BaseLoader( ){
 		ModuleManager.getInstance().modules.clear();
 		ModuleManager.getInstance().addModule(new CreativeFly( ) );
@@ -46,7 +45,6 @@ public final class BaseLoader {
         ModuleManager.getInstance().addModule(new Mobaura());
         ModuleManager.getInstance().addModule(new Waterwalk());
         ModuleManager.getInstance().addModule(new AutoRespawn( ));
-        ModuleManager.getInstance().addModule(new Xray( ));
         ModuleManager.getInstance().addModule(new Fullbright( ));
 		ModuleManager.getInstance().addModule(new FastBreak( ));
 		ModuleManager.getInstance().addModule(new ChestESP( ));

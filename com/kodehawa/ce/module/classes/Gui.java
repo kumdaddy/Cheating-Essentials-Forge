@@ -13,6 +13,9 @@ public class Gui extends CheatingEssentialsModule {
     public ModuleGui kodehawagui;
     public YouAlwaysWinClickGui reesgui;
 
+    /**
+     * Opens {@link ModuleGui} class ({@link GuiScreen}) when fired.
+     */
     public Gui( ) {
         super("Gui", "", "1.6.2", Keyboard.KEY_G, EnumGuiCategory.NONE, true);
         kodehawagui = new ModuleGui();

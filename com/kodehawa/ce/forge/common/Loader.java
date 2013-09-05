@@ -92,8 +92,8 @@ public class Loader {
     	FMLLog.log("Cheating Essentials", Level.INFO,
     			"Started Cheating Essentials "+getForgeCEVersion()+" in Minecraft 1.6.2 with Minecraft Forge " + ForgeVersion.getVersion());
     	/* Little joke <3 */
-    	CheatingEssentials.CELogAgent("[Pinky] Cerebro, what are we going to do tomorrow night?");
-    	CheatingEssentials.CELogAgent("[Cerebro] Pinky, we're going to take over the world!");
+    	CheatingEssentials.CELogAgent("[Pinky] Brain, what are we going to do tomorrow night?");
+    	CheatingEssentials.CELogAgent("[Brain] Pinky, we're going to take over the world!");
     }
     
     ItemStack emeraldBlock = new ItemStack(Block.blockEmerald);

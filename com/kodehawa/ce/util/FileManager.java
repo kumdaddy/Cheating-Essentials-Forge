@@ -85,11 +85,6 @@ public class FileManager<E, T> {
             BufferedWriter bufferedwritter = new BufferedWriter( new FileWriter( file ) );
             Class<?> clazz = Block.class;
             Field field = clazz.getField("xrayBlocks");
-            if(field.getDeclaringClass().getDeclaredField("xrayBlocks") != null){
-            for( int i : Block.xrayBlocks ) {
-            	bufferedwritter.write( i + "\r\n" );
-            }
-            }
             bufferedwritter.close( );
         	
         } catch( Exception ex ) {
@@ -205,9 +200,6 @@ public class FileManager<E, T> {
                 int id = Integer.parseInt( curLine );
                 Class<?> clazz = Block.class;
                 Field field = clazz.getField("xrayBlocks");
-                if(field.getDeclaringClass().getDeclaredField("xrayBlocks") != null){
-                Block.xrayBlocks.add( id );
-                }
             }
             br.close( );
         } catch( Exception ex ) {

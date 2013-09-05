@@ -24,7 +24,7 @@ public class CommandXray extends BaseCommand
 			{
 				int id = BlockFilter.BlockNametoID(args[1]);
 				String blockname = BlockFilter.IDtoBlockName(id);
-				if(!Block.xrayBlocks.contains(id))
+				/*if(!Block.xrayBlocks.contains(id))
 				{
 					Block.xrayBlocks.add(id);
 					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Added " + blockname + "(" + id + ") to xray list.");
@@ -33,12 +33,12 @@ public class CommandXray extends BaseCommand
 				}else
 				{
 					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage(blockname + "(" + id + ") is already in the xray list.");
-				}
+				}*/
 			}else if(args[0].equalsIgnoreCase("del") || args[0].equalsIgnoreCase("rem"))
 			{
 				int id = BlockFilter.BlockNametoID(args[1]);
 				String blockname = BlockFilter.IDtoBlockName(id);
-				if(Block.xrayBlocks.contains(id))
+				/*if(Block.xrayBlocks.contains(id))
 				{
 					Block.xrayBlocks.remove(Block.xrayBlocks.indexOf(id));
 					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Removed " + blockname + "(" + id + ") from xray list.");
@@ -47,7 +47,7 @@ public class CommandXray extends BaseCommand
 				}else
 				{
 					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage(blockname + "(" + id + ") is not in the xray list.");
-				}
+				}*/
 			}
 		}catch(Exception e)
 		{
