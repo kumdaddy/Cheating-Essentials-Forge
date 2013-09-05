@@ -1,7 +1,8 @@
 package com.kodehawa.ce.module.classes;
 
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.network.packet.Packet13PlayerLookMove;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 
 import org.lwjgl.input.Keyboard;
 
@@ -18,7 +19,16 @@ public class Fly extends CheatingEssentialsModule {
 				EnumGuiCategory.PLAYER, true);
         super.setTick(true);
 	}
-
+    
+	
+	@ForgeSubscribe
+	public void removeFalling(LivingFallEvent e){
+			for(Object o : CheatingEssentials.getMinecraftInstance().theWorld.loadedEntityList) {
+				if(o instanceof EntityPlayer){
+					e.setCanceled(true);
+				}
+		}
+	}
 
 	@Override
     public void onEnableModule(){
@@ -35,9 +45,5 @@ public class Fly extends CheatingEssentialsModule {
 		if(!CheatingEssentials.getMinecraftInstance().thePlayer.capabilities.isFlying){
 			CheatingEssentials.getMinecraftInstance().thePlayer.capabilities.isFlying = true;
 		}
-		
-	    EntityClientPlayerMP ep = CheatingEssentials.getCheatingEssentials().getMinecraftInstance().thePlayer;
-        ep.sendQueue.addToSendQueue(new Packet13PlayerLookMove(ep.motionX, -999.0D, -999.0D, ep.motionZ,
-                ep.rotationYaw, ep.rotationPitch, !ep.onGround));
 	}
 }

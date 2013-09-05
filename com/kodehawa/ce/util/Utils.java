@@ -1,6 +1,6 @@
 package com.kodehawa.ce.util;
 
-import com.kodehawa.ce.CheatingEssentials;
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class Utils
 {
@@ -14,7 +14,7 @@ public class Utils
     public void addChatMessage(String message)
     {
         String toSend = message;
-        CheatingEssentials.getCheatingEssentials().getMinecraftInstance().thePlayer.addChatMessage(toSend);
+        FMLClientHandler.instance().getClient().ingameGUI.getChatGUI().addTranslatedMessage(toSend, new Object[0]);
     }
 
     public static Utils getInstance() {

@@ -11,12 +11,11 @@ import net.minecraftforge.common.MinecraftForge;
 import org.apache.commons.lang3.StringUtils;
 
 import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.api.reflection.ReflectorHelper;
 import com.kodehawa.ce.forge.common.events.EventRegisterer;
 import com.kodehawa.ce.forge.common.item.CEItemHardcoreConsole;
 import com.kodehawa.ce.forge.common.item.CEItemHardcoreGui;
 import com.kodehawa.ce.forge.tick.TickHandler;
-import com.kodehawa.ce.module.handlers.ModuleManager;
-import com.kodehawa.ce.module.loader.BaseLoader;
 import com.kodehawa.ce.playerrelations.Enemy;
 import com.kodehawa.ce.playerrelations.Friend;
 import com.kodehawa.ce.util.FileManager;
@@ -37,23 +36,31 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 /**
- * These little lines of this are enough to init all the mod <3
- * Forge CE version main class, with all of my love for Optifine users. Me included :)
+ * Forge Class Loader for {@link CheatingEssentials} in {@link MinecraftForge}, mostly created for
+ * Optifine users and users that like to use other mods with it. It should not be loaded in
+ * a server envirioment, but some cheats / hacks are compatible with it.
+ * The {@link ReflectorHelper} class is for some cheats that need a private or unaccesible value.
+ * This loader initialize the singleton instance of all classes that need it for load it in the
+ * class patch. I'm planning to add a API for most easy mod development.
+ * The hardcore feature are mostly items, see also: {@link CEItemHardcoreConsole} and {@link CEItemHardcoreGui}
+ * and now is mostly testing for future projects.
+ * @version 3.2.35a
  * @author Kodehawa
+ * @since 25/08/2013
  */
 
-@Mod(modid="Cheating-Essentials", name="Cheating Essentials", version="3.2.2", useMetadata=true) //Gets mod data
+@Mod(modid="Cheating-Essentials", name="Cheating Essentials", version="3.2.35a", useMetadata=true) //Gets mod data
 @NetworkMod(clientSideRequired=true, serverSideRequired=false) 
 @SideOnly(Side.CLIENT)
-//I don't like this to be loaded in a server envirioment. It works in servers, but it can't be installed in servers.
 
 public class Loader {
 	
 	public CheatingEssentials ce;
     public static TickHandler tickHandler = new TickHandler();
-    private static final int MAJOR_VERSION = 3;
-    private static final int MINOR_VERSION = 2;
-    private static final int REVISION_VERSION = 31;
+    static final int MAJOR_VERSION = 3;
+    static final int MINOR_VERSION = 2;
+    static final int REVISION_VERSION = 35;
+    static final String REVISION_LETTER = "a";
 	
     @Instance("Cheating-Essentials")
     public static Loader instance;
@@ -74,10 +81,19 @@ public class Loader {
     			"Cheating Essentials Forge Loader: " + StringUtils.defaultString(Loader.class.getName()) +
     			" in Minecraft Forge " + ForgeVersion.getVersion());
     	FMLLog.log("Cheating Essentials", Level.INFO, "Loading mod instances...");
-        initializeSingletons();
+        try {
+			initializeSingletons();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
     	TickRegistry.registerScheduledTickHandler(tickHandler, Side.CLIENT);
     	FMLLog.log("Cheating Essentials", Level.INFO,
     			"Started Cheating Essentials "+getForgeCEVersion()+" in Minecraft 1.6.2 with Minecraft Forge " + ForgeVersion.getVersion());
+    	/* Little joke <3 */
+    	CheatingEssentials.CELogAgent("[Pinky] Cerebro, what are we going to do tomorrow night?");
+    	CheatingEssentials.CELogAgent("[Cerebro] Pinky, we're going to take over the world!");
     }
     
     ItemStack emeraldBlock = new ItemStack(Block.blockEmerald);
@@ -99,15 +115,13 @@ public class Loader {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {}
 
-	private void initializeSingletons(){
-        ModuleManager.getInstance();
-        BaseLoader.getInstance();
+	private void initializeSingletons() throws NoSuchFieldException, SecurityException{
         Enemy.getInstance();
         Friend.getInstance();
         FileManager.getInstance();
     }
 	
 	public static String getForgeCEVersion(){
-		return MAJOR_VERSION+"."+MINOR_VERSION+"."+REVISION_VERSION; //Return current version
+		return MAJOR_VERSION+"."+MINOR_VERSION+"."+REVISION_VERSION+REVISION_LETTER; //Return current version
 	}
 }

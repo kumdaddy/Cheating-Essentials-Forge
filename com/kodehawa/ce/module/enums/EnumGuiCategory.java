@@ -6,6 +6,5 @@ public enum EnumGuiCategory {
      WORLD,
      UTILS,
      RENDER,
-     NONE
-	
+     NONE;
 }

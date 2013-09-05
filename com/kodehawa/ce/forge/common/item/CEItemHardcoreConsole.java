@@ -25,9 +25,12 @@ public class CEItemHardcoreConsole extends Item {
 	@SideOnly(Side.CLIENT)
 	@Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer){
-		ModuleManager.getInstance().getModuleByClass(Console.class).onEnableModule();
-		for(CheatingEssentialsModule module : ModuleManager.getInstance().modules){
-			module.setKeybinding(0);
+		try {
+			ModuleManager.getInstance().getModuleByClass(Console.class).onEnableModule();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
 		}
 		return par1ItemStack;
 	}

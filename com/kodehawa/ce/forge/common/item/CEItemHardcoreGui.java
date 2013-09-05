@@ -6,7 +6,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.classes.Gui;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.handlers.ModuleManager;
@@ -25,9 +24,12 @@ public class CEItemHardcoreGui extends Item {
 	@SideOnly(Side.CLIENT)
 	@Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer){
-		ModuleManager.getInstance().getModuleByClass(Gui.class).onEnableModule();
-		for(CheatingEssentialsModule module : ModuleManager.getInstance().modules){
-			module.setKeybinding(0);
+		try {
+			ModuleManager.getInstance().getModuleByClass(Gui.class).onEnableModule();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
 		}
 		return par1ItemStack;
 	}

@@ -10,10 +10,13 @@ import com.kodehawa.ce.module.annotations.ModuleExperimental;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.util.Tickable;
 
+import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
+@Mod(modid = "cemodulemanager", name = "Cheating Essentials MM",
+dependencies = "before:cebaseloader", version = "1.0.0")
 public final class ModuleManager {
 
     public volatile CopyOnWriteArrayList<CheatingEssentialsModule> modules;

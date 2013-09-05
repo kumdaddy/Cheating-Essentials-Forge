@@ -8,16 +8,18 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
+
+import net.minecraft.block.Block;
 
 import org.lwjgl.input.Keyboard;
 
 import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.classes.BlockESP;
-import com.kodehawa.ce.module.classes.Xray;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 
-public class FileManager {
+public class FileManager<E, T> {
     public static File mainDir;
     public static File someDir;
     public static File crashDir;
@@ -47,7 +49,13 @@ public class FileManager {
             mainDir.getParentFile().mkdirs();
             try {
 				mainDir.createNewFile();
-                saveXrayList();
+                try {
+					saveXrayList();
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				} catch (NoSuchFieldException e) {
+					e.printStackTrace();
+				}
 			} catch (IOException e) {}
         }
         if(!someDir.exists()){
@@ -55,7 +63,13 @@ public class FileManager {
             try{ someDir.createNewFile();  saveBlockESPList(); }
             catch(IOException e){}
         }
-        loadXrayList();
+        try {
+			loadXrayList();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		}
         loadBlockESPList();
         loadKeybindings();
     }
@@ -64,13 +78,17 @@ public class FileManager {
 	 * Write the entire file again when a block it's changed in-game
 	 */
 	
-    public static void saveXrayList( ) {
+    public static void saveXrayList( ) throws ClassNotFoundException, NoSuchFieldException  {
         try {
         	CheatingEssentials.getCheatingEssentials().CELogAgent("Writting X-Ray list configuration file...");
             File file = new File( mainDir, "" );
             BufferedWriter bufferedwritter = new BufferedWriter( new FileWriter( file ) );
-            for( int i : Xray.xrayList ) {
+            Class<?> clazz = Block.class;
+            Field field = clazz.getField("xrayBlocks");
+            if(field.getDeclaringClass().getDeclaredField("xrayBlocks") != null){
+            for( int i : Block.xrayBlocks ) {
             	bufferedwritter.write( i + "\r\n" );
+            }
             }
             bufferedwritter.close( );
         	
@@ -124,7 +142,8 @@ public class FileManager {
            File file = new File(keyDir, "");
            FileInputStream imput = new FileInputStream( file.getAbsolutePath() );
            DataInputStream stream = new DataInputStream( imput );
-           BufferedReader bufferedreader = new BufferedReader( new InputStreamReader( stream ));
+           @SuppressWarnings("resource")
+		BufferedReader bufferedreader = new BufferedReader( new InputStreamReader( stream ));
            String apetecan;
            while( (apetecan = bufferedreader.readLine() ) != null ){
                 String line1 = apetecan.toLowerCase().trim();
@@ -134,7 +153,6 @@ public class FileManager {
                for(CheatingEssentialsModule m : ModuleManager.getInstance().modules){
                    if(mod.equalsIgnoreCase("cekey-" + m.getName().toLowerCase().replace(" ", ""))) {
                        m.setKeybinding(key);
-                   //CheatingEssentials.CELogAgent("Binded " + m.getName() + " to: " + Keyboard.getKeyName(key) + " succefully" );
                    }
                }
             }
@@ -175,7 +193,7 @@ public class FileManager {
      * If a error it's finded it saves the X-Ray list again for prevent errors.
      */
     
-    public static void loadXrayList( ) {
+    public static void loadXrayList( ) throws ClassNotFoundException, NoSuchFieldException {
         try {
         	File file = new File( mainDir, "" );
             FileInputStream fstream = new FileInputStream( file.getAbsolutePath( ) );
@@ -185,7 +203,11 @@ public class FileManager {
             while( ( line = br.readLine( ) ) != null ) {
                 String curLine = line.toLowerCase( ).trim( );
                 int id = Integer.parseInt( curLine );
-                Xray.xrayList.add( id );
+                Class<?> clazz = Block.class;
+                Field field = clazz.getField("xrayBlocks");
+                if(field.getDeclaringClass().getDeclaredField("xrayBlocks") != null){
+                Block.xrayBlocks.add( id );
+                }
             }
             br.close( );
         } catch( Exception ex ) {

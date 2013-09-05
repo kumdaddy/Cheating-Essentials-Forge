@@ -2,6 +2,9 @@ package com.kodehawa.ce.module.core;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+
+import org.apache.commons.lang3.StringUtils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -17,19 +20,30 @@ import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeVersion;
+import net.minecraftforge.common.MinecraftForge;
 
 import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.event.Event;
-import com.kodehawa.ce.event.EventHandler;
 import com.kodehawa.ce.event.Listener;
 import com.kodehawa.ce.event.events.EventKey;
 import com.kodehawa.ce.event.events.EventRender3D;
+import com.kodehawa.ce.forge.common.Loader;
 import com.kodehawa.ce.module.annotations.ModuleRetention;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 import com.kodehawa.ce.util.Tickable;
 
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -37,9 +51,11 @@ import cpw.mods.fml.relauncher.SideOnly;
  * Main module class. All modules should extends it.
  * @author Kodehawa
  */
+@NetworkMod(clientSideRequired=true, serverSideRequired=false) 
 @SideOnly(Side.CLIENT)
 public class CheatingEssentialsModule implements Listener, Tickable {
 
+	
     public EnumGuiCategory type;
     public boolean enabled;
 	public String name;
@@ -52,19 +68,17 @@ public class CheatingEssentialsModule implements Listener, Tickable {
     public int color;
     private boolean ortho;
     private final LinkedList<Class<? extends CheatingEssentialsModule>> incompat = new LinkedList<Class<? extends CheatingEssentialsModule>>();
-
-
-    @ModuleRetention( type = "Base" )
+    
     public CheatingEssentialsModule(final String name, final String desc, final int key) {
        this(name, desc, "1.6.2", key, EnumGuiCategory.UTILS, true);
-        EventHandler.getInstance().registerListener( EventKey.class, this );
-        EventHandler.getInstance().registerListener( EventRender3D.class, this );
+        com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventKey.class, this );
+        com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventRender3D.class, this );
       }
 
     public CheatingEssentialsModule(final String name, final String desc, final EnumGuiCategory type) {
        this(name, desc, "1.6.2", 0, type, true);
-        EventHandler.getInstance().registerListener( EventKey.class, this );
-        EventHandler.getInstance().registerListener( EventRender3D.class, this );
+        com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventKey.class, this );
+        com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventRender3D.class, this );
        }
 
     public CheatingEssentialsModule(final String name, final String desc, final String version, final int key, final EnumGuiCategory type, final boolean enabled) {
@@ -74,8 +88,8 @@ public class CheatingEssentialsModule implements Listener, Tickable {
        this.type = type;
        this.enabled = enabled;
        this.version = version;
-       EventHandler.getInstance().registerListener( EventKey.class, this );
-       EventHandler.getInstance().registerListener( EventRender3D.class, this );
+       com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventKey.class, this );
+       com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventRender3D.class, this );
     }
         
     public void toggleModule( ){
@@ -98,11 +112,11 @@ public class CheatingEssentialsModule implements Listener, Tickable {
         }
     	  if( this.isActive( ) ) {
               if( this.getRender( ) ) {
-              	EventHandler.getInstance().registerListener( EventRender3D.class, this );
+              	com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventRender3D.class, this );
               }
           } else {
               if( this.getRender( ) ) {
-              	EventHandler.getInstance().unRegisterListener( EventRender3D.class, this );
+            	com.kodehawa.ce.event.EventHandler.getInstance().unRegisterListener( EventRender3D.class, this );
               }
           }
     	}
@@ -295,8 +309,12 @@ public class CheatingEssentialsModule implements Listener, Tickable {
          }
 
       //Things for register module things.
-      public void onEnableModule( ){}
-	  public void onDisableModule( ){}
+      public void onEnableModule() throws NoSuchFieldException, SecurityException{
+    	  MinecraftForge.EVENT_BUS.register(this);
+      }
+	  public void onDisableModule( ) throws NoSuchFieldException, SecurityException{
+    	  MinecraftForge.EVENT_BUS.unregister(this);
+	  }
 	  public void onRenderInModule( ){}
       public void tick(){}
       public void utilGui(){}

@@ -1,5 +1,6 @@
 package com.kodehawa.ce.module.classes;
 
+import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 
@@ -43,7 +44,7 @@ public class Mobaura extends CheatingEssentialsModule {
 
             EntityUtils.setLastAffected(id, ent);
 
-            if ((ent == getMinecraft().thePlayer) || !(ent instanceof EntityLiving) || ent.isDead)
+            if ((ent == getMinecraft().thePlayer) || !(ent instanceof EntityLiving) || ent.isDead || ent instanceof EntityOtherPlayerMP)
             {
                 continue;
             }

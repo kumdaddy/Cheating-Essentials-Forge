@@ -17,6 +17,7 @@ import com.kodehawa.ce.module.classes.Mobaura;
 import com.kodehawa.ce.module.classes.NoFall;
 import com.kodehawa.ce.module.classes.PlayerESP;
 import com.kodehawa.ce.module.classes.Sprint;
+import com.kodehawa.ce.module.classes.Step;
 import com.kodehawa.ce.module.classes.Tracers;
 import com.kodehawa.ce.module.classes.Unpushable;
 import com.kodehawa.ce.module.classes.UtilAdvancedTooltips;
@@ -27,6 +28,9 @@ import com.kodehawa.ce.module.classes.Xray;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 
+import cpw.mods.fml.common.Mod;
+
+@Mod(modid="cebaseloader", name="Cheating Essentials BL2", version="3.2.33a", useMetadata=true) //Gets mod data
 public final class BaseLoader {
 
 	private volatile static BaseLoader instance;
@@ -51,6 +55,7 @@ public final class BaseLoader {
 		ModuleManager.getInstance().addModule(new MobESP( ));
 		ModuleManager.getInstance().addModule(new Tracers( ));
         ModuleManager.getInstance().addModule(new Breadcrumb( ));
+		ModuleManager.getInstance().addModule(new Step( ) );
         ModuleManager.getInstance().addModule(new UtilMobHitbox( ));
         ModuleManager.getInstance().addModule(new UtilReloadChunks( ));
         ModuleManager.getInstance().addModule(new UtilAdvancedTooltips(  ));

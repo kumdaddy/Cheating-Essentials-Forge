@@ -28,7 +28,8 @@ public class JavaHelper {
    	
    	public static int extractInt(String name){
    		String s = name.replace(":", "");
-   		Scanner in = new Scanner(s).useDelimiter("[^0-9]+");
+   		@SuppressWarnings("resource")
+		Scanner in = new Scanner(s).useDelimiter("[^0-9]+");
    		String s2 = in.next();
    		System.out.println(s2);
    		return 98000;

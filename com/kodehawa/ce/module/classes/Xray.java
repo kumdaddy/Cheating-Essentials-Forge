@@ -1,127 +1,153 @@
 package com.kodehawa.ce.module.classes;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.entity.RenderManager;
 
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
 
 import com.kodehawa.ce.CheatingEssentials;
-import com.kodehawa.ce.module.classes.BlockESP.BlockCoord;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
-import com.reeszrbteam.ce.util.BlockFilter;
 import com.reeszrbteam.ce.util.CEUtils;
 
-	public class Xray extends CheatingEssentialsModule{
-
-		private int size = 0;
-
-		public static List<Integer> xrayList = new ArrayList<Integer>();
-		public static BlockCoord[] xrayBlocks = new BlockCoord[10000000];
+public class Xray extends CheatingEssentialsModule{
 		
-		public Xray() {
-			super("X-Ray", "", "1.6.2", Keyboard.KEY_X,
-					EnumGuiCategory.WORLD, true);
-			xrayList.add(14);
-			xrayList.add(56);
-			xrayList.add(73);
-			super.setRender(true);
+	public static ArrayList<Integer> xrayBlocks = new ArrayList<Integer>();
+	public static int listID = 0;
+	public static BlockCoord[] espBlocks = new BlockCoord[10000000];
+	private int radius = 32;
+	private int timer = 0;
+	private int size = 0;
+	
+    public Xray() {
+		super("X-Ray", "", "1.6.2", Keyboard.KEY_X,
+				EnumGuiCategory.WORLD, true);
+		this.setTick(true);
+	}
+
+	@Override
+	public void onEnableModule() throws NoSuchFieldException, SecurityException {
+		getMinecraft().renderGlobal.loadRenderers();
+		float[] brightness = getMinecraft().theWorld.provider.lightBrightnessTable;
+        for(int i = 0; i < brightness.length; i++) {
+            brightness[i] = 1.0F;
+        }
+	}
+
+	@Override
+	public void onDisableModule() throws NoSuchFieldException, SecurityException  {
+		getMinecraft().renderGlobal.loadRenderers();
+		getMinecraft().theWorld.provider.registerWorld(Minecraft.getMinecraft().theWorld);
 		}
+	
+	public void tick(){
+		if(isActive()) {
+            timer++;
 
-		@Override
-		public void onEnableModule() {}
-
-		@Override
-		public void onDisableModule() {}
-		
-		/*private int timer = 0;
-
-		public void refresh() {
-			size = 0;
-			int radius = 72;
-			for(int y = 0; y < 128; y++) {
-				for(int x = 0; x < radius; x++) {
-					for(int z = 0; z < radius; z++) {
-
-						int cX = (int)CheatingEssentials.getMinecraftInstance().thePlayer.posX - (int)radius/2+x;
-						int cY = y;
-						int cZ = (int)CheatingEssentials.getMinecraftInstance().thePlayer.posZ - (int)radius/2+z;
-						int ids = CheatingEssentials.getMinecraftInstance().theWorld.getBlockId(cX, cY, cZ);
-
-						if (xrayList.contains(ids)) {
-							xrayBlocks[size++] = new BlockCoord(cX, cY, cZ);
-						}
-					}
-				}
+			if(timer >= 50) {
+				refresh();
+				timer = 0;
 			}
 		}
+	}
+		
+    void refresh(){
+    	for(int y = 0; y < 128; y++) {
+			for(int x = 0; x < radius; x++) {
+				for(int z = 0; z < radius; z++) {
 
-		@Override
-		public void onRenderInModule() {
-			if(isActive()) {
-	            timer++;
-
-				if(timer >= 50) {
-					refresh();
-					timer = 0;
-				}
+					int cX = (int)CheatingEssentials.getMinecraftInstance().thePlayer.posX - (int)radius/2+x;
+					int cY = y;
+					int cZ = (int)CheatingEssentials.getMinecraftInstance().thePlayer.posZ - (int)radius/2+z;
+					int ids = CheatingEssentials.getMinecraftInstance().theWorld.getBlockId(cX, cY, cZ);
 				
-				for(int cur = 0; cur < size; cur++) {
-					BlockCoord curBlock = xrayBlocks[cur];
-						if(xrayList.contains(14)){ //Gold
-	        				CEUtils.drawESP(curBlock.getDeltaX(), curBlock.getDeltaY(), curBlock.getDeltaZ(), 1.0F, 1.0F, 0.0F);
-						}
-	                   /* if(xrayList.contains("15")){ //Iron
-	        				CEUtils.drawESP(curBlock.getDeltaX(), curBlock.getDeltaY(), curBlock.getDeltaZ(), 0.01F, 0.05F, 1.0F);
-						}
-	                    if(xrayList.contains("16")){ //Coal
-	        				CEUtils.drawESP(curBlock.getDeltaX(), curBlock.getDeltaY(), curBlock.getDeltaZ(), 0.0F, 0.5F, 0.0F);
-						}
-	                    if(xrayList.contains(56)){ // Diamond
-	        				CEUtils.drawESP(curBlock.getDeltaX(), curBlock.getDeltaY(), curBlock.getDeltaZ(), 0.0F, 0.0F, 1.0F);
-						}
-	                    if((xrayList.contains(73))){ // Redstone
-	        				CEUtils.drawESP(curBlock.getDeltaX(), curBlock.getDeltaY(), curBlock.getDeltaZ(), 1.0F, 0.0F, 0.0F);
-						}
-	                    else{}
-					}
-				}
-			}*/
-		
-	    public class BlockCoord {
-			private int x, y, z;
+    		    GL11.glDeleteLists(listID, 1);
+    		    GL11.glNewList(listID, 4864);
 
-			public BlockCoord(int x, int y, int z) {
-				this.x = x;
-				this.y = y;
-				this.z = z;
-			}
+    		    GL11.glDisable(3553);
+    		    GL11.glDisable(2929);
 
-			public int getX() {
-				return x;
-			}
+    		    GL11.glColor3ub((byte)-1, (byte)0, (byte)0);
+    		    GL11.glBegin(1);
+    		    WorldClient world = getMinecraft().theWorld;
+    		    EntityClientPlayerMP player = getMinecraft().thePlayer;
+    		    for (int i = 0; i < radius * 2; i++) {
+    		      for (int j = 0; j < radius * 2; j++) {
+    		        for (int k = 0; k < 100; k++) {
 
-			public int getY() {
-				return y;
-			}
-
-			public int getZ() {
-				return z;
-			}
-
-			public double getDeltaX() {
-				return getX() - RenderManager.renderPosX;
-			}
-
-			public double getDeltaY() {
-				return getY() - RenderManager.renderPosY;
-			}
-
-			public double getDeltaZ() {
-				return getZ() - RenderManager.renderPosZ;
+    		          if (ids != 0)
+    		          {
+    		            for (int o = 0; o < xrayBlocks.size(); o++) {
+    		              if (xrayBlocks.get(o) == ids)
+    		      			for(int cur = 0; cur < size; cur++) {
+    		  				BlockCoord curBlock = espBlocks[cur];
+    						espBlocks[size++] = new BlockCoord(cX, cY, cZ);
+    						CEUtils.drawESP(curBlock.getDeltaX(), curBlock.getDeltaY(), curBlock.getDeltaZ(), 0.0F, 0.0F, 1.0F);
+    		            }
+    		            }
+    		          }
+    		        }
+    		      }
+    		    }
 				}
 			}
+    	}
+    		    GL11.glEnd();
+    		    GL11.glEnable(2929);
+    		    GL11.glEnable(3553);
+    		    GL11.glEndList();
+    }
+    
+    public static void setStandardList() {
+        ArrayList block = new ArrayList();
+        block.add(15);
+        block.add(16);
+        block.add(17);
+        block.add(56);
+        block.add(73);
+        block.add(21);
+
+        xrayBlocks = block;
+	}
+    
+    public class BlockCoord {
+		private int x, y, z;
+
+		public BlockCoord(int x, int y, int z) {
+			this.x = x;
+			this.y = y;
+			this.z = z;
+		}
+
+		public int getX() {
+			return x;
+		}
+
+		public int getY() {
+			return y;
+		}
+
+		public int getZ() {
+			return z;
+		}
+
+		public double getDeltaX() {
+			return getX() - RenderManager.renderPosX;
+		}
+
+		public double getDeltaY() {
+			return getY() - RenderManager.renderPosY;
+		}
+
+		public double getDeltaZ() {
+			return getZ() - RenderManager.renderPosZ;
+		}
+	}
 }

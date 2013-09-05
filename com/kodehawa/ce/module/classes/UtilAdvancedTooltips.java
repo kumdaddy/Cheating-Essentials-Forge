@@ -6,8 +6,9 @@ import com.kodehawa.ce.module.enums.EnumGuiCategory;
 
 public class UtilAdvancedTooltips extends CheatingEssentialsModule {
 
+	//FUCK YOU -1
     public UtilAdvancedTooltips( ) {
-        super("Advanced Tooltips", "", "1.6.2", -1, EnumGuiCategory.UTILS, true);
+        super("Advanced Tooltips", "", "1.6.2", 0, EnumGuiCategory.UTILS, true);
     }
 
     @Override

@@ -5,7 +5,6 @@ import com.kodehawa.ce.module.enums.EnumGuiCategory;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 import com.reeszrbteam.ce.gui.click.elements.YAWWindow;
 
-
 public class WindowRender extends YAWWindow
 {
 	public WindowRender()
