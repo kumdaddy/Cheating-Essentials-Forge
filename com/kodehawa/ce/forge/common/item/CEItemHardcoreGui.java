@@ -24,13 +24,7 @@ public class CEItemHardcoreGui extends Item {
 	@SideOnly(Side.CLIENT)
 	@Override
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer){
-		try {
 			ModuleManager.getInstance().getModuleByClass(Gui.class).onEnableModule();
-		} catch (NoSuchFieldException e) {
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		}
 		return par1ItemStack;
 	}
 

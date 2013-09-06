@@ -1,8 +1,8 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.classes.BlockESP;
 import com.kodehawa.ce.util.FileManager;
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.BaseCommand;
 import com.reeszrbteam.ce.util.BlockFilter;
 
@@ -20,9 +20,9 @@ public class CommandBlockESP extends BaseCommand {
 					String derp = BlockFilter.IDtoBlockName(id);
 					BlockESP.espList.add(id);
                     FileManager.saveBlockESPList();
-                    CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Added " + derp + "(" + id + ")" + " to the BlockESP list.");
+                    Utils.getInstance().addChatMessage("Added " + derp + "(" + id + ")" + " to the BlockESP list.");
 				}else{
-					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Could not add Air Block into BlockESP!");
+					Utils.getInstance().addChatMessage("Could not add Air Block into BlockESP!");
 				}
 			}
 			if(args[0].equalsIgnoreCase("del")) {
@@ -31,18 +31,18 @@ public class CommandBlockESP extends BaseCommand {
 				if(BlockESP.espList.contains(id)) {
 					BlockESP.espList.remove(BlockESP.espList.indexOf(id));
                     FileManager.saveBlockESPList();
-					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Removed " + derp2 + "(" + id + ")" + " from BlockESP.");
+					Utils.getInstance().addChatMessage("Removed " + derp2 + "(" + id + ")" + " from BlockESP.");
 				} else {
-					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage(derp2 + "(" + id + ")" + " is not in the BlockESP list.");
+					Utils.getInstance().addChatMessage(derp2 + "(" + id + ")" + " is not in the BlockESP list.");
 				}
 			}
 			if(args[0].equalsIgnoreCase("clear")) {
 				BlockESP.espList.clear();
                 FileManager.saveBlockESPList();
-				CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Cleared BlockESP.");
+				Utils.getInstance().addChatMessage("Cleared BlockESP.");
 			}
 		} catch(Exception e) {
-			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Usage: " + getSyntax());
+			Utils.getInstance().addChatMessage("Usage: " + getSyntax());
 		}
 	}
 

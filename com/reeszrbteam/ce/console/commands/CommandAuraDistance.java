@@ -1,7 +1,7 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.classes.Mobaura;
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandAuraDistance extends BaseCommand {
@@ -18,13 +18,13 @@ public class CommandAuraDistance extends BaseCommand {
 			double result = Double.parseDouble(args [ 0 ]);
 			if(result <= 100.0D){
 			Mobaura.setAuraDistance(result);
-			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Aura distance changed to " + result + "!");
+			Utils.getInstance().addChatMessage("Aura distance changed to " + result + "!");
 			}
 			}
 			
 			catch (Exception e)
 	        {
-	          CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Usage: " + getSyntax());
+	          Utils.getInstance().addChatMessage("Usage: " + getSyntax());
 	        }
 	}
 

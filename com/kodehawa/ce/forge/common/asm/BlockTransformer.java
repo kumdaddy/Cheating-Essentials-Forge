@@ -7,7 +7,7 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.tree.ClassNode;
 
-import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.forge.common.Loader;
 
 
 public class BlockTransformer implements IClassTransformer {
@@ -21,7 +21,7 @@ public class BlockTransformer implements IClassTransformer {
 		// TODO Auto-generated method stub
         if (arg1.equals("net.minecraft.client.block.Block")) {
 
-            CheatingEssentials.CELogAgent("Patching Class Block (" + arg0 + ")");
+        	Loader.instance().log("Patching Class Block (" + arg0 + ")");
             
             shouldSideBeRenderedMethodName =
                     CETranslator.getMapedMethodName("Block", "shouldSideBeRendered");
@@ -41,7 +41,7 @@ public class BlockTransformer implements IClassTransformer {
             ClassWriter cw = new ClassWriter(0);
             cn.accept(cw);
 
-            CheatingEssentials.CELogAgent("Patched Class Block (" + arg0 + ")");
+            Loader.instance().log("Patched Class Block (" + arg0 + ")");
             return cw.toByteArray();
 
         } else {

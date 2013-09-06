@@ -1,8 +1,9 @@
 package com.kodehawa.ce.gui.api.components;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.gui.api.render.ModGuiUtils;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class Button extends Item
 {
@@ -29,7 +30,7 @@ public class Button extends Item
     {
         // TODO Auto-generated method stub
         ModGuiUtils.drawBorderedRect(x, y, x + width, y + height, 2, bgcolor, 0x77000077);
-       CheatingEssentials.getMinecraftInstance().fontRenderer.drawString(text, x + 2, y + 2, bgcolor2);
+        FMLClientHandler.instance().getClient().fontRenderer.drawString(text, x + 2, y + 2, bgcolor2);
        
     }
 
@@ -68,7 +69,7 @@ public class Button extends Item
         {
             if (this.m != null)
             {
-                CheatingEssentials.getMinecraftInstance().sndManager.playSoundFX("random.click", 1.0F, 1.0F);
+            	FMLClientHandler.instance().getClient().sndManager.playSoundFX("random.click", 1.0F, 1.0F);
                 this.m.toggleModule();
             }
             else

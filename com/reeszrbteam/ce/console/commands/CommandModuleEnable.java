@@ -1,8 +1,8 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.handlers.ModuleManager;
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandModuleEnable extends BaseCommand {
@@ -22,7 +22,7 @@ public class CommandModuleEnable extends BaseCommand {
 		}
 		catch(Exception e){
 			e.printStackTrace();
-			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Usage: " + getSyntax());
+			Utils.getInstance().addChatMessage("Usage: " + getSyntax());
 		}
 	}
 

@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
 import com.reeszrbteam.ce.util.CEUtils;
@@ -40,10 +39,10 @@ public class BlockESP extends CheatingEssentialsModule{
 			for(int x = 0; x < radius; x++) {
 				for(int z = 0; z < radius; z++) {
 
-					int cX = (int)CheatingEssentials.getMinecraftInstance().thePlayer.posX - (int)radius/2+x;
+					int cX = (int)getMinecraft().thePlayer.posX - (int)radius/2+x;
 					int cY = y;
-					int cZ = (int)CheatingEssentials.getMinecraftInstance().thePlayer.posZ - (int)radius/2+z;
-					int ids = CheatingEssentials.getMinecraftInstance().theWorld.getBlockId(cX, cY, cZ);
+					int cZ = (int)getMinecraft().thePlayer.posZ - (int)radius/2+z;
+					int ids = getMinecraft().theWorld.getBlockId(cX, cY, cZ);
 
 					if (espList.contains(ids)) {
 						espBlocks[size++] = new BlockCoord(cX, cY, cZ);

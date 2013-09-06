@@ -2,7 +2,7 @@ package com.reeszrbteam.ce.console;
 
 import java.util.ArrayList;
 
-import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.commands.CommandAuraDistance;
 import com.reeszrbteam.ce.console.commands.CommandBind;
 import com.reeszrbteam.ce.console.commands.CommandBlockESP;
@@ -16,9 +16,7 @@ import com.reeszrbteam.ce.console.commands.CommandHelp;
 import com.reeszrbteam.ce.console.commands.CommandModuleEnable;
 import com.reeszrbteam.ce.console.commands.CommandModuleList;
 import com.reeszrbteam.ce.console.commands.CommandPlayerView;
-import com.reeszrbteam.ce.console.commands.CommandStepHeight;
 import com.reeszrbteam.ce.console.commands.CommandTeleport;
-import com.reeszrbteam.ce.console.commands.CommandXray;
 
 public class CommandManager
 {
@@ -78,15 +76,15 @@ public class CommandManager
 		
 		
 		if(s.equalsIgnoreCase(".reload")) {
-			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Initializing...");
-			CheatingEssentials.onStart();
-			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Initialized.");
+			Utils.getInstance().addChatMessage("Initializing...");
+	        CommandManager.getInstance();
+			Utils.getInstance().addChatMessage("Initialized.");
 			return;
 		}
 
 		if(!commandResolved)
 		{
-			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Invalid command. Type help in Console for a list of commands.");
+			Utils.getInstance().addChatMessage("Invalid command. Type help in Console for a list of commands.");
 		}
 	}
 	

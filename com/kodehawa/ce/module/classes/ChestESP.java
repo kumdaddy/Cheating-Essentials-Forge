@@ -6,7 +6,6 @@ import net.minecraft.tileentity.TileEntityEnderChest;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.annotations.ModuleLoader;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
@@ -24,7 +23,7 @@ public class ChestESP extends CheatingEssentialsModule {
 	@Override
 	public void onRenderInModule( ){
 		if(isActive()){
-			for(Object o : CheatingEssentials.getMinecraftInstance().theWorld.loadedTileEntityList) {
+			for(Object o : getMinecraft().theWorld.loadedTileEntityList) {
 				if(o instanceof TileEntityChest) {
 					TileEntityChest chest = (TileEntityChest)o;
 					this.drawESP(chest, chest.xCoord, chest.yCoord, chest.zCoord, chest.prevLidAngle);
@@ -40,18 +39,18 @@ public class ChestESP extends CheatingEssentialsModule {
 	public void drawESP(TileEntityChest chest, double x, double y, double z, float f) {
 		if(isActive()){
 			if(!(chest.xCoord == 0 && chest.yCoord == 0 && chest.zCoord == 0)) {
-				CheatingEssentials.getMinecraftInstance().entityRenderer.disableLightmap(f);
-				CEUtils.drawESP(x - RenderManager.renderPosX, y - RenderManager.renderPosY, z - RenderManager.renderPosZ, 0.0F, 1.0F - chest.getDistanceFrom(CheatingEssentials.getMinecraftInstance().thePlayer.posX, CheatingEssentials.getMinecraftInstance().thePlayer.posY, CheatingEssentials.getMinecraftInstance().thePlayer.posZ) / 20000, 1.0F);
-				CheatingEssentials.getMinecraftInstance().entityRenderer.enableLightmap(f);
+				getMinecraft().entityRenderer.disableLightmap(f);
+				CEUtils.drawESP(x - RenderManager.renderPosX, y - RenderManager.renderPosY, z - RenderManager.renderPosZ, 0.0F, 1.0F - chest.getDistanceFrom(getMinecraft().thePlayer.posX, getMinecraft().thePlayer.posY, getMinecraft().thePlayer.posZ) / 20000, 1.0F);
+				getMinecraft().entityRenderer.enableLightmap(f);
 			}
 		}
 	}
 	public void drawESP2(TileEntityEnderChest chest, double x, double y, double z, float f) {
 		if(isActive()){
 			if(!(chest.xCoord == 0 && chest.yCoord == 0 && chest.zCoord == 0)) {
-				CheatingEssentials.getMinecraftInstance().entityRenderer.disableLightmap(f);
-				CEUtils.drawESP(x - RenderManager.renderPosX, y - RenderManager.renderPosY, z - RenderManager.renderPosZ, 0.0F, 1.0F - chest.getDistanceFrom(CheatingEssentials.getMinecraftInstance().thePlayer.posX, CheatingEssentials.getMinecraftInstance().thePlayer.posY, CheatingEssentials.getMinecraftInstance().thePlayer.posZ) / 20000, 1.0F);
-				CheatingEssentials.getMinecraftInstance().entityRenderer.enableLightmap(f);
+				getMinecraft().entityRenderer.disableLightmap(f);
+				CEUtils.drawESP(x - RenderManager.renderPosX, y - RenderManager.renderPosY, z - RenderManager.renderPosZ, 0.0F, 1.0F - chest.getDistanceFrom(getMinecraft().thePlayer.posX, getMinecraft().thePlayer.posY, getMinecraft().thePlayer.posZ) / 20000, 1.0F);
+				getMinecraft().entityRenderer.enableLightmap(f);
 			}
 		}
 	}

@@ -1,6 +1,8 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.ce.CheatingEssentials;
+import net.minecraft.client.Minecraft;
+
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandFlySpeed extends BaseCommand {
@@ -18,12 +20,12 @@ public class CommandFlySpeed extends BaseCommand {
         try{
         Float result = Float.parseFloat(args[ 0 ]);
         if(result <= 0.7){
-            CheatingEssentials.getMinecraftInstance().thePlayer.capabilities.setFlySpeed(result);
-            CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Fly speed changed to: \"" +result+ " succefully");
+            Minecraft.getMinecraft().thePlayer.capabilities.setFlySpeed(result);
+            Utils.getInstance().addChatMessage("Fly speed changed to: \"" +result+ " succefully");
         }
         }
             catch(Exception e){
-              CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Usage: " + getSyntax());
+              Utils.getInstance().addChatMessage("Usage: " + getSyntax());
             }
     }
 

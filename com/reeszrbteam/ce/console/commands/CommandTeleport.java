@@ -1,6 +1,6 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.BaseCommand;
 import com.reeszrbteam.ce.util.Teleport;
 
@@ -17,10 +17,10 @@ public class CommandTeleport extends BaseCommand{
 			double y = Double.parseDouble(args[1]);
 			double z = Double.parseDouble(args[2]);
 			Teleport.teleport(x, y, z);
-			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Teleported to: (" + args[0] + ", " + args[1] + ", " + args[2] + ")");
+			Utils.getInstance().addChatMessage("Teleported to: (" + args[0] + ", " + args[1] + ", " + args[2] + ")");
 		} catch(Exception e) {
 			e.printStackTrace();
-			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Usage: " + getSyntax());
+			Utils.getInstance().addChatMessage("Usage: " + getSyntax());
 		}	
 	}
 

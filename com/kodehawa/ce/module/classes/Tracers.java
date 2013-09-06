@@ -7,7 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import org.lwjgl.opengl.GL11;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.chestfinder.AltAxisAlignedBB;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
@@ -46,14 +45,14 @@ public class Tracers extends CheatingEssentialsModule{
 	        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 	        GL11.glEnable(GL11.GL_BLEND);
 	        GL11.glLineWidth(1.5F);
-	    	for(Object entities: CheatingEssentials.getMinecraftInstance().theWorld.loadedEntityList)
+	    	for(Object entities: getMinecraft().theWorld.loadedEntityList)
 	    	{
-	    		if (entities != CheatingEssentials.getMinecraftInstance().thePlayer && entities != null)
+	    		if (entities != getMinecraft().thePlayer && entities != null)
 	    		{
 	    			if (entities instanceof EntityPlayer && !(entities instanceof EntitySpectator))
 	    			{
 	    				EntityPlayer entity = (EntityPlayer)entities;
-	    				float distance = CheatingEssentials.getMinecraftInstance().renderViewEntity.getDistanceToEntity(entity);
+	    				float distance = getMinecraft().renderViewEntity.getDistanceToEntity(entity);
 	    				double posX = ((entity.lastTickPosX + (entity.posX - entity.lastTickPosX) - RenderManager.instance.renderPosX));
 	    				double posY = ((entity.lastTickPosY + 1.4 + (entity.posY - entity.lastTickPosY) - RenderManager.instance.renderPosY));
 	    				double posZ = ((entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) - RenderManager.instance.renderPosZ));

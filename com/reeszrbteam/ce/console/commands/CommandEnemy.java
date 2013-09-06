@@ -1,7 +1,7 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.playerrelations.Enemy;
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandEnemy extends BaseCommand{
@@ -21,10 +21,10 @@ public class CommandEnemy extends BaseCommand{
 				{
                     Enemy.enemyList.add(name);
 					Enemy.writeEnemyFile();
-					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Enemied " + name + ".");
+					Utils.getInstance().addChatMessage("Enemied " + name + ".");
 				}else
 				{
-					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage(name + " is already your enemy.");
+					Utils.getInstance().addChatMessage(name + " is already your enemy.");
 				}
 			}
 			if(args[0].equalsIgnoreCase("del"))
@@ -34,10 +34,10 @@ public class CommandEnemy extends BaseCommand{
 				{
                     Enemy.enemyList.remove(name);
                     Enemy.writeEnemyFile();
-					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Removed " + name + " from enemies.");
+					Utils.getInstance().addChatMessage("Removed " + name + " from enemies.");
 				}else
 				{
-					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage(name + " is not your enemy.");
+					Utils.getInstance().addChatMessage(name + " is not your enemy.");
 				}
 			}
 			if(args[0].equalsIgnoreCase("clear"))
@@ -46,12 +46,12 @@ public class CommandEnemy extends BaseCommand{
 				{
                     Enemy.enemyList.clear();
 					Enemy.writeEnemyFile();
-					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Cleared friends.");
+					Utils.getInstance().addChatMessage("Cleared friends.");
 				}catch(Exception e) {}
 			}
 		}catch(Exception e)
 		{
-			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Usage: " + getSyntax());
+			Utils.getInstance().addChatMessage("Usage: " + getSyntax());
 		}
 	}
 

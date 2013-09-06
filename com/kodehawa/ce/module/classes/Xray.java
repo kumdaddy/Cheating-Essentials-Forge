@@ -1,9 +1,7 @@
 package com.kodehawa.ce.module.classes;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -12,7 +10,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
 import com.reeszrbteam.ce.util.CEUtils;
@@ -33,7 +30,7 @@ public class Xray extends CheatingEssentialsModule{
 	}
 
 	@Override
-	public void onEnableModule() throws NoSuchFieldException, SecurityException {
+	public void onEnableModule() {
 		getMinecraft().renderGlobal.loadRenderers();
 		float[] brightness = getMinecraft().theWorld.provider.lightBrightnessTable;
         for(int i = 0; i < brightness.length; i++) {
@@ -42,7 +39,7 @@ public class Xray extends CheatingEssentialsModule{
 	}
 
 	@Override
-	public void onDisableModule() throws NoSuchFieldException, SecurityException  {
+	public void onDisableModule()  {
 		getMinecraft().renderGlobal.loadRenderers();
 		getMinecraft().theWorld.provider.registerWorld(Minecraft.getMinecraft().theWorld);
 		}
@@ -63,10 +60,10 @@ public class Xray extends CheatingEssentialsModule{
 			for(int x = 0; x < radius; x++) {
 				for(int z = 0; z < radius; z++) {
 
-					int cX = (int)CheatingEssentials.getMinecraftInstance().thePlayer.posX - (int)radius/2+x;
+					int cX = (int)getMinecraft().thePlayer.posX - (int)radius/2+x;
 					int cY = y;
-					int cZ = (int)CheatingEssentials.getMinecraftInstance().thePlayer.posZ - (int)radius/2+z;
-					int ids = CheatingEssentials.getMinecraftInstance().theWorld.getBlockId(cX, cY, cZ);
+					int cZ = (int)getMinecraft().thePlayer.posZ - (int)radius/2+z;
+					int ids = getMinecraft().theWorld.getBlockId(cX, cY, cZ);
 				
     		    GL11.glDeleteLists(listID, 1);
     		    GL11.glNewList(listID, 4864);

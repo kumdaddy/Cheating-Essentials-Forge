@@ -2,9 +2,6 @@ package com.kodehawa.ce.module.core;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-
-import org.apache.commons.lang3.StringUtils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -20,30 +17,20 @@ import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.event.Event;
 import com.kodehawa.ce.event.Listener;
 import com.kodehawa.ce.event.events.EventKey;
 import com.kodehawa.ce.event.events.EventRender3D;
 import com.kodehawa.ce.forge.common.Loader;
-import com.kodehawa.ce.module.annotations.ModuleRetention;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 import com.kodehawa.ce.util.Tickable;
+import com.kodehawa.ce.util.Utils;
 
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -122,7 +109,7 @@ public class CheatingEssentialsModule implements Listener, Tickable {
     	}
     	catch( Exception e ){
     		for(CheatingEssentialsModule m : ModuleManager.getInstance().modules){
-    		CheatingEssentials.CELogAgent("Can't load module " + m.getName() + " - Because of " + e.toString());
+    			Loader.instance().log("Can't load module " + m.getName() + " - Because of " + e.toString());
     		}
     		e.printStackTrace();
     	}
@@ -302,17 +289,17 @@ public class CheatingEssentialsModule implements Listener, Tickable {
         }
 
         if ((getWorld() != null) && (getMinecraft() != null) && (getPlayer() != null)) {
-               CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage(EnumChatFormatting.YELLOW + "[CE v3] Disabling " + incompat.getName() + " because it is incompatible with " + getName());
+        	Utils.getInstance().addChatMessage(EnumChatFormatting.YELLOW + "[CE v3] Disabling " + incompat.getName() + " because it is incompatible with " + getName());
         }
 
         incompat.setActive(false);
          }
 
       //Things for register module things.
-      public void onEnableModule() throws NoSuchFieldException, SecurityException{
+      public void onEnableModule(){
     	  MinecraftForge.EVENT_BUS.register(this);
       }
-	  public void onDisableModule( ) throws NoSuchFieldException, SecurityException{
+	  public void onDisableModule( ){
     	  MinecraftForge.EVENT_BUS.unregister(this);
 	  }
 	  public void onRenderInModule( ){}

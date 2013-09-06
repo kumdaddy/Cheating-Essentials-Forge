@@ -1,12 +1,11 @@
 package com.reeszrbteam.ce.util;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.MovementInput;
 import net.minecraft.world.World;
-
-import com.kodehawa.ce.CheatingEssentials;
 
 public class EntitySpectator extends EntityPlayer
 {
@@ -36,7 +35,7 @@ public class EntitySpectator extends EntityPlayer
 	public void moveEntity(double x, double y, double z)
 	{
 		if(flyMode) onGround = true;
-		super.moveEntity(x, y, z);
+		super.moveEntity(x-2, y-2, z-2);
 		if(flyMode) onGround = true;
 	}
 	
@@ -48,23 +47,26 @@ public class EntitySpectator extends EntityPlayer
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
+		motionX -=2;
+		motionY = 0;
+		motionZ -=2;
 		if(flyMode)
 		{
 			noClip = true;
 			motionX = 0;
 			motionY = 0;
 			motionZ = 0;
-			this.setAIMoveSpeed(CheatingEssentials.getMinecraftInstance().thePlayer.capabilities.getFlySpeed());
-			this.jumpMovementFactor = CheatingEssentials.getMinecraftInstance().thePlayer.capabilities.getFlySpeed();
+			this.setAIMoveSpeed(Minecraft.getMinecraft().thePlayer.capabilities.getFlySpeed());
+			this.jumpMovementFactor = Minecraft.getMinecraft().thePlayer.capabilities.getFlySpeed();
 			if(this.movementInput != null)
 			{
 				if(this.movementInput.jump)
 				{
-					motionY += CheatingEssentials.getMinecraftInstance().thePlayer.capabilities.getFlySpeed() / 2 + 0.2F;
+					motionY += Minecraft.getMinecraft().thePlayer.capabilities.getFlySpeed() / 2 + 0.2F;
 				}
 				if(this.movementInput.sneak)
 				{
-					motionY -= CheatingEssentials.getMinecraftInstance().thePlayer.capabilities.getFlySpeed() / 2 + 0.2F;
+					motionY -= Minecraft.getMinecraft().thePlayer.capabilities.getFlySpeed() / 2 + 0.2F;
 				}
 			}
 		}else
@@ -80,7 +82,7 @@ public class EntitySpectator extends EntityPlayer
 
     public static EntitySpectator getInstance(){
         if(instance == null){
-            instance = new EntitySpectator(CheatingEssentials.getMinecraftInstance().theWorld, "");
+            instance = new EntitySpectator(Minecraft.getMinecraft().theWorld, "");
         }
         return instance;
     }

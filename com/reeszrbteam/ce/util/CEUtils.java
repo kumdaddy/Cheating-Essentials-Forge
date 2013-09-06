@@ -12,12 +12,11 @@ import net.minecraft.network.packet.Packet;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.chestfinder.AltAxisAlignedBB;
 
 public class CEUtils {
 	
-	private static Minecraft mc = CheatingEssentials.getMinecraftInstance();
+	private static Minecraft mc = Minecraft.getMinecraft();
 	private static RenderItem itemRenderer = new RenderItem();
 
 	public static void drawMovingString(String s, int height, int displaywidth, int color){

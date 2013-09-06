@@ -1,6 +1,7 @@
 package com.kodehawa.ce.gui.api.components;
 
-import com.kodehawa.ce.CheatingEssentials;
+import cpw.mods.fml.client.FMLClientHandler;
+
 
 
 public class Label extends Item
@@ -22,7 +23,7 @@ public class Label extends Item
     @Override
     public void draw()
     {
-        CheatingEssentials.getMinecraftInstance().fontRenderer.drawString(text, x + 3, y + 3, bgcolor);
+    	FMLClientHandler.instance().getClient().fontRenderer.drawString(text, x + 3, y + 3, bgcolor);
     }
 
     @Override

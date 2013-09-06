@@ -1,6 +1,6 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.BaseCommand;
 import com.reeszrbteam.ce.console.CommandManager;
 
@@ -17,7 +17,7 @@ public class CommandHelp extends BaseCommand
 		for(BaseCommand cmd: CommandManager.commands)
 		{
 			if(cmd != this) {
-				CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage(cmd.getSyntax().replace("<", "<\247a").replace(">", "\247f>") + " - " + cmd.getDescription());
+				Utils.getInstance().addChatMessage(cmd.getSyntax().replace("<", "<\247a").replace(">", "\247f>") + " - " + cmd.getDescription());
 			}
 		}
 	}

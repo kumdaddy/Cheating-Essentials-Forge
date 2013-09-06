@@ -14,10 +14,12 @@ import net.minecraft.block.Block;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.forge.common.Loader;
 import com.kodehawa.ce.module.classes.BlockESP;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.handlers.ModuleManager;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class FileManager<E, T> {
     public static File mainDir;
@@ -27,13 +29,13 @@ public class FileManager<E, T> {
     private static volatile FileManager instance;
 
     public FileManager( ) {
-        crashDir = new File( CheatingEssentials.getMinecraftInstance().
+        crashDir = new File( FMLClientHandler.instance().getClient().
         		mcDataDir + File.separator + "log");
-        keyDir = new File(CheatingEssentials.getMinecraftInstance().
+        keyDir = new File(FMLClientHandler.instance().getClient().
         		mcDataDir, "/config/Cheating Essentials/CEKeybinds.txt");
-		mainDir = new File( CheatingEssentials.getMinecraftInstance().
+		mainDir = new File( FMLClientHandler.instance().getClient().
 				mcDataDir, "/config/Cheating Essentials/CEXrayBlockList.txt");
-        someDir = new File( CheatingEssentials.getMinecraftInstance().
+        someDir = new File( FMLClientHandler.instance().getClient().
         		mcDataDir, "/config/Cheating Essentials/CEBlockESPList.txt");
 
         if(!keyDir.exists()){
@@ -80,7 +82,7 @@ public class FileManager<E, T> {
 	
     public static void saveXrayList( ) throws ClassNotFoundException, NoSuchFieldException  {
         try {
-        	CheatingEssentials.getCheatingEssentials().CELogAgent("Writting X-Ray list configuration file...");
+        	Loader.instance().log("Writting X-Ray list configuration file...");
             File file = new File( mainDir, "" );
             BufferedWriter bufferedwritter = new BufferedWriter( new FileWriter( file ) );
             Class<?> clazz = Block.class;
@@ -88,8 +90,8 @@ public class FileManager<E, T> {
             bufferedwritter.close( );
         	
         } catch( Exception ex ) {
-        	CheatingEssentials.getCheatingEssentials().CELogErrorAgent("Can't write X-Ray configuration file! Custom blocks for X-Ray will be disabled!");
-        	 CheatingEssentials.getCheatingEssentials().CELogErrorAgent("Error in CE init: " + ex.toString( ) );
+        	Loader.instance().log("Can't write X-Ray configuration file! Custom blocks for X-Ray will be disabled!");
+        	Loader.instance().log("Error in CE init: " + ex.toString( ) );
         }
     }
 
@@ -98,7 +100,7 @@ public class FileManager<E, T> {
      */
     public static void saveBlockESPList(){
         try {
-            CheatingEssentials.getCheatingEssentials().CELogAgent("Writting BlockESP block list configuration file...");
+        	Loader.instance().log("Writting BlockESP block list configuration file...");
             File file = new File( someDir, "" );
             BufferedWriter bufferedwritter = new BufferedWriter( new FileWriter( file ) );
             for( int i : BlockESP.espList ) {
@@ -107,8 +109,8 @@ public class FileManager<E, T> {
             bufferedwritter.close( );
 
         } catch( Exception ex ) {
-            CheatingEssentials.getCheatingEssentials().CELogErrorAgent("Can't write BlockESP configuration file! Custom blocks for X-Ray will be disabled!");
-            CheatingEssentials.getCheatingEssentials().CELogErrorAgent("Error in CE init: " + ex.toString( ) );
+        	Loader.instance().log("Can't write BlockESP configuration file! Custom blocks for X-Ray will be disabled!");
+        	Loader.instance().log("Error in CE init: " + ex.toString( ) );
         }
     }
 
@@ -117,7 +119,7 @@ public class FileManager<E, T> {
       */
     public static void saveKeybinding(){
         try{
-           CheatingEssentials.CELogAgent("Writing keybinding configuration file...");
+        	Loader.instance().log("Writing keybinding configuration file...");
             File file = new File(keyDir, "");
             BufferedWriter bufferedwriter = new BufferedWriter( new FileWriter( file ));
             for(CheatingEssentialsModule m : ModuleManager.getInstance().modules){
@@ -127,8 +129,8 @@ public class FileManager<E, T> {
             bufferedwriter.close();
         }
         catch (Exception e){
-            CheatingEssentials.CELogErrorAgent("Can't write Keybinding configuration file!");
-            CheatingEssentials.CELogErrorAgent("Error in CE init: " + e.toString());
+        	Loader.instance().log("Can't write Keybinding configuration file!");
+        	Loader.instance().log("Error in CE init: " + e.toString());
         }
     }
 
@@ -154,8 +156,8 @@ public class FileManager<E, T> {
         }
         catch (Exception e){
             saveKeybinding();
-            CheatingEssentials.CELogErrorAgent("Can't read Keybinding configuration file!");
-            CheatingEssentials.CELogErrorAgent("Error in CE init: " + e.toString());
+            Loader.instance().log("Can't read Keybinding configuration file!");
+            Loader.instance().log("Error in CE init: " + e.toString());
         }
     }
 
@@ -176,8 +178,8 @@ public class FileManager<E, T> {
             }
             br.close( );
         } catch( Exception ex ) {
-            CheatingEssentials.CELogErrorAgent("Can't load Block ESP list. Unreliable results!");
-            CheatingEssentials.CELogErrorAgent( "Error in CE init: " + ex.toString( ) );
+        	Loader.instance().log("Can't load Block ESP list. Unreliable results!");
+        	Loader.instance().log( "Error in CE init: " + ex.toString( ) );
             ex.printStackTrace( );
             saveBlockESPList( );
         }
@@ -203,8 +205,8 @@ public class FileManager<E, T> {
             }
             br.close( );
         } catch( Exception ex ) {
-        	CheatingEssentials.CELogErrorAgent("Can't load X-Ray list. Unreliable results!");
-        	CheatingEssentials.CELogErrorAgent( "Error in CE init: " + ex.toString( ) );
+        	Loader.instance().log("Can't load X-Ray list. Unreliable results!");
+        	Loader.instance().log( "Error in CE init: " + ex.toString( ) );
             ex.printStackTrace( );
             saveXrayList( );
     } 

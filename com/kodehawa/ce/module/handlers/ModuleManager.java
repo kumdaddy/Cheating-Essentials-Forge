@@ -4,8 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import com.kodehawa.ce.CheatingEssentials;
-import com.kodehawa.ce.core.Strings;
+import com.kodehawa.ce.forge.common.Loader;
 import com.kodehawa.ce.module.annotations.ModuleExperimental;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.util.Tickable;
@@ -33,7 +32,7 @@ public final class ModuleManager {
         synchronized (modules) {
             modules.add( e );
               if (e.getClass().isAnnotationPresent(ModuleExperimental.class)) {
-           	 CheatingEssentials.CELogAgent("Module \"" + e.getName() + "\" is WIP! Use at own risk!");
+            	  Loader.instance().log("Module \"" + e.getName() + "\" is WIP! Use at own risk!");
            }
         }
 	}

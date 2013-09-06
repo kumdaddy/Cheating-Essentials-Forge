@@ -1,6 +1,7 @@
 package com.reeszrbteam.ce.gui.click.windows;
 
-import com.kodehawa.ce.CheatingEssentials;
+import net.minecraft.client.Minecraft;
+
 import com.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
 import com.reeszrbteam.ce.gui.click.elements.YAWWindow;
 import com.reeszrbteam.ce.util.CEUtils;
@@ -38,7 +39,7 @@ public class WindowHub extends YAWWindow
 	
     public void drawCenteredTTFString(String par2Str, int par3, int par4, int par5)
     {
-		CheatingEssentials.getMinecraftInstance().fontRenderer.drawStringWithShadow(par2Str, par3 - CheatingEssentials.getMinecraftInstance().fontRenderer.getStringWidth(par2Str) / 4, par4, par5);
+    	Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(par2Str, par3 - Minecraft.getMinecraft().fontRenderer.getStringWidth(par2Str) / 4, par4, par5);
     }
 	
 	@Override
@@ -54,7 +55,7 @@ public class WindowHub extends YAWWindow
 				int i = (12 * size) + 18;
 				if(x >= 4 + dragX && y >= i + 12 + dragY && x <= getX() + 88 + dragX && y <= i + 24 + dragY)
 				{
-					CheatingEssentials.getMinecraftInstance().sndManager.playSoundFX("random.click", 1.0F, 1.0F);
+					Minecraft.getMinecraft().sndManager.playSoundFX("random.click", 1.0F, 1.0F);
 					window.setOpen(!window.isOpen());
 				}
 				size++;

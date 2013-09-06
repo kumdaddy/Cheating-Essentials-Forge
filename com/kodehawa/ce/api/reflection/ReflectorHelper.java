@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.forge.common.Loader;
 
 public class ReflectorHelper {
 
@@ -45,7 +45,7 @@ public class ReflectorHelper {
     public static Object getPrivateMethod(Class class1, Object o, int num) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException {
         try{
             Method m = class1.getDeclaredMethods()[num];
-            CheatingEssentials.CELogAgent( "Method id / integer: " + class1.getDeclaredMethods()[num] );
+            Loader.instance().log( "Method id / integer: " + class1.getDeclaredMethods()[num] );
             m.setAccessible(true);
             return m.invoke(o);
         }
@@ -89,12 +89,12 @@ public class ReflectorHelper {
         Field[] fields = c.getDeclaredFields();
         for (int i = 0; i < fields.length; i++){
             if (fields[i].getName().equals(str)){
-            	CheatingEssentials.CELogAgent("Fix Reflection Usage: Use \""+i+"\" instead of \""+str+"\"!");
+            	Loader.instance().log("Fix Reflection Usage: Use \""+i+"\" instead of \""+str+"\"!");
                 setField(c, o, i,val);
                 return;
             }
         }
-        CheatingEssentials.CELogAgent("Fix Reflection Usage: No such field: \""+str+"\"!");
+        Loader.instance().log("Fix Reflection Usage: No such field: \""+str+"\"!");
     }
     
     /**

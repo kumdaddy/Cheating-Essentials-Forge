@@ -1,7 +1,7 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.classes.Step;
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandStepHeight extends BaseCommand {
@@ -18,13 +18,13 @@ public class CommandStepHeight extends BaseCommand {
 			float result = Float.parseFloat(args [ 0 ]);
 			if(result <= 100.0F){
 			Step.setStepHeight(result);
-			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Step height changed to " + result + "!");
+			Utils.getInstance().addChatMessage("Step height changed to " + result + "!");
 			}
 			}
 			
 			catch (Exception e)
 	        {
-	          CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Usage: " + getSyntax());
+				Utils.getInstance().addChatMessage("Usage: " + getSyntax());
 	          e.printStackTrace();
 	        }
 	}

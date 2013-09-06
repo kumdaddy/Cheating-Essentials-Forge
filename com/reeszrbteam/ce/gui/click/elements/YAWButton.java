@@ -1,6 +1,7 @@
 package com.reeszrbteam.ce.gui.click.elements;
 
-import com.kodehawa.ce.CheatingEssentials;
+import net.minecraft.client.Minecraft;
+
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
 import com.reeszrbteam.ce.util.CEUtils;
@@ -30,13 +31,13 @@ public class YAWButton {
 	
 	public void drawCenteredTTFString(String par2Str, int par3, int par4, int par5)
     {
-		CheatingEssentials.getMinecraftInstance().fontRenderer.drawStringWithShadow(par2Str, par3 - CheatingEssentials.getMinecraftInstance().fontRenderer.getStringWidth(par2Str) / 4, par4, par5);
+		Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(par2Str, par3 - Minecraft.getMinecraft().fontRenderer.getStringWidth(par2Str) / 4, par4, par5);
     }
 	
 	public void mouseClicked(int x, int y, int button) {
 		if(x >= getX() + window.dragX && y >= getY() + window.dragY && x <= getX() + 85.5 + window.dragX && y <= getY() + 9 + window.dragY && button == 0 && window.isOpen() && window.isExtended()) {
 			YouAlwaysWinClickGui.sendPanelToFront(window);
-			CheatingEssentials.getMinecraftInstance().sndManager.playSoundFX("random.click", 1.0F, 1.0F);
+			Minecraft.getMinecraft().sndManager.playSoundFX("random.click", 1.0F, 1.0F);
 			mod.toggleModule();
 		}
 	}

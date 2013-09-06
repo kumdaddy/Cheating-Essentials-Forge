@@ -16,22 +16,24 @@ import net.minecraft.util.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.gui.api.render.ModGuiUtils;
 import com.kodehawa.ce.playerrelations.Enemy;
 import com.kodehawa.ce.playerrelations.Friend;
 
+import cpw.mods.fml.client.FMLClientHandler;
+
 public class Radar
 {
-    Minecraft mc = CheatingEssentials.getMinecraftInstance();
+    Minecraft mc = FMLClientHandler.instance().getClient();
+    int tick;
 
     public void drawRadar(int x, int y)
     {
-    	CheatingEssentials.getCheatingEssentials().tick++ ;
+       tick++;
 
-        if (CheatingEssentials.getCheatingEssentials().tick >= 50)
+        if (tick >= 50)
         {
-        	CheatingEssentials.getCheatingEssentials().tick = 0;
+        	tick = 0;
         }
 
         GL11.glLineWidth(1.0F);
@@ -40,7 +42,7 @@ public class Radar
         ModGuiUtils.drawCircle(x, y, 38, 0xff000000);
         ModGuiUtils.drawCircle(x, y, 25, 0xff000000);
         ModGuiUtils.drawCircle(x, y, 13, 0xff000000);
-        ModGuiUtils.drawCircle(x, y, CheatingEssentials.getCheatingEssentials().tick, 0xff00ffff);
+        ModGuiUtils.drawCircle(x, y, tick, 0xff00ffff);
         ModGuiUtils.drawCircle(x, y, 1, 0xffffffff);   // Player
         List list1 = this.mc.theWorld.loadedEntityList;
         GL11.glLineWidth(1.0F);

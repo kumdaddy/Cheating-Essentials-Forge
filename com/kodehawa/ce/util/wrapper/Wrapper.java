@@ -1,6 +1,5 @@
 package com.kodehawa.ce.util.wrapper;
 
-import java.lang.reflect.Field;
 import java.nio.IntBuffer;
 
 import net.minecraft.client.Minecraft;
@@ -9,10 +8,6 @@ import net.minecraft.network.packet.Packet;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
-
-import com.kodehawa.ce.CheatingEssentials;
-import com.kodehawa.ce.event.EventHandler;
-import com.kodehawa.ce.gui.api.components.ModuleGui;
 
 public class Wrapper
 {
@@ -40,41 +35,6 @@ public class Wrapper
     public int getHeight()
     {
         return getScaledResolution().getScaledHeight();
-    }
-    
-    public EventHandler getEventHandler()
-    {
-        try
-        {
-            Field mang = CheatingEssentials.class.getDeclaredField("eventHandler");
-            mang.setAccessible(true);
-            EventHandler gm = (EventHandler) mang.get(null);
-            return gm;
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            System.err.println("Y0L0sw4q");
-            return null;
-        }
-    }
-
-  
-    public ModuleGui getGui()
-    {
-        try
-        {
-            Field mang = CheatingEssentials.class.getDeclaredField("modgui");
-            mang.setAccessible(true);
-            ModuleGui gm = (ModuleGui) mang.get(null);
-            return gm;
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            System.err.println("Y0L0sw4q");
-            return null;
-        }
     }
 
     public int getScreenWidth()

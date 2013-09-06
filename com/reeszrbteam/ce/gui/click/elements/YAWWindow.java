@@ -2,7 +2,8 @@ package com.reeszrbteam.ce.gui.click.elements;
 
 import java.util.ArrayList;
 
-import com.kodehawa.ce.CheatingEssentials;
+import net.minecraft.client.Minecraft;
+
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
 import com.reeszrbteam.ce.util.CEUtils;
@@ -76,7 +77,7 @@ public class YAWWindow
 			}
 			
 			CEUtils.drawGradientBorderedRect(xPos + dragX, yPos + dragY, xPos + 90 + dragX, yPos + 12 + dragY, 0.5F, 0xFF000000, 0xCF999999, 0xCF777777);
-			CheatingEssentials.getMinecraftInstance().fontRenderer.drawString(title, xPos + 2 + dragX, 2 + yPos + dragY, 0x55FFFF);
+			Minecraft.getMinecraft().fontRenderer.drawString(title, xPos + 2 + dragX, 2 + yPos + dragY, 0x55FFFF);
 			
 			CEUtils.drawGradientBorderedRect(xPos + 70 + dragX, yPos + 2 + dragY, xPos + 78 + dragX, yPos + 10 + dragY, 1F, 0xFF666666, isPinned ? 0xFF777777 : 0xFF888888, isPinned ? 0xFF555555 : 0xFF666666);
 			CEUtils.drawGradientBorderedRect(xPos + 80 + dragX, yPos + 2 + dragY, xPos + 88 + dragX, yPos + 10 + dragY, 1F, 0xFF666666, isExtended ? 0xFF777777 : 0xFF888888, isExtended ? 0xFF555555 : 0xFF666666);
@@ -119,12 +120,12 @@ public class YAWWindow
 		
 		if(x >= xPos + 80 + dragX && y >= yPos + 2 + dragY && x <= xPos + 88 + dragX && y <= yPos + 10 + dragY)
 		{
-			CheatingEssentials.getMinecraftInstance().sndManager.playSoundFX("random.click", 1.0F, 1.0F);
+			Minecraft.getMinecraft().sndManager.playSoundFX("random.click", 1.0F, 1.0F);
 			isExtended = !isExtended;
 		}
 		if(x >= xPos + 70 + dragX && y >= yPos + 2 + dragY && x <= xPos + 78 + dragX && y <= yPos + 10 + dragY)
 		{
-			CheatingEssentials.getMinecraftInstance().sndManager.playSoundFX("random.click", 1.0F, 1.0F);
+			Minecraft.getMinecraft().sndManager.playSoundFX("random.click", 1.0F, 1.0F);
 			isPinned = !isPinned;
 		}
 		if(x >= xPos + dragX && y >= yPos + dragY && x <= xPos + 69 + dragX && y <= yPos + 12 + dragY)

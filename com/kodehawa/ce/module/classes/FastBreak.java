@@ -4,7 +4,6 @@ import net.minecraft.potion.PotionEffect;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.annotations.ModuleLoader;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
@@ -20,12 +19,12 @@ public class FastBreak extends CheatingEssentialsModule {
 	
 	@Override
 	public void onEnableModule(){
-		CheatingEssentials.getMinecraftInstance().thePlayer.addPotionEffect( new PotionEffect( 3, 99999999, 2 ) );
+		getMinecraft().thePlayer.addPotionEffect( new PotionEffect( 3, 99999999, 2 ) );
 	}
 	
 	@Override
 	public void onDisableModule(){
-		CheatingEssentials.getMinecraftInstance().thePlayer.removePotionEffect( 3 );
+		getMinecraft().thePlayer.removePotionEffect( 3 );
 	}
 
 }

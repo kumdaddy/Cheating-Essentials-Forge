@@ -2,8 +2,9 @@ package com.kodehawa.ce.gui.api.components;
 
 import java.text.DecimalFormat;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.gui.api.render.ModGuiUtils;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class Slider extends Item
 {
@@ -78,7 +79,7 @@ public class Slider extends Item
         }
 
         DecimalFormat format = new DecimalFormat(shouldRound ? "0" : "0.0");
-        CheatingEssentials.getMinecraftInstance().fontRenderer.drawString(sliderValue.getName() + ": " + format.format(sliderValue.getValue()), xPos + parent.x, (yPos - 3) + parent.y, 0xFFFFFF);
+        FMLClientHandler.instance().getClient().fontRenderer.drawString(sliderValue.getName() + ": " + format.format(sliderValue.getValue()), xPos + parent.x, (yPos - 3) + parent.y, 0xFFFFFF);
         ModGuiUtils.drawHLine(xPos + parent.x, xPos + this.drawSliderWidth + parent.x, yPos + 12 + parent.y, 0xFFAAAAAA);
         ModGuiUtils.drawHLine(xPos + parent.x, xPos + dragX + parent.x, yPos + 12 + parent.y, 0xFFDDDDDD);
         ModGuiUtils.drawGBRect(xPos + parent.x + (int) dragX, yPos + 9 + parent.y, xPos + 6 + parent.x + (int) dragX, yPos + 15.5F + parent.y, 0.5F, 0xFF555555, 0xFF777777, 0xFF555555);

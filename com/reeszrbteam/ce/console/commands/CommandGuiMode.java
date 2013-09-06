@@ -1,8 +1,7 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.ce.CheatingEssentials;
-import com.kodehawa.ce.forge.tick.TickHandler;
 import com.kodehawa.ce.module.classes.Gui;
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandGuiMode extends BaseCommand{
@@ -16,14 +15,14 @@ public class CommandGuiMode extends BaseCommand{
 		try{
 			if(args[0].equalsIgnoreCase("ReesZRB")){
                 Gui.guimode = 1;
-                CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Gui Mode is set to ReesZRB.");
+                Utils.getInstance().addChatMessage("Gui Mode is set to ReesZRB.");
 			}
 			if(args[0].equalsIgnoreCase("Kodehawa")){
                 Gui.guimode = 0;
-                CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Gui Mode is set to Kodehawa.");
+                Utils.getInstance().addChatMessage("Gui Mode is set to Kodehawa.");
 			}
 		}catch(Exception e){
-			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Invalid Usage: " + getSyntax());
+			Utils.getInstance().addChatMessage("Invalid Usage: " + getSyntax());
 		}
 	}
 

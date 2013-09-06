@@ -1,8 +1,9 @@
 package com.reeszrbteam.ce.console.commands;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 
-import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandPlayerView extends BaseCommand {
@@ -14,20 +15,20 @@ public class CommandPlayerView extends BaseCommand {
 	public void runCommand(String s, String[] args) {
 		try {
 			if(args[0].equalsIgnoreCase("off")) {
-				CheatingEssentials.getMinecraftInstance().renderViewEntity = CheatingEssentials.getMinecraftInstance().thePlayer;
-				CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Now viewing normally.");
+				Minecraft.getMinecraft().renderViewEntity = Minecraft.getMinecraft().thePlayer;
+				Utils.getInstance().addChatMessage("Now viewing normally.");
 				return;
 			}
-			for(Object o : CheatingEssentials.getMinecraftInstance().theWorld.loadedEntityList) {
+			for(Object o : Minecraft.getMinecraft().theWorld.loadedEntityList) {
 				if(o instanceof EntityPlayer) {
 					EntityPlayer e = (EntityPlayer) o;
 					if(e.username.equalsIgnoreCase(args[0])) {
-						CheatingEssentials.getMinecraftInstance().renderViewEntity = e;
+						Minecraft.getMinecraft().renderViewEntity = e;
 					}
 				}
 			}
 		} catch(Exception e) {
-			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Invalid player or arguments. Usage: " + getSyntax());
+			Utils.getInstance().addChatMessage("Invalid player or arguments. Usage: " + getSyntax());
 		}
 	}
 

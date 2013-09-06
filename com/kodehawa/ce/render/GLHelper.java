@@ -8,8 +8,9 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.chestfinder.AltAxisAlignedBB;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class GLHelper {
     
@@ -220,7 +221,7 @@ public class GLHelper {
     
     
     public static void drawTag( String s, double d, double d1, double d2 ) {
-        Minecraft mc = CheatingEssentials.getMinecraftInstance();
+        Minecraft mc = FMLClientHandler.instance().getClient();
         float f = 5;
         
         mc.thePlayer.getDistanceSq( d, d1, d2 );

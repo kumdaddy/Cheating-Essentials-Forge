@@ -9,11 +9,13 @@ import net.minecraft.util.MathHelper;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
-import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.forge.common.Loader;
 import com.kodehawa.ce.gui.api.render.ModGuiUtils;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
 import com.kodehawa.ce.module.handlers.ModuleManager;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class ModuleGui extends GuiScreen
 {
@@ -137,7 +139,7 @@ public class ModuleGui extends GuiScreen
 
     public void makeWorldFrame()
     {
-        Frame wFrame = new Frame(CheatingEssentials.modinstance, 10, 10, 120, 20, 0x96777777, 0xaa000000, "World");
+        Frame wFrame = new Frame(Loader.instance(), 10, 10, 120, 20, 0x96777777, 0xaa000000, "World");
 
         for (CheatingEssentialsModule m : ModuleManager.getInstance().modules)
         {
@@ -155,7 +157,7 @@ public class ModuleGui extends GuiScreen
 
     public void makeRenderFrame()
     {
-        Frame rFrame = new Frame(CheatingEssentials.modinstance, 130, 50, 120, 20, 0x96777777, 0xaa000000, "Render");
+        Frame rFrame = new Frame(Loader.instance(), 130, 50, 120, 20, 0x96777777, 0xaa000000, "Render");
 
         for (CheatingEssentialsModule m : ModuleManager.getInstance().modules)
         {
@@ -173,7 +175,7 @@ public class ModuleGui extends GuiScreen
     
     
     public void makeF3UtilsFrame(){
-    	Frame f3Frame = new Frame(CheatingEssentials.getCheatingEssentials(), 10, 50, 120, 20, 0x96777777, 0xaa000000, "Utils");
+    	Frame f3Frame = new Frame(Loader.instance(), 10, 50, 120, 20, 0x96777777, 0xaa000000, "Utils");
     	
     	for (CheatingEssentialsModule m : ModuleManager.getInstance().modules)
         {
@@ -192,7 +194,7 @@ public class ModuleGui extends GuiScreen
 
     public void makePlayerFrame()
     {
-        Frame pFrame = new Frame(CheatingEssentials.modinstance, 130, 10, 120, 20, 0x96777777, 0xaa000000, "Player");
+        Frame pFrame = new Frame(Loader.instance(), 130, 10, 120, 20, 0x96777777, 0xaa000000, "Player");
 
         for (CheatingEssentialsModule m : ModuleManager.getInstance().modules)
         {
@@ -210,7 +212,7 @@ public class ModuleGui extends GuiScreen
 
     public void makeKeybindsFrame()
     {
-        Frame kFrame = new Frame(CheatingEssentials.modinstance, 10, 30, 120, 20, 0x96777777, 0xaa000000, "Keybinds")
+        Frame kFrame = new Frame(Loader.instance(), 10, 30, 120, 20, 0x96777777, 0xaa000000, "Keybinds")
         {
             @Override
             public void update()
@@ -261,7 +263,7 @@ public class ModuleGui extends GuiScreen
                 }
 
                 ModGuiUtils.drawHorizontalLine(this.x + 2, (this.x + this.width) - 2, (this.y + this.oldHeight) - 6, 2, 0xff550055);
-                CheatingEssentials.modinstance.getMinecraftInstance().fontRenderer.drawString(this.text, this.x + 3, this.y + 3, 0xff87b5ff);
+                FMLClientHandler.instance().getClient().fontRenderer.drawString(this.text, this.x + 3, this.y + 3, 0xff87b5ff);
 
                 if (minimized)
                 {
@@ -299,7 +301,7 @@ public class ModuleGui extends GuiScreen
     public void makeRadarFrame()
     {
         final Radar r = new Radar();
-        Frame rFrame = new Frame(CheatingEssentials.modinstance, 250, 30, 120, 20, 0x96777777, 0xaa000000, "Radar")
+        Frame rFrame = new Frame(Loader.instance(), 250, 30, 120, 20, 0x96777777, 0xaa000000, "Radar")
         {
             @Override
             public void update()
@@ -323,7 +325,7 @@ public class ModuleGui extends GuiScreen
 
     public void makeActivesFrame()
     {
-        Frame aFrame = new Frame(CheatingEssentials.modinstance, 130, 30, 120, 20, 0x96777777, 0xaa000000, "Active Cheats")
+        Frame aFrame = new Frame(Loader.instance(), 130, 30, 120, 20, 0x96777777, 0xaa000000, "Active Cheats")
         {
             @Override
             public void update()
@@ -374,7 +376,7 @@ public class ModuleGui extends GuiScreen
                 }
 
                 ModGuiUtils.drawHorizontalLine(this.x + 2, (this.x + this.width) - 2, (this.y + this.oldHeight) - 6, 2, 0xff550055);
-                CheatingEssentials.modinstance.getMinecraftInstance().fontRenderer.drawString(this.text, this.x + 3, this.y + 3, 0xff87b5ff);
+                FMLClientHandler.instance().getClient().fontRenderer.drawString(this.text, this.x + 3, this.y + 3, 0xff87b5ff);
 
                 if (minimized)
                 {
@@ -405,7 +407,7 @@ public class ModuleGui extends GuiScreen
 
     public void makeInfoFrame()
     {
-        final Frame iFrame = new Frame(CheatingEssentials.modinstance, 250, 10, 120, 20, 0x96777777, 0xaa000000, "Player Info")
+        final Frame iFrame = new Frame(Loader.instance(), 250, 10, 120, 20, 0x96777777, 0xaa000000, "Player Info")
         {
             @Override
             public void update()
@@ -437,9 +439,9 @@ public class ModuleGui extends GuiScreen
                 {
                     children.clear();
                     //addChild(new Label("FPS: " + EntityRenderer.performanceToFps(Minecraft.getMinecraft().), 0xffffff));
-                    addChild(new Label("X: " + (int) CheatingEssentials.getMinecraftInstance().thePlayer.posX, 0xffffff));
-                    addChild(new Label("Y: " + (int) CheatingEssentials.getMinecraftInstance().thePlayer.posY, 0xffffff));
-                    addChild(new Label("Z: " + (int) CheatingEssentials.getMinecraftInstance().thePlayer.posZ, 0xffffff));
+                    addChild(new Label("X: " + (int) FMLClientHandler.instance().getClient().thePlayer.posX, 0xffffff));
+                    addChild(new Label("Y: " + (int) FMLClientHandler.instance().getClient().thePlayer.posY, 0xffffff));
+                    addChild(new Label("Z: " + (int) FMLClientHandler.instance().getClient().thePlayer.posZ, 0xffffff));
                     addChild(new Label("Dimension: " + dim, 0xffffff));
                     addChild(new Label("Facing: " + dir, 0xffffff ));
                     addChild(new Label("Username: " + mc.thePlayer.username, 0xffffff));
@@ -486,7 +488,7 @@ public class ModuleGui extends GuiScreen
                 }
 
                 ModGuiUtils.drawHorizontalLine(this.x + 2, (this.x + this.width) - 2, (this.y + this.oldHeight) - 6, 2, 0xff550055);
-                CheatingEssentials.modinstance.getMinecraftInstance().fontRenderer.drawString(this.text, this.x + 3, this.y + 3, 0xff87b5ff);
+                FMLClientHandler.instance().getClient().fontRenderer.drawString(this.text, this.x + 3, this.y + 3, 0xff87b5ff);
                 
 
                 if (minimized)

@@ -1,7 +1,7 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.playerrelations.Friend;
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandFriend extends BaseCommand {
@@ -23,10 +23,10 @@ public class CommandFriend extends BaseCommand {
 				{
                     Friend.friendList.add(name);
 					Friend.writeFriendList();
-					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Added " + name + " to friend list.");
+					Utils.getInstance().addChatMessage("Added " + name + " to friend list.");
 				}else
 				{
-					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage(name + " is already your friend.");
+					Utils.getInstance().addChatMessage(name + " is already your friend.");
 				}
 			}
 			if(args[0].equalsIgnoreCase("del"))
@@ -36,10 +36,10 @@ public class CommandFriend extends BaseCommand {
 				{
                     Friend.friendList.remove(name);
                     Friend.writeFriendList();
-					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Removed " + name + " from friends.");
+					Utils.getInstance().addChatMessage("Removed " + name + " from friends.");
 				}else
 				{
-					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage(name + " is not your friend.");
+					Utils.getInstance().addChatMessage(name + " is not your friend.");
 				}
 			}
 			if(args[0].equalsIgnoreCase("clear"))
@@ -48,12 +48,12 @@ public class CommandFriend extends BaseCommand {
 				{
                     Friend.friendList.clear();
 					Friend.writeFriendList();
-					CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Cleared friends.");
+					Utils.getInstance().addChatMessage("Cleared friends.");
 				}catch(Exception e) {}
 			}
 		}catch(Exception e)
 		{
-			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Usage: " + getSyntax());
+			Utils.getInstance().addChatMessage("Usage: " + getSyntax());
 		}
 	}
 

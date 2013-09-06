@@ -6,7 +6,6 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.annotations.ModuleLoader;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
@@ -23,7 +22,7 @@ public class Fly extends CheatingEssentialsModule {
 	
 	@ForgeSubscribe
 	public void removeFalling(LivingFallEvent e){
-			for(Object o : CheatingEssentials.getMinecraftInstance().theWorld.loadedEntityList) {
+			for(Object o : getMinecraft().theWorld.loadedEntityList) {
 				if(o instanceof EntityPlayer){
 					e.setCanceled(true);
 				}
@@ -32,18 +31,18 @@ public class Fly extends CheatingEssentialsModule {
 
 	@Override
     public void onEnableModule(){
-		CheatingEssentials.getMinecraftInstance().thePlayer.capabilities.isFlying = true;
+		getMinecraft().thePlayer.capabilities.isFlying = true;
 	}
 	
 	@Override
 	public void onDisableModule(){
-		CheatingEssentials.getMinecraftInstance().thePlayer.capabilities.isFlying = false;
+		getMinecraft().thePlayer.capabilities.isFlying = false;
 	}
 	
 	@Override
 	public void tick() {
-		if(!CheatingEssentials.getMinecraftInstance().thePlayer.capabilities.isFlying){
-			CheatingEssentials.getMinecraftInstance().thePlayer.capabilities.isFlying = true;
+		if(!getMinecraft().thePlayer.capabilities.isFlying){
+			getMinecraft().thePlayer.capabilities.isFlying = true;
 		}
 	}
 }

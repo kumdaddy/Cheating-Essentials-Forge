@@ -9,7 +9,9 @@ import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import com.kodehawa.ce.CheatingEssentials;
+import com.kodehawa.ce.forge.common.Loader;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class Friend {
 
@@ -18,7 +20,7 @@ public class Friend {
     private volatile static Friend instance;
 
     public Friend( ){
-        friendsFile = new File(CheatingEssentials.getMinecraftInstance().mcDataDir, "/config/Cheating Essentials/CEFriendsList.txt");
+        friendsFile = new File(FMLClientHandler.instance().getClient().mcDataDir, "/config/Cheating Essentials/CEFriendsList.txt");
         friendList.add("Kodehawa");
 
 
@@ -34,7 +36,7 @@ public class Friend {
     }
 
     public static void writeFriendList(){
-        CheatingEssentials.CELogAgent("Writing Friend file...");
+    	Loader.instance().log("Writing Friend file...");
         try{
             FileWriter filewritter = new FileWriter(friendsFile);
             BufferedWriter bufferedwriter = new BufferedWriter(filewritter);
@@ -44,8 +46,7 @@ public class Friend {
             bufferedwriter.close();
         }
         catch (Exception e){
-            CheatingEssentials.CELogErrorAgent("Can't write Friends file!");
-            CheatingEssentials.CELogErrorAgent("Error in CE init: " + e.toString());
+        	Loader.instance().log("Can't write Friends file! " + e);
         }
     }
 
@@ -62,8 +63,8 @@ public class Friend {
             }
             br.close( );
         } catch( Exception ex ) {
-            CheatingEssentials.CELogErrorAgent("Can't load Friends list. Unreliable results!");
-            CheatingEssentials.CELogErrorAgent( "Error in CE init: " + ex.toString( ) );
+        	Loader.instance().log("Can't load Friends list. Unreliable results!");
+        	Loader.instance().log( "Error in CE init: " + ex.toString( ) );
             ex.printStackTrace( );
             writeFriendList( );
         }

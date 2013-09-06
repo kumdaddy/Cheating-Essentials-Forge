@@ -1,30 +1,7 @@
 package com.kodehawa.ce.module.loader;
 
-import com.kodehawa.ce.CheatingEssentials;
-import com.kodehawa.ce.module.annotations.ModuleLoader;
-import com.kodehawa.ce.module.classes.AutoRespawn;
-import com.kodehawa.ce.module.classes.BlockESP;
-import com.kodehawa.ce.module.classes.Breadcrumb;
-import com.kodehawa.ce.module.classes.ChestESP;
-import com.kodehawa.ce.module.classes.Console;
-import com.kodehawa.ce.module.classes.CreativeFly;
-import com.kodehawa.ce.module.classes.FastBreak;
-import com.kodehawa.ce.module.classes.Fly;
-import com.kodehawa.ce.module.classes.Fullbright;
-import com.kodehawa.ce.module.classes.Gui;
-import com.kodehawa.ce.module.classes.MobESP;
-import com.kodehawa.ce.module.classes.Mobaura;
-import com.kodehawa.ce.module.classes.NoFall;
-import com.kodehawa.ce.module.classes.PlayerESP;
-import com.kodehawa.ce.module.classes.Sprint;
-import com.kodehawa.ce.module.classes.Step;
-import com.kodehawa.ce.module.classes.Tracers;
-import com.kodehawa.ce.module.classes.Unpushable;
-import com.kodehawa.ce.module.classes.UtilAdvancedTooltips;
-import com.kodehawa.ce.module.classes.UtilMobHitbox;
-import com.kodehawa.ce.module.classes.UtilReloadChunks;
-import com.kodehawa.ce.module.classes.Waterwalk;
-import com.kodehawa.ce.module.classes.Xray;
+import com.kodehawa.ce.forge.common.Loader;
+import com.kodehawa.ce.module.classes.*;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 
@@ -39,6 +16,8 @@ public final class BaseLoader {
 		ModuleManager.getInstance().modules.clear();
 		ModuleManager.getInstance().addModule(new CreativeFly( ) );
 		ModuleManager.getInstance().addModule(new Fly( ) );
+		ModuleManager.getInstance().addModule(new FastPlace( ) );
+		ModuleManager.getInstance().addModule(new Spectator( ) );
 		ModuleManager.getInstance().addModule(new NoFall( ));
 		ModuleManager.getInstance().addModule(new Sprint( ));
         ModuleManager.getInstance().addModule(new Unpushable( ));
@@ -60,13 +39,13 @@ public final class BaseLoader {
         ModuleManager.getInstance().addModule(new Gui());
         ModuleManager.getInstance().addModule(new Console());
         disableModules();
-        CheatingEssentials.CELogAgent("Loaded " + ModuleManager.getInstance().modules.size() + " modules in Cheating Essentials" );
+        Loader.instance().log("Loaded " + ModuleManager.getInstance().modules.size() + " modules in Cheating Essentials" );
     }
 
     public void disableModules(){
         for(CheatingEssentialsModule m : ModuleManager.getInstance().modules){
             if(!m.enabled){
-                CheatingEssentials.CELogAgent("Disabled Module: " +m+ " for internal petition");
+            	Loader.instance().log("Disabled Module: " +m+ " for internal petition");
                 ModuleManager.getInstance().removeModule(m);
             }
         }

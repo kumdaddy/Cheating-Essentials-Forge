@@ -2,7 +2,8 @@ package com.reeszrbteam.ce.gui.click.elements;
 
 import java.text.DecimalFormat;
 
-import com.kodehawa.ce.CheatingEssentials;
+import net.minecraft.client.Minecraft;
+
 import com.reeszrbteam.ce.util.CEUtils;
 import com.reeszrbteam.ce.util.Value;
 
@@ -73,7 +74,7 @@ public class YAWSlider {
 		
 		DecimalFormat format = new DecimalFormat(shouldRound ? "0" : "0.0");
 		
-		CheatingEssentials.getMinecraftInstance().fontRenderer.drawString( sliderValue.getName() + ": " + format.format(sliderValue.getValue()), xPos + window.dragX, yPos + window.dragY - 1, 0x55FFFF);
+		Minecraft.getMinecraft().fontRenderer.drawString( sliderValue.getName() + ": " + format.format(sliderValue.getValue()), xPos + window.dragX, yPos + window.dragY - 1, 0x55FFFF);
 		//YouAlwaysWinUtils.drawHLine(xPos + window.dragX, xPos + this.drawSliderWidth + window.dragX, yPos + 12 + window.dragY, 0xFFAAAAAA);
 		//YouAlwaysWinUtils.drawHLine(xPos + window.dragX, xPos + dragX + window.dragX, yPos + 12 + window.dragY, 0xFFDDDDDD);
 		//YouAlwaysWinUtils.drawBorderedRect(xPos + window.dragX - 1, yPos + 8 + window.dragY, xPos + this.drawSliderWidth + window.dragX + 1, yPos + 17 + window.dragY, 0xFF000000, 0xff32ff32);

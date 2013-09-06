@@ -2,16 +2,11 @@ package com.kodehawa.ce.forge.tick;
 
 import java.util.EnumSet;
 
-import com.kodehawa.ce.CheatingEssentials;
-import com.kodehawa.ce.gui.api.components.Frame;
-import com.kodehawa.ce.gui.api.components.ModuleGui;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 import com.kodehawa.ce.util.KeyboardListener;
 import com.kodehawa.ce.util.Tickable;
-import com.reeszrbteam.ce.console.GuiConsole;
-import com.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
-import com.reeszrbteam.ce.gui.click.elements.YAWWindow;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.TickType;
 
@@ -25,7 +20,7 @@ public class TickHandler implements IScheduledTickHandler {
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) {
 		
-		if( CheatingEssentials.getMinecraftInstance().theWorld != null ){
+		if( FMLClientHandler.instance().getClient().theWorld != null ){
 		for(Tickable tickable : ModuleManager.getInstance().modInternalTicksArray){
 			tickable.tick();
 		}

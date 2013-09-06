@@ -7,7 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import org.lwjgl.opengl.GL11;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
 
@@ -33,7 +32,7 @@ public class Breadcrumb extends CheatingEssentialsModule {
                         positionsList.remove(0);
                     }
                 }
-                for(Object o : CheatingEssentials.getMinecraftInstance().theWorld.playerEntities){
+                for(Object o : getMinecraft().theWorld.playerEntities){
                     if(o instanceof EntityPlayer) {
                         EntityPlayer player1 = (EntityPlayer)o;
 

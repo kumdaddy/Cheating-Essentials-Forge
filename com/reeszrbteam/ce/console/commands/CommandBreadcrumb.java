@@ -1,7 +1,7 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.classes.Breadcrumb;
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandBreadcrumb extends BaseCommand {
@@ -15,7 +15,7 @@ public class CommandBreadcrumb extends BaseCommand {
         try {
             if(args[0].equalsIgnoreCase("clear")) {
                 Breadcrumb.positionsList.clear();
-                CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Cleared breadcrumbs.");
+                Utils.getInstance().addChatMessage("Cleared breadcrumbs.");
             }
         } catch(Exception e) {}
     }

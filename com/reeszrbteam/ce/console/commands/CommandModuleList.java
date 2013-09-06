@@ -2,9 +2,9 @@ package com.reeszrbteam.ce.console.commands;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.handlers.ModuleManager;
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandModuleList extends BaseCommand{
@@ -18,7 +18,7 @@ public class CommandModuleList extends BaseCommand{
 		try{
 			for(CheatingEssentialsModule m: ModuleManager.getInstance().modules){
 				String derp = m.name + " - " + Keyboard.getKeyName(m.getKeybinding());
-				CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage(derp);
+				Utils.getInstance().addChatMessage(derp);
 			}
 		}catch(Exception e){
 			

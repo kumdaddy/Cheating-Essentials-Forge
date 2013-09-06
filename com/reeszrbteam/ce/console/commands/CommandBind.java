@@ -2,10 +2,10 @@ package com.reeszrbteam.ce.console.commands;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 import com.kodehawa.ce.util.FileManager;
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandBind extends BaseCommand{
@@ -16,18 +16,17 @@ public class CommandBind extends BaseCommand{
 
 	@Override
 	public void runCommand(String s, String[] args) {
-		if(!CheatingEssentials.getCheatingEssentials().isHardcoreModeEnabled){
 		try {
 			if(args[0].equalsIgnoreCase("add")) {
 				for(CheatingEssentialsModule m : ModuleManager.getInstance().modules) {
 					if(m.name.replace(" ", "").equalsIgnoreCase(args[1])) {
 						if(Keyboard.getKeyIndex(args[2].toUpperCase()) == 0) {
-							CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Invalid key.");
+							Utils.getInstance().addChatMessage("Invalid key.");
 							return;
 						}
 						m.setKeybinding(Keyboard.getKeyIndex(args[2].toUpperCase()));
                         FileManager.saveKeybinding();
-                        CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage(m.name + " bound to: " + Keyboard.getKeyName(m.getKeybinding()));
+                        Utils.getInstance().addChatMessage(m.name + " bound to: " + Keyboard.getKeyName(m.getKeybinding()));
 						break;
 					}
 				}
@@ -37,7 +36,7 @@ public class CommandBind extends BaseCommand{
 					if(m.getKeybinding() == Keyboard.getKeyIndex(args[1].toUpperCase())) {
 						m.setKeybinding(0);
                         FileManager.saveKeybinding();
-                        CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Unbound: " + args[1].toUpperCase());
+                        Utils.getInstance().addChatMessage("Unbound: " + args[1].toUpperCase());
 						break;
 					}
 				}
@@ -46,17 +45,13 @@ public class CommandBind extends BaseCommand{
 				for(CheatingEssentialsModule m : ModuleManager.getInstance().modules) {
 					m.setKeybinding(0);
                     FileManager.saveKeybinding();
-                    CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("All Keys Unbound.");
+                    Utils.getInstance().addChatMessage("All Keys Unbound.");
 				}
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
-			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Usage: " + getSyntax());
+			Utils.getInstance().addChatMessage("Usage: " + getSyntax());
 		}}
-		else{
-			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Heh, don't try to bind something in hardcore!");
-		}
-	}
 
 	@Override
 	public String getDescription() {

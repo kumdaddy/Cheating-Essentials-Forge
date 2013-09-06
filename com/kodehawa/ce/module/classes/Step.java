@@ -30,7 +30,13 @@ public class Step extends CheatingEssentialsModule {
     }
 
 	@Override
-	public void onEnableModule(){}
+	public void onEnableModule(){
+		for(Object o : getMinecraft().theWorld.loadedEntityList){
+			if(o instanceof EntityPlayer){
+		        ReflectorHelper.setField(Entity.class, o, 42, STEP_HEIGHT);
+			}
+		}
+	}
 	
 	@Override
 	public void onDisableModule(){
@@ -44,11 +50,5 @@ public class Step extends CheatingEssentialsModule {
 	
 	@Override
 	public void tick() {
-		// TODO Auto-generated method stub
-		for(Object o : getMinecraft().theWorld.loadedEntityList){
-			if(o instanceof EntityPlayer){
-		        ReflectorHelper.setField(Entity.class, o, 42, STEP_HEIGHT);
-			}
-		}
 	}	
 }

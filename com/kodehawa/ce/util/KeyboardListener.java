@@ -2,10 +2,11 @@ package com.kodehawa.ce.util;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 import com.kodehawa.ce.module.loader.BaseLoader;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class KeyboardListener {
 
@@ -42,7 +43,7 @@ public class KeyboardListener {
         * Like the old CheckKey :)
         */
        public boolean getKeyStateFromMap( int i ) {
-        if( CheatingEssentials.getMinecraftInstance().currentScreen != null ) {
+        if( FMLClientHandler.instance().getClient().currentScreen != null ) {
             return false;
         }
         if( Keyboard.isKeyDown( i ) != keymap[ i ] ) {

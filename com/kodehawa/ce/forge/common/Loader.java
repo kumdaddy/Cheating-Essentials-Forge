@@ -1,5 +1,8 @@
 package com.kodehawa.ce.forge.common;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 
 import net.minecraft.block.Block;
@@ -10,7 +13,6 @@ import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.api.reflection.ReflectorHelper;
 import com.kodehawa.ce.forge.common.events.EventRegisterer;
 import com.kodehawa.ce.forge.common.item.CEItemHardcoreConsole;
@@ -55,7 +57,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class Loader {
 	
-	public CheatingEssentials ce;
     public static TickHandler tickHandler = new TickHandler();
     static final int MAJOR_VERSION = 3;
     static final int MINOR_VERSION = 2;
@@ -64,19 +65,16 @@ public class Loader {
 	
     @Instance("Cheating-Essentials")
     public static Loader instance;
-    private final static Item hardcoreItem = new CEItemHardcoreGui(8235).setCreativeTab(CECreativeTabs.tabHardcore).
-    		setFull3D().setNoRepair().setMaxDamage(2510).func_111206_d("cheating-essentials:hardcoreWand");
-    private final static Item hardcoreItemC = new CEItemHardcoreConsole(8236).setCreativeTab(CECreativeTabs.tabHardcore).
-    		setFull3D().setNoRepair().setMaxDamage(2510).func_111206_d("cheating-essentials:hardcoreWandConsole");
     
     @SidedProxy(clientSide="com.kodehawa.ce.forge.common.ClientProxy", serverSide="com.kodehawa.ce.forge.common.CommonProxy")
     public static CommonProxy proxyHandler;
    
+    public static Loader instance(){
+    	return instance;
+    }
+    
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-    	FMLLog.log("Cheating Essentials", Level.INFO, "Cheating Essentials main: " + StringUtils.defaultString(CheatingEssentials.class.getName()));
-    	FMLLog.log("Cheating Essentials", Level.INFO, "Attempting a early Cheating Essentials initialization");
-    	ce = new CheatingEssentials( );
     	FMLLog.log("Cheating Essentials", Level.INFO,
     			"Cheating Essentials Forge Loader: " + StringUtils.defaultString(Loader.class.getName()) +
     			" in Minecraft Forge " + ForgeVersion.getVersion());
@@ -92,8 +90,8 @@ public class Loader {
     	FMLLog.log("Cheating Essentials", Level.INFO,
     			"Started Cheating Essentials "+getForgeCEVersion()+" in Minecraft 1.6.2 with Minecraft Forge " + ForgeVersion.getVersion());
     	/* Little joke <3 */
-    	CheatingEssentials.CELogAgent("[Pinky] Brain, what are we going to do tomorrow night?");
-    	CheatingEssentials.CELogAgent("[Brain] Pinky, we're going to take over the world!");
+    	this.log("[Pinky] Brain, what are we going to do tomorrow night?");
+    	this.log("[Brain] Pinky, we're going to take over the world!");
     }
     
     ItemStack emeraldBlock = new ItemStack(Block.blockEmerald);
@@ -102,13 +100,6 @@ public class Loader {
     @EventHandler
     public void load(FMLInitializationEvent event) {
         proxyHandler.registerRenderers();
-        LanguageRegistry.instance().addStringLocalization("itemGroup.tabHardcore", "en_US", "Cheating Essentials");
-        LanguageRegistry.addName(hardcoreItem, "Cheating GUI Wand");
-        LanguageRegistry.addName(hardcoreItemC, "Cheating Console Wand");
-        GameRegistry.addRecipe(new ItemStack(hardcoreItem), "xyx", "xyx", "xxx",
-                'x', emeraldBlock , 'y', diamondBlock);
-        GameRegistry.addRecipe(new ItemStack(hardcoreItemC), "xyx", "xyx", "xxx",
-                'x', diamondBlock , 'y', emeraldBlock);
         MinecraftForge.EVENT_BUS.register(new EventRegisterer());
     }
    
@@ -123,5 +114,9 @@ public class Loader {
 	
 	public static String getForgeCEVersion(){
 		return MAJOR_VERSION+"."+MINOR_VERSION+"."+REVISION_VERSION+REVISION_LETTER; //Return current version
+	}
+	
+	public void log( String s ){
+		FMLLog.log("Cheating Essentials", Level.INFO, s);
 	}
 }

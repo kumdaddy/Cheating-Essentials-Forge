@@ -8,7 +8,6 @@ import net.minecraftforge.event.entity.living.LivingFallEvent;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
 
@@ -22,7 +21,7 @@ public class NoFall extends CheatingEssentialsModule {
 	@ForgeSubscribe
 	public void removeFalling(LivingFallEvent e){
 		if(isActive()){ 
-			for(Object o : CheatingEssentials.getMinecraftInstance().theWorld.loadedEntityList) {
+			for(Object o : getMinecraft().theWorld.loadedEntityList) {
 				if(o instanceof EntityClientPlayerMP && !(o instanceof EntityMob) && !(o instanceof EntityAnimal)){
 					e.setCanceled(true);
 				}

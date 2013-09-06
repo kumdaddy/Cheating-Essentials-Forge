@@ -1,8 +1,8 @@
 package com.reeszrbteam.ce.console.commands;
 
-import com.kodehawa.ce.CheatingEssentials;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.handlers.ModuleManager;
+import com.kodehawa.ce.util.Utils;
 import com.reeszrbteam.ce.console.BaseCommand;
 
 public class CommandHardcoreMode extends BaseCommand {
@@ -18,22 +18,20 @@ public class CommandHardcoreMode extends BaseCommand {
     public void runCommand(String s, String[] args) {
         try{
         	if(args[0].equalsIgnoreCase("enable")){
-        		CheatingEssentials.getCheatingEssentials().isHardcoreModeEnabled = true;
         		for(CheatingEssentialsModule module : ModuleManager.getInstance().modules){
         			module.setKeybinding(0);
         		}
-    			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Hardcore mode enabled!");
+    			Utils.getInstance().addChatMessage("Hardcore mode enabled!");
         	}
         	if(args[0].equalsIgnoreCase("disable")){
-        		CheatingEssentials.getCheatingEssentials().isHardcoreModeEnabled = false;
         		for(CheatingEssentialsModule module : ModuleManager.getInstance().modules){
         			module.setKeybinding(module.keybind);
-        			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Hardcore mode disabled!");
+        			Utils.getInstance().addChatMessage("Hardcore mode disabled!");
         		}
         	}
                 }
             catch(Exception e){
-    			CheatingEssentials.getCheatingEssentials().getUtils().addChatMessage("Usage: " + getSyntax());
+    			Utils.getInstance().addChatMessage("Usage: " + getSyntax());
             }
     }
 

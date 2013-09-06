@@ -8,7 +8,7 @@ import net.minecraft.entity.Entity;
 
 import org.lwjgl.opengl.GL11;
 
-import com.kodehawa.ce.CheatingEssentials;
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class ModGuiUtils
 {
@@ -353,9 +353,10 @@ public class ModGuiUtils
      */
     public static int getWidth()
     {
-    	ScaledResolution sr = new ScaledResolution(CheatingEssentials.getCheatingEssentials().getMinecraftInstance().gameSettings,
-    			CheatingEssentials.getCheatingEssentials().getMinecraftInstance().displayWidth,
-    			CheatingEssentials.getCheatingEssentials().getMinecraftInstance().displayHeight);
+    	ScaledResolution sr = new ScaledResolution(
+    			FMLClientHandler.instance().getClient().gameSettings,
+    			FMLClientHandler.instance().getClient().displayWidth,
+    			FMLClientHandler.instance().getClient().displayHeight);
         return sr.getScaledWidth();
     }
 
