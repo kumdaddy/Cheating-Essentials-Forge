@@ -32,21 +32,18 @@ public class CommandManager
 
 	public void addCommands()
 	{
-		commands.clear();
+		commands.clear();  
 		commands.add(new CommandEnemy());
 		commands.add(new CommandHelp());
 		commands.add(new CommandModuleList());
 		commands.add(new CommandPlayerView());
 		commands.add(new CommandTeleport());
-		//commands.add(new CommandXray());
 		commands.add(new CommandFriend());
 		commands.add(new CommandAuraDistance());
         commands.add(new CommandFlySpeed());
         commands.add(new CommandBlockESP());
         commands.add(new CommandBreadcrumb());
-        //commands.add(new CommandGuiMode());
         commands.add(new CommandModuleEnable());
-        //commands.add(new CommandHardcoreMode());
 		commands.add(new CommandBind()); 
 	}
 
