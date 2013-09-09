@@ -15,7 +15,7 @@ public class Breadcrumb extends CheatingEssentialsModule {
     public static ArrayList<double[]> positionsList = new ArrayList<double[]>();
 
         public Breadcrumb() {
-            super("Breadcrumb", "Draws a trail behind the player.", "", 0, EnumGuiCategory.WORLD, true);
+            super("Breadcrumb", "Draws a trail behind the player.", "1.6.2", 0, EnumGuiCategory.WORLD, true);
             super.setTick(true);
     		super.setRender(true);
         }

@@ -44,9 +44,9 @@ public class CommandManager
         commands.add(new CommandFlySpeed());
         commands.add(new CommandBlockESP());
         commands.add(new CommandBreadcrumb());
-        commands.add(new CommandGuiMode());
+        //commands.add(new CommandGuiMode());
         commands.add(new CommandModuleEnable());
-        commands.add(new CommandHardcoreMode());
+        //commands.add(new CommandHardcoreMode());
 		commands.add(new CommandBind()); 
 	}
 

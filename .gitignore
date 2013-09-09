@@ -1,0 +1,26 @@
+#Cheating Essentials Git Ignore for Eclipse Juno 4.22
+
+#GITIGNORE FOR MC-EXTREME
+
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.bat
+*.sh
+
+/cpw
+/ibxm
+/net
+/paulscode
+deobfuscation_data-1.6.2.lzma
+fml_at.cfg
+fml_marker.cfg
+fmlversion.properties
+forge_at.cfg
+forge_logo.png
+mcp.png
+mcpmod.info
+Start.java

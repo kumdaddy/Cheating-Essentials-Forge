@@ -14,34 +14,44 @@ import com.kodehawa.ce.module.enums.EnumGuiCategory;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 import com.reeszrbteam.ce.util.EntitySpectator;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+
 public class Spectator extends CheatingEssentialsModule {
 
 	public Spectator() {
 		super("Spectate", "Spectate and Spy on People", "1.6.2", 0, EnumGuiCategory.RENDER, true);
+		super.setTick(true);
 	}
-
+	
     public Location locationHelper;
 
     @Override
     public void onEnableModule() 
     {
-	    ModuleManager.getInstance().getModuleByClass(Fly.class).onEnableModule();
-        this.createSpectator();
+	    ModuleManager.getInstance().getModuleByClass(Fly.class).toggleModule();
+        createSpectator();
     }
     
     
     public void onDisableModule(){
-        ModuleManager.getInstance().getModuleByClass(Fly.class).onDisableModule();
-        this.createSpectator();
+        ModuleManager.getInstance().getModuleByClass(Fly.class).toggleModule();
+        removeSpectator();
     }
 
+    public void removeSpectator(){
+        EntityPlayerSP player = getPlayer();
+    	WorldClient world = getMinecraft().theWorld;
+        world.removeEntityFromWorld(-1);
+        player.setPositionAndRotation(locationHelper.posX, locationHelper.posY, locationHelper.posZ, locationHelper.rotationYaw, locationHelper.rotationPitch);
+    }
+    
+    @Override
+    public void tick(){
+    }
+    
     public void createSpectator() 
     {
-     try 
-     {
       EntityPlayerSP player = getPlayer();
-      if (isActive()) 
-      {
        if (getMinecraft().theWorld instanceof WorldClient) 
        {
         locationHelper = new Location(player);
@@ -51,17 +61,8 @@ public class Spectator extends CheatingEssentialsModule {
         WorldClient world = getMinecraft().theWorld;
         world.addEntityToWorld(-1, o);
        }
-      }
-      else 
-      {
-       WorldClient world = getMinecraft().theWorld;
-       world.removeEntityFromWorld(-1);
-       player.setPositionAndRotation(locationHelper.posX, locationHelper.posY, locationHelper.posZ, locationHelper.rotationYaw, locationHelper.rotationPitch);
-      }
-     } 
-     catch (Exception e){}
     }
-
+       
     class Location 
     {
 

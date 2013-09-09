@@ -10,6 +10,7 @@ import com.reeszrbteam.ce.gui.click.windows.WindowInfo;
 import com.reeszrbteam.ce.gui.click.windows.WindowPlayer;
 import com.reeszrbteam.ce.gui.click.windows.WindowRadar;
 import com.reeszrbteam.ce.gui.click.windows.WindowRender;
+import com.reeszrbteam.ce.gui.click.windows.WindowUtils;
 import com.reeszrbteam.ce.gui.click.windows.WindowWorld;
 
 public class YouAlwaysWinClickGui extends GuiScreen
@@ -24,6 +25,7 @@ public class YouAlwaysWinClickGui extends GuiScreen
 	public YAWWindow info = new WindowInfo();
 	public YAWWindow radar = new WindowRadar();
     public YAWWindow render = new WindowRender().init();
+    public YAWWindow utils = new WindowUtils().init();
 	
 	public void initGui()
 	{

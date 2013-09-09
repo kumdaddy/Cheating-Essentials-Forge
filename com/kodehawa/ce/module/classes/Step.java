@@ -22,7 +22,6 @@ public class Step extends CheatingEssentialsModule {
 	public Step( ) {
 		super("Step", "More than a slab!", "1.6.2", Keyboard.KEY_NUMPAD1,
 				EnumGuiCategory.PLAYER, true);
-        super.setTick(true);
 	}
 
     public static void setStepHeight( float f ){
@@ -46,9 +45,4 @@ public class Step extends CheatingEssentialsModule {
 			}
 		}
 	}
-
-	
-	@Override
-	public void tick() {
-	}	
 }

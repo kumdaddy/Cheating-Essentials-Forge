@@ -496,7 +496,7 @@ public class CEUtils {
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(770, 771);
-		byte byte0 = 0;
+		byte byte0 = -18;
 		int i = fontrenderer.getStringWidth(s) / 2;
 		fontrenderer.drawStringWithShadow(s, -fontrenderer.getStringWidth(s) / 2, byte0, color);
 		fontrenderer.drawStringWithShadow(s, -fontrenderer.getStringWidth(s) / 2, byte0, color);

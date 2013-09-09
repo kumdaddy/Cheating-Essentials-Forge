@@ -5,22 +5,22 @@ import com.kodehawa.ce.module.enums.EnumGuiCategory;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 import com.reeszrbteam.ce.gui.click.elements.YAWWindow;
 
-public class WindowPlayer extends YAWWindow
-{
-	public WindowPlayer()
-	{
-		super("Player", 94, 14);
+public class WindowUtils extends YAWWindow {
+
+	public WindowUtils() {
+		super("Utils", 50, 104);
 	}
 	
 	public YAWWindow init()
 	{
 		for(CheatingEssentialsModule mod: ModuleManager.getInstance().modules)
 		{
-			if(mod.getType() == EnumGuiCategory.PLAYER)
+			if(mod.getType() == EnumGuiCategory.UTILS)
 			{
 				addButton(mod);
 			}
 		}
 		return this;
 	}
+
 }

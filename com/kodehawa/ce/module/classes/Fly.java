@@ -18,16 +18,6 @@ public class Fly extends CheatingEssentialsModule {
 				EnumGuiCategory.PLAYER, true);
         super.setTick(true);
 	}
-    
-	
-	@ForgeSubscribe
-	public void removeFalling(LivingFallEvent e){
-			for(Object o : getMinecraft().theWorld.loadedEntityList) {
-				if(o instanceof EntityPlayer){
-					e.setCanceled(true);
-				}
-		}
-	}
 
 	@Override
     public void onEnableModule(){

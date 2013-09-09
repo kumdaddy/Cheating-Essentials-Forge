@@ -67,6 +67,12 @@ public class CheatingEssentialsModule implements Listener, Tickable {
         com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventKey.class, this );
         com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventRender3D.class, this );
        }
+    
+    public CheatingEssentialsModule(final String name, final String desc, final EnumGuiCategory type, boolean enabled) {
+        this(name, desc, "1.6.2", 0, type, enabled);
+         com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventKey.class, this );
+         com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventRender3D.class, this );
+        }
 
     public CheatingEssentialsModule(final String name, final String desc, final String version, final int key, final EnumGuiCategory type, final boolean enabled) {
        this.name = name;
