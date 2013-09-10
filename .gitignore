@@ -1,7 +1,5 @@
 #Cheating Essentials Git Ignore for Eclipse Juno 4.22
 
-#GITIGNORE FOR MC-EXTREME
-
 *.class
 
 # Package Files #
@@ -24,3 +22,4 @@ forge_logo.png
 mcp.png
 mcpmod.info
 Start.java
+/assets

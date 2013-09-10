@@ -49,12 +49,6 @@ public class CommandManager
 
 	public void runCommands(String s)
 	{
-		/*
-		 * Do not Remove Line Below
-		 * Used for Chat Commands
-		 */
-		//if(!s.contains(Character.toString(cmdPrefix)) || !s.startsWith(Character.toString(cmdPrefix))) return;
-
 		boolean commandResolved = false;
 		String readString = s.trim().substring(Character.toString(cmdPrefix).length()).trim();
 		boolean hasArgs = readString.trim().contains(" ");

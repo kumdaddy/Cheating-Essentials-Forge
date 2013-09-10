@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 dependencies = "before:cebaseloader", version = "1.0.0")
 public final class ModuleManager {
 
-    public volatile CopyOnWriteArrayList<CheatingEssentialsModule> modules;
+    public volatile List<CheatingEssentialsModule> modules;
     public CopyOnWriteArrayList<String> enabledModules = new CopyOnWriteArrayList<String>();
     public CopyOnWriteArrayList<Tickable> modInternalTicksArray = new CopyOnWriteArrayList<Tickable>();
 

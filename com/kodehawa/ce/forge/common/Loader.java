@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.kodehawa.ce.api.reflection.ReflectorHelper;
 import com.kodehawa.ce.forge.common.events.EventRegisterer;
 import com.kodehawa.ce.forge.tick.TickHandler;
+import com.kodehawa.ce.module.loader.BaseLoader;
 import com.kodehawa.ce.playerrelations.Enemy;
 import com.kodehawa.ce.playerrelations.Friend;
 import com.kodehawa.ce.util.FileManager;
@@ -107,6 +108,7 @@ public class Loader {
         Enemy.getInstance();
         Friend.getInstance();
         FileManager.getInstance();
+        BaseLoader.getInstance();
     }
 	
 	public static String getForgeCEVersion(){

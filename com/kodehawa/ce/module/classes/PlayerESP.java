@@ -36,9 +36,9 @@ public class PlayerESP extends CheatingEssentialsModule {
 			for(Object o : getMinecraft().theWorld.loadedEntityList) {
 				if(o instanceof EntityPlayer) {
 					EntityPlayer ep = (EntityPlayer) o;
-					double d = ep.lastTickPosX + (ep.posX - ep.lastTickPosX) * (double)getMinecraft().timer.renderPartialTicks;
-					double d1 = ep.lastTickPosY + (ep.posY - ep.lastTickPosY) * (double)getMinecraft().timer.renderPartialTicks;
-					double d2 = ep.lastTickPosZ + (ep.posZ - ep.lastTickPosZ) * (double)getMinecraft().timer.renderPartialTicks;
+					double d = ep.lastTickPosX + (ep.posX - ep.lastTickPosX)/* * (double)getMinecraft().timer.renderPartialTicks*/;
+					double d1 = ep.lastTickPosY + (ep.posY - ep.lastTickPosY)/* * (double)getMinecraft().timer.renderPartialTicks*/;
+					double d2 = ep.lastTickPosZ + (ep.posZ - ep.lastTickPosZ)/* * (double)getMinecraft().timer.renderPartialTicks*/;
 					drawPlayerESP(d - RenderManager.renderPosX, d1 - RenderManager.renderPosY, d2 - RenderManager.renderPosZ, ep, ep.height - 0.1, ep.width - 0.12);
 				}
 			}

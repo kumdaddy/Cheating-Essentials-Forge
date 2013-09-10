@@ -1,9 +1,13 @@
 package com.kodehawa.ce.api.reflection;
 
+import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.kodehawa.ce.forge.common.Loader;
 
@@ -22,7 +26,6 @@ public class ReflectorHelper {
             return field.get(obj);
         }
         catch (Exception e){}
-
         return null;
     }
 
@@ -45,7 +48,6 @@ public class ReflectorHelper {
     public static Object getPrivateMethod(Class class1, Object o, int num) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException {
         try{
             Method m = class1.getDeclaredMethods()[num];
-            Loader.instance().log( "Method id / integer: " + class1.getDeclaredMethods()[num] );
             m.setAccessible(true);
             return m.invoke(o);
         }
@@ -53,14 +55,28 @@ public class ReflectorHelper {
         return null;
     }
 
-    public static void setFinalStatic(Field field, Object newValue) throws Exception {
-        field.setAccessible(true);
-
-        Field modifiersField = Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-
-        field.set(null, newValue);
+    public static Class[] getClassesInPackage( String cPackage ) {
+        List<Class> classes  = new ArrayList<Class>( );
+        URL pResource = Thread.currentThread( ).getContextClassLoader( ).getResource(cPackage.replace(".", "/").trim());
+        if ( pResource == null ) {
+        	Loader.instance().log("Can't create resource for: " + cPackage );
+            return null;
+        }
+        File pDirectory = new File( pResource.getFile( ) );
+        if(pDirectory != null){
+        for ( String name : pDirectory.list( ) ) {
+            if ( name.endsWith(".class") ) {
+                String cName = cPackage + "." + name;
+                try {
+                    classes.add(Class.forName(cName.replace(".class", "")));
+                } catch ( ClassNotFoundException cException ) {
+                    Loader.instance().log("Can't load moduke classes");
+                    cException.printStackTrace();
+                }
+            }
+        }
+        }
+        return classes.toArray(new Class[classes.size()]);
     }
 
     public static Field findFieldOfTypeInClass(final Class source, final Class type) {
@@ -96,10 +112,7 @@ public class ReflectorHelper {
         }
         Loader.instance().log("Fix Reflection Usage: No such field: \""+str+"\"!");
     }
-    
-    /**
-     * Thanks Exalm.
-     */
+   
     public static void setField(Class c, Object o, int num, Object val){
         try{
             Field f = c.getDeclaredFields()[num];
