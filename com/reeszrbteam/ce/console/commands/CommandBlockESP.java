@@ -25,6 +25,14 @@ public class CommandBlockESP extends BaseCommand {
 					Utils.getInstance().addChatMessage("Could not add Air Block into BlockESP!");
 				}
 			}
+			if(args[0].equalsIgnoreCase("idadd")) {
+				if(!args[1].equals("0")){
+				int id = Integer.parseInt(args[1]);
+				BlockESP.espList.add(id);
+                FileManager.saveBlockESPList();
+				Utils.getInstance().addChatMessage("Added BlockESP id: " + id);
+				}
+			}
 			if(args[0].equalsIgnoreCase("del")) {
 				int id = BlockFilter.BlockNametoID(args[1]);
 				String derp2 = BlockFilter.IDtoBlockName(id);
@@ -53,6 +61,6 @@ public class CommandBlockESP extends BaseCommand {
 
 	@Override
 	public String getSyntax() {
-		return "blockesp add/del <block name>, blockesp clear";
+		return "blockesp add/del/idadd <block name>, blockesp clear";
 	}
 }

@@ -32,7 +32,6 @@ public class CommandManager
 
 	public void addCommands()
 	{
-		commands.clear();  
 		commands.add(new CommandEnemy());
 		commands.add(new CommandHelp());
 		commands.add(new CommandModuleList());
