@@ -29,6 +29,7 @@ public final class BaseLoader {
     	ModuleManager.getInstance().addModule(new BlockESP( ));
     	ModuleManager.getInstance().addModule(new MoarJump( ) );
     	ModuleManager.getInstance().addModule(new PlayerESP( ));
+    	ModuleManager.getInstance().addModule(new DynamicFly( ));
     	ModuleManager.getInstance().addModule(new MobESP( ));
     	ModuleManager.getInstance().addModule(new Tracers( ));
     	ModuleManager.getInstance().addModule(new Breadcrumb( ));

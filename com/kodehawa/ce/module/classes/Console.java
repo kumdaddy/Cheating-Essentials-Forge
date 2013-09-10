@@ -11,7 +11,7 @@ public class Console extends CheatingEssentialsModule {
     private GuiConsole Console;
 
 	public Console(){
-		super("Console", "", "1.6.2", Keyboard.KEY_GRAVE, EnumGuiCategory.NONE, true);
+		super("Console", "", "1.6.2", Keyboard.KEY_U, EnumGuiCategory.NONE, true);
 	     Console = new GuiConsole();
 	}
 	

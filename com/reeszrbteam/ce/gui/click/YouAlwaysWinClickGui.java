@@ -5,13 +5,7 @@ import java.util.ArrayList;
 import net.minecraft.client.gui.GuiScreen;
 
 import com.reeszrbteam.ce.gui.click.elements.YAWWindow;
-import com.reeszrbteam.ce.gui.click.windows.WindowHub;
-import com.reeszrbteam.ce.gui.click.windows.WindowInfo;
-import com.reeszrbteam.ce.gui.click.windows.WindowPlayer;
-import com.reeszrbteam.ce.gui.click.windows.WindowRadar;
-import com.reeszrbteam.ce.gui.click.windows.WindowRender;
-import com.reeszrbteam.ce.gui.click.windows.WindowUtils;
-import com.reeszrbteam.ce.gui.click.windows.WindowWorld;
+import com.reeszrbteam.ce.gui.click.windows.*;
 
 public class YouAlwaysWinClickGui extends GuiScreen
 {
