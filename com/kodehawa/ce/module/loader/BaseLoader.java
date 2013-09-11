@@ -15,6 +15,7 @@ public final class BaseLoader {
     	ModuleManager.getInstance().addModule(new CreativeFly( ) );
     	ModuleManager.getInstance().addModule(new Fly( ) );
     	ModuleManager.getInstance().addModule(new FastPlace( ) );
+    	ModuleManager.getInstance().addModule(new Test( ) );
     	ModuleManager.getInstance().addModule(new Day( ) );
     	ModuleManager.getInstance().addModule(new Spectator( ) );
     	ModuleManager.getInstance().addModule(new NoFall( ));
@@ -31,6 +32,7 @@ public final class BaseLoader {
     	ModuleManager.getInstance().addModule(new PlayerESP( ));
     	ModuleManager.getInstance().addModule(new DynamicFly( ));
     	ModuleManager.getInstance().addModule(new MobESP( ));
+    	ModuleManager.getInstance().addModule(new Invisible( ));
     	ModuleManager.getInstance().addModule(new Tracers( ));
     	ModuleManager.getInstance().addModule(new Breadcrumb( ));
     	ModuleManager.getInstance().addModule(new Step( ) );

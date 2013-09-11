@@ -18,8 +18,4 @@ public class Console extends CheatingEssentialsModule {
 	public void onEnableModule(){
 		displayGuiScreen(Console);
 	}
-	
-    public void onDisableModule(){
-		
-	}
 }

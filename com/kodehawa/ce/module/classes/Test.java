@@ -1,11 +1,9 @@
 package com.kodehawa.ce.module.classes;
 
-import net.minecraft.network.packet.Packet14BlockDig;
-import net.minecraft.network.packet.Packet18Animation;
+import net.minecraftforge.client.ForgeHooksClient;
 
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
-import com.kodehawa.ce.util.Vector3D;
 
 /**
  * Test class, mostly used when I need to test something for add it or create a new module
@@ -14,25 +12,25 @@ import com.kodehawa.ce.util.Vector3D;
  * to be taked for the GUI's as a module.
  */
 public class Test extends CheatingEssentialsModule {
-	
-	float timePassed = 0;
-	
+		
 	public Test() {
 		super("Test Class", "", EnumGuiCategory.UTILS, true);
 		super.setTick(true);
 		super.setRender(true);
 	}
- 
-	int tick = 0;
-	
+ 	
 	@Override
 	public void onEnableModule(){}
 	
 	@Override
-    public void onDisableModule(){}
+    public void onDisableModule(){
+		ForgeHooksClient.getOffsetFOV(getPlayer(), 0);
+	}
     
 	@Override
-    public void tick(){}
+    public void tick(){
+		ForgeHooksClient.getOffsetFOV(getPlayer(), 1.0F);
+	}
 
 
 	@Override

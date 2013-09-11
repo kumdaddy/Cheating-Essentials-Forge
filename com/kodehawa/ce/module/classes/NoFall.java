@@ -16,6 +16,7 @@ public class NoFall extends CheatingEssentialsModule {
 	public NoFall( ) {
 		super("No Fall", "No fall damage", "1.6.2", Keyboard.KEY_V, 
 				EnumGuiCategory.PLAYER, true);
+		this.setForgeEvent(true);
 	}
 
 	@ForgeSubscribe

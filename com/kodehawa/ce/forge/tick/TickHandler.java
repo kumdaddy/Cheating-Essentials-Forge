@@ -33,19 +33,16 @@ public class TickHandler implements IScheduledTickHandler {
 		
 	@Override
 	public EnumSet<TickType> ticks() {
-		// TODO Auto-generated method stub
 		return EnumSet.of(TickType.CLIENT, TickType.RENDER, TickType.WORLD);
 	}
 
 	@Override
 	public String getLabel() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public int nextTickSpacing() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	

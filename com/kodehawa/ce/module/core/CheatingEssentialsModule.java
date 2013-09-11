@@ -54,6 +54,7 @@ public class CheatingEssentialsModule implements Listener, Tickable {
     private boolean tick;
     public int color;
     private boolean ortho;
+    private boolean forgeEvent;
     private final LinkedList<Class<? extends CheatingEssentialsModule>> incompat = new LinkedList<Class<? extends CheatingEssentialsModule>>();
     
     public CheatingEssentialsModule(final String name, final String desc, final int key) {
@@ -96,6 +97,9 @@ public class CheatingEssentialsModule implements Listener, Tickable {
             if(getType() == EnumGuiCategory.NONE){
                 ModuleManager.getInstance().enabledModules.remove(name);
             }
+            if(this.getEvent()){
+          	  MinecraftForge.EVENT_BUS.register(this);
+            }
         }
     	else{
     		onDisableModule();
@@ -110,6 +114,9 @@ public class CheatingEssentialsModule implements Listener, Tickable {
           } else {
               if( this.getRender( ) ) {
             	com.kodehawa.ce.event.EventHandler.getInstance().unRegisterListener( EventRender3D.class, this );
+              }
+              else if( this.getEvent() ){
+                  	  MinecraftForge.EVENT_BUS.unregister(this);
               }
           }
     	}
@@ -159,17 +166,25 @@ public class CheatingEssentialsModule implements Listener, Tickable {
     public boolean getRender( ) {
         return ortho;
     }
+    
+    public boolean getEvent( ){
+    	return this.forgeEvent;
+    }
 
     public boolean getTick(){
         return tick;
     }
 
-    public void setTick(boolean shit){
-       tick = shit;
+    public void setTick( boolean state ){
+        tick = state;
     }
     
     public void setRender( boolean state ) {
         ortho = state;
+    }
+    
+    public void setForgeEvent( boolean state ){
+    	forgeEvent = state;
     }
 
     public void setVersion( String s ){
@@ -301,13 +316,8 @@ public class CheatingEssentialsModule implements Listener, Tickable {
         incompat.setActive(false);
          }
 
-      //Things for register module things.
-      public void onEnableModule(){
-    	  MinecraftForge.EVENT_BUS.register(this);
-      }
-	  public void onDisableModule( ){
-    	  MinecraftForge.EVENT_BUS.unregister(this);
-	  }
+      public void onEnableModule(){}
+	  public void onDisableModule( ){}
 	  public void onRenderInModule( ){}
       public void tick(){}
       public void utilGui(){}
