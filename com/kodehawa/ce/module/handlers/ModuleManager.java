@@ -10,12 +10,15 @@ import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.util.Tickable;
 
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.ModMetadata;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-@Mod(modid = "cemodulemanager", name = "Cheating Essentials MM",
-dependencies = "before:cebaseloader", version = "1.0.0")
+@Mod(modid = "CE-ModuleManager", name = "Cheating Essentials MM",
+dependencies = "before:cebaseloader", version = "3.3.3a1")
 public final class ModuleManager {
 
     public volatile List<CheatingEssentialsModule> modules;
@@ -27,6 +30,12 @@ public final class ModuleManager {
 	public ModuleManager( ){
         modules = new CopyOnWriteArrayList<CheatingEssentialsModule>();
     }
+	
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent evt){
+		ModMetadata modMeta = evt.getModMetadata();
+		modMeta.parent = "Cheating-Essentials";
+	}
 	
 	public void addModule(final CheatingEssentialsModule e) {
         synchronized (modules) {

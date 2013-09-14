@@ -11,7 +11,7 @@ public class WindowInfo extends YAWWindow{
     
 	public WindowInfo() 
 	{
-		super("Info", 278, 85 + 13);
+		super("Info", 278, 85 + 18);
 	}
 	
 	@Override

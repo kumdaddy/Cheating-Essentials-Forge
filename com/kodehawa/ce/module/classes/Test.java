@@ -1,7 +1,8 @@
 package com.kodehawa.ce.module.classes;
 
-import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraft.entity.Entity;
 
+import com.kodehawa.ce.api.reflection.ReflectorHelper;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
 
@@ -23,15 +24,10 @@ public class Test extends CheatingEssentialsModule {
 	public void onEnableModule(){}
 	
 	@Override
-    public void onDisableModule(){
-		ForgeHooksClient.getOffsetFOV(getPlayer(), 0);
-	}
+    public void onDisableModule(){}
     
 	@Override
-    public void tick(){
-		ForgeHooksClient.getOffsetFOV(getPlayer(), 1.0F);
-	}
-
+    public void tick(){}
 
 	@Override
     public void onRenderInModule(){}

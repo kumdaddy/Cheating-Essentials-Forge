@@ -29,7 +29,6 @@ import com.kodehawa.ce.module.handlers.ModuleManager;
 import com.kodehawa.ce.util.Tickable;
 import com.kodehawa.ce.util.Utils;
 
-import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -38,7 +37,6 @@ import cpw.mods.fml.relauncher.SideOnly;
  * Main module class. All modules should extends it.
  * @author Kodehawa
  */
-@NetworkMod(clientSideRequired=true, serverSideRequired=false) 
 @SideOnly(Side.CLIENT)
 public class CheatingEssentialsModule implements Listener, Tickable {
 
@@ -88,12 +86,14 @@ public class CheatingEssentialsModule implements Listener, Tickable {
         
     public void toggleModule( ){
     	try{
+    		//Toggle the module itself. Prevent use of "public statiz booleanz"
     	active = !active;
     	if (active) {
     		onEnableModule();
     		ModuleManager.getInstance().enabledModules.add(name);
             if(this.getTick()){
-            ModuleManager.getInstance().addToTick(this); }
+            ModuleManager.getInstance().addToTick(this); 
+            }
             if(getType() == EnumGuiCategory.NONE){
                 ModuleManager.getInstance().enabledModules.remove(name);
             }
@@ -105,8 +105,9 @@ public class CheatingEssentialsModule implements Listener, Tickable {
     		onDisableModule();
     		ModuleManager.getInstance().enabledModules.remove(name);
             if(this.getTick())   {
-                ModuleManager.getInstance().removeFromCurrentTick(this);  }
-        }
+                ModuleManager.getInstance().removeFromCurrentTick(this);  
+                }
+            }
     	  if( this.isActive( ) ) {
               if( this.getRender( ) ) {
               	com.kodehawa.ce.event.EventHandler.getInstance().registerListener( EventRender3D.class, this );
@@ -122,9 +123,9 @@ public class CheatingEssentialsModule implements Listener, Tickable {
     	}
     	catch( Exception e ){
     		for(CheatingEssentialsModule m : ModuleManager.getInstance().modules){
+    			//Prevent fake crashes when toggling.
     			Loader.instance().log("Can't load module " + m.getName() + " - Because of " + e.toString());
     		}
-    		e.printStackTrace();
     	}
     }
 
@@ -297,7 +298,7 @@ public class CheatingEssentialsModule implements Listener, Tickable {
 
      private void disableIncompat() {
         for (final Class<? extends CheatingEssentialsModule> e : incompat) {
-                this.disableIncompat();
+                this.disableIncompat(e);
         }
          }
 
@@ -310,7 +311,7 @@ public class CheatingEssentialsModule implements Listener, Tickable {
         }
 
         if ((getWorld() != null) && (getMinecraft() != null) && (getPlayer() != null)) {
-        	Utils.getInstance().addChatMessage(EnumChatFormatting.YELLOW + "[CE v3] Disabling " + incompat.getName() + " because it is incompatible with " + getName());
+        	sendChatMessage("[CE v3] Disabling " + incompat.getName() + " because it is incompatible with " + getName());
         }
 
         incompat.setActive(false);

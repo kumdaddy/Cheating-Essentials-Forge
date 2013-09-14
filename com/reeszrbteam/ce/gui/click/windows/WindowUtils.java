@@ -8,7 +8,7 @@ import com.reeszrbteam.ce.gui.click.elements.YAWWindow;
 public class WindowUtils extends YAWWindow {
 
 	public WindowUtils() {
-		super("Utils", 50, 104);
+		super("Utils", 94, 154);
 	}
 	
 	public YAWWindow init()

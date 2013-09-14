@@ -9,7 +9,7 @@ import com.reeszrbteam.ce.util.CEUtils;
 
 public class WindowRadar extends YAWWindow {
 	public WindowRadar() {
-		super("Radar", 2, 104);
+		super("Radar", 2, 114);
 	}
 	
 	@Override

@@ -23,6 +23,8 @@ public class BlockESP extends CheatingEssentialsModule{
 				EnumGuiCategory.RENDER, true);
 		super.setRender(true);
 	}
+	
+	public static int TOTAL_RADIUS = 72;
 
 	@Override
 	public void onEnableModule() {}
@@ -34,14 +36,13 @@ public class BlockESP extends CheatingEssentialsModule{
 
 	public void refresh() {
 		size = 0;
-		int radius = 72;
 		for(int y = 0; y < 128; y++) {
-			for(int x = 0; x < radius; x++) {
-				for(int z = 0; z < radius; z++) {
+			for(int x = 0; x < TOTAL_RADIUS; x++) {
+				for(int z = 0; z < TOTAL_RADIUS; z++) {
 
-					int cX = (int)getMinecraft().thePlayer.posX - (int)radius/2+x;
+					int cX = (int)getMinecraft().thePlayer.posX - (int)TOTAL_RADIUS/2+x;
 					int cY = y;
-					int cZ = (int)getMinecraft().thePlayer.posZ - (int)radius/2+z;
+					int cZ = (int)getMinecraft().thePlayer.posZ - (int)TOTAL_RADIUS/2+z;
 					int ids = getMinecraft().theWorld.getBlockId(cX, cY, cZ);
 
 					if (espList.contains(ids)) {

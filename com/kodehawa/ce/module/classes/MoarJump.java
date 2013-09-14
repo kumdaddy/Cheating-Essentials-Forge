@@ -1,5 +1,8 @@
 package com.kodehawa.ce.module.classes;
 
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+
 import org.lwjgl.input.Keyboard;
 
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
@@ -8,18 +11,16 @@ import com.kodehawa.ce.module.enums.EnumGuiCategory;
 public class MoarJump extends CheatingEssentialsModule {
 
 	public MoarJump( ) {
-		super("Moar Jump", "", "1.6.2", Keyboard.KEY_NONE, EnumGuiCategory.PLAYER, true);
-		super.setTick(true);
+		super("High Jump", "", "1.6.2", Keyboard.KEY_NONE, EnumGuiCategory.PLAYER, true);
 	}
-
-	public void onEnableModule(){}
 	
-	public void onDisableModule(){}
-	
-	public void tick(){
-		if(getMinecraft().gameSettings.keyBindJump.pressed){
-			getPlayer().motionY += 0.06D;
-			getPlayer().jumpMovementFactor = 0.03F;
-		}
+	//Simple, no?
+	public void onEnableModule(){
+		getPlayer().addPotionEffect(new PotionEffect(Potion.jump.getId(), 999999, 2));
 	}
+	
+	public void onDisableModule(){
+		getPlayer().removePotionEffect(8);
+    }
 }
+

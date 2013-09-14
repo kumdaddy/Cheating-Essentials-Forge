@@ -44,7 +44,7 @@ public class Mobaura extends CheatingEssentialsModule {
 
             EntityUtils.setLastAffected(id, ent);
 
-            if ((ent == getMinecraft().thePlayer) || !(ent instanceof EntityLiving) || ent.isDead || ent instanceof EntityOtherPlayerMP)
+            if ((ent == getMinecraft().thePlayer) || !(ent instanceof EntityLiving) || ent.isDead/* || ent instanceof EntityOtherPlayerMP <- Lol I released a version with that in MCF?*/ )
             {
                 continue;
             }

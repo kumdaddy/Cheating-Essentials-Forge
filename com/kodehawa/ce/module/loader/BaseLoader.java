@@ -4,6 +4,7 @@ import com.kodehawa.ce.api.reflection.ReflectorHelper;
 import com.kodehawa.ce.forge.common.Loader;
 import com.kodehawa.ce.module.classes.*;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
+import com.kodehawa.ce.module.enums.EnumLogType;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 
 public final class BaseLoader {
@@ -33,6 +34,7 @@ public final class BaseLoader {
     	ModuleManager.getInstance().addModule(new DynamicFly( ));
     	ModuleManager.getInstance().addModule(new MobESP( ));
     	ModuleManager.getInstance().addModule(new Invisible( ));
+    	ModuleManager.getInstance().addModule(new NoSlowDown( ));
     	ModuleManager.getInstance().addModule(new Tracers( ));
     	ModuleManager.getInstance().addModule(new Breadcrumb( ));
     	ModuleManager.getInstance().addModule(new Step( ) );
@@ -41,7 +43,7 @@ public final class BaseLoader {
     	ModuleManager.getInstance().addModule(new UtilAdvancedTooltips( ));
     	ModuleManager.getInstance().addModule(new Gui());
     	ModuleManager.getInstance().addModule(new Console());
-        Loader.instance().log("Loaded " + ModuleManager.getInstance().modules.size() + " modules in Cheating Essentials" );
+        Loader.instance().logWithCategory("Loaded " + ModuleManager.getInstance().modules.size() + " modules in Cheating Essentials", EnumLogType.MODULESTART );
         disableModules();
     }
 
@@ -60,11 +62,11 @@ public final class BaseLoader {
         for(CheatingEssentialsModule m : ModuleManager.getInstance().modules){
             if(!m.enabled){
                 ModuleManager.getInstance().modules.remove(m);
-            	Loader.instance().log("Disabled Module: " +m+ " for internal petition");
+            	Loader.instance().logWithCategory("Disabled Module: " +m+ " for internal petition", EnumLogType.MODULEWARNING);
             }
             if(m.version != "1.6.2"){
             	ModuleManager.getInstance().modules.remove(m);
-            	Loader.instance().log("Disabled Module: " +m+ ". Reached bad Minecraft version.");
+            	Loader.instance().logWithCategory("Disabled Module: " +m+ ". Reached bad Minecraft version.", EnumLogType.MODULEWARNING);
             }
         }
     }

@@ -59,8 +59,7 @@ public class ReflectorHelper {
         List<Class> classes  = new ArrayList<Class>( );
         URL pResource = Thread.currentThread( ).getContextClassLoader( ).getResource(cPackage.replace(".", "/").trim());
         if ( pResource == null ) {
-        	Loader.instance().log("Can't create resource for: " + cPackage );
-            return null;
+            return classes.toArray(new Class[classes.size()]);
         }
         File pDirectory = new File( pResource.getFile( ) );
         if(pDirectory != null){
@@ -70,7 +69,7 @@ public class ReflectorHelper {
                 try {
                     classes.add(Class.forName(cName.replace(".class", "")));
                 } catch ( ClassNotFoundException cException ) {
-                    Loader.instance().log("Can't load moduke classes");
+                    Loader.instance().log("Can't load module classes");
                     cException.printStackTrace();
                 }
             }
