@@ -9,6 +9,6 @@ public @interface ModuleExperimental {
 	/**
 	 * WIP, Unstable, Unreliable or Randomly errors.
 	 */
-	String setAs();
+	String setAs() default "";
 	
 }

@@ -4,12 +4,13 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
 
 import com.kodehawa.ce.api.reflection.ReflectorHelper;
+import com.kodehawa.ce.module.annotations.ModuleExperimental;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
 
+@ModuleExperimental
 public class NoSlowDown extends CheatingEssentialsModule {
 
 	//TODO: Make it works?
@@ -21,6 +22,7 @@ public class NoSlowDown extends CheatingEssentialsModule {
 
 	public void tick(){
 		Object o = getPlayer();
+		//Reflection: isInWeb field.
 		ReflectorHelper.setField(Entity.class, o, 27, false);
 		if(getPlayer().isInWater()){
 		}

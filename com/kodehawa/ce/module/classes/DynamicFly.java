@@ -15,6 +15,7 @@ public class DynamicFly extends CheatingEssentialsModule {
 	public DynamicFly() {
 		super("Dynamic Fly", "Just without killing jarva!", "1.6.2", Keyboard.KEY_NONE, EnumGuiCategory.PLAYER, true);
 		this.setTick(true);
+		incompat(Fly.class);
 	}
 	
 	public void tick(){
@@ -39,7 +40,6 @@ public class DynamicFly extends CheatingEssentialsModule {
             }
 		}
 		
-		thePlayer.jumpMovementFactor *= 2.5;
-		
+		thePlayer.jumpMovementFactor *= 2.1D;
 	}
 }

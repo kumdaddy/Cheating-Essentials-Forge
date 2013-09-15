@@ -24,10 +24,11 @@ import com.kodehawa.ce.event.Listener;
 import com.kodehawa.ce.event.events.EventKey;
 import com.kodehawa.ce.event.events.EventRender3D;
 import com.kodehawa.ce.forge.common.Loader;
+import com.kodehawa.ce.module.annotations.ModuleExperimental;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
+import com.kodehawa.ce.module.enums.EnumLogType;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 import com.kodehawa.ce.util.Tickable;
-import com.kodehawa.ce.util.Utils;
 
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
@@ -90,6 +91,7 @@ public class CheatingEssentialsModule implements Listener, Tickable {
     	active = !active;
     	if (active) {
     		onEnableModule();
+    		disableIncompat();
     		ModuleManager.getInstance().enabledModules.add(name);
             if(this.getTick()){
             ModuleManager.getInstance().addToTick(this); 
@@ -97,14 +99,18 @@ public class CheatingEssentialsModule implements Listener, Tickable {
             if(getType() == EnumGuiCategory.NONE){
                 ModuleManager.getInstance().enabledModules.remove(name);
             }
-            if(this.getEvent()){
+            if(getEvent()){
           	  MinecraftForge.EVENT_BUS.register(this);
+            }
+            if(this.getClass().isAnnotationPresent(ModuleExperimental.class)){
+            	Loader.instance().logWithCategory("Module: "+getName()+" is unestable and will work bad or not work at all!", EnumLogType.INFO);
+                getPlayer().sendChatMessage("Module: "+getName()+" will work bad or not work at all!");      
             }
         }
     	else{
     		onDisableModule();
     		ModuleManager.getInstance().enabledModules.remove(name);
-            if(this.getTick())   {
+            if(this.getTick()){
                 ModuleManager.getInstance().removeFromCurrentTick(this);  
                 }
             }
@@ -117,15 +123,12 @@ public class CheatingEssentialsModule implements Listener, Tickable {
             	com.kodehawa.ce.event.EventHandler.getInstance().unRegisterListener( EventRender3D.class, this );
               }
               else if( this.getEvent() ){
-                  	  MinecraftForge.EVENT_BUS.unregister(this);
+                MinecraftForge.EVENT_BUS.unregister(this);
               }
           }
     	}
     	catch( Exception e ){
-    		for(CheatingEssentialsModule m : ModuleManager.getInstance().modules){
     			//Prevent fake crashes when toggling.
-    			Loader.instance().log("Can't load module " + m.getName() + " - Because of " + e.toString());
-    		}
     	}
     }
 
@@ -239,15 +242,9 @@ public class CheatingEssentialsModule implements Listener, Tickable {
         sendPacket(new Packet3Chat(message));
      }
 
-     protected static NetClientHandler getSendQueue() {
-        return getPlayer().sendQueue;
-     }
-
-
      protected static double getDistanceToEntity(final Entity e) {
         return getPlayer().getDistanceToEntity(e);
      }
-
 
      protected static double getDistanceSqToEntity(final Entity e) {
         return getPlayer().getDistanceSqToEntity(e);
@@ -255,10 +252,6 @@ public class CheatingEssentialsModule implements Listener, Tickable {
 
      protected static List<Entity> getLoadedEntities() {
         return getWorld().loadedEntityList;
-         }
-
-     protected static EntityRenderer getEntityRenderer() {
-        return getMinecraft().entityRenderer;
          }
 
      protected static PlayerControllerMP getPlayerController() {
@@ -303,7 +296,7 @@ public class CheatingEssentialsModule implements Listener, Tickable {
          }
 
 
-     private void disableIncompat(final Class<? extends CheatingEssentialsModule> module) {
+     public void disableIncompat(final Class<? extends CheatingEssentialsModule> module) {
       final CheatingEssentialsModule incompat = ModuleManager.getInstance().getModuleByClass(module);
 
         if (!incompat.isActive()) {
@@ -311,15 +304,14 @@ public class CheatingEssentialsModule implements Listener, Tickable {
         }
 
         if ((getWorld() != null) && (getMinecraft() != null) && (getPlayer() != null)) {
-        	sendChatMessage("[CE v3] Disabling " + incompat.getName() + " because it is incompatible with " + getName());
+        	sendChatMessage("Disabling " + incompat.getName() + " because it is incompatible with " + getName());
         }
-
-        incompat.setActive(false);
-         }
+        //Toggle it again for disabling.
+        incompat.toggleModule();
+        }
 
       public void onEnableModule(){}
 	  public void onDisableModule( ){}
 	  public void onRenderInModule( ){}
       public void tick(){}
-      public void utilGui(){}
 }

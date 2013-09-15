@@ -11,16 +11,12 @@ public class Invisible extends CheatingEssentialsModule {
 		super("Invisible P.", "", "1.6.2", Keyboard.KEY_NONE, EnumGuiCategory.PLAYER, true);
 		this.setTick(true);
 	}
-
-	public void onEnableModule(){
-		getPlayer().setInvisible(true);
-	}
 	
 	public void onDisableModule(){
 		getPlayer().setInvisible(false);
 	}
 	
 	public void tick(){
-		
+		getPlayer().setInvisible(true);
 	}
 }

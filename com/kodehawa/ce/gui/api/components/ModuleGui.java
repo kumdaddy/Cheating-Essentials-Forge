@@ -230,7 +230,6 @@ public class ModuleGui extends GuiScreen
             @Override
             public void draw()
             {
-                // TODO Auto-generated method stub
                 if (bgcolor2 > -1)
                 {
                     ModGuiUtils.drawRect(x, y, x + width, y + oldHeight, bgcolor);
@@ -343,7 +342,6 @@ public class ModuleGui extends GuiScreen
             @Override
             public void draw()
             {
-                // TODO Auto-generated method stub
                 if (bgcolor2 > -1)
                 {
                     ModGuiUtils.drawRect(x, y, x + width, y + oldHeight, bgcolor);
@@ -455,7 +453,6 @@ public class ModuleGui extends GuiScreen
             @Override
             public void draw()
             {
-                // TODO Auto-generated method stub
                 if (bgcolor2 > -1)
                 {
                     ModGuiUtils.drawRect(x, y, x + width, y + oldHeight, bgcolor);

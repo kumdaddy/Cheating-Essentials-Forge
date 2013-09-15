@@ -51,8 +51,8 @@ public class Mobaura extends CheatingEssentialsModule {
 
             if ((getDistanceSqToEntity(ent) <= AURA_DISTANCE) && !ent.isDead && getMinecraft().thePlayer.canEntityBeSeen(ent))
             {
-            	getMinecraft().playerController.attackEntity(getMinecraft().thePlayer, ent);
-            	
+            	getPlayerController().attackEntity(getMinecraft().thePlayer, ent);
+            	getPlayer().swingItem();
             }
         } 
 	}

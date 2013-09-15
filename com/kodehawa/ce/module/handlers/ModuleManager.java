@@ -7,6 +7,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import com.kodehawa.ce.forge.common.Loader;
 import com.kodehawa.ce.module.annotations.ModuleExperimental;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
+import com.kodehawa.ce.module.enums.EnumLogType;
 import com.kodehawa.ce.util.Tickable;
 
 import cpw.mods.fml.common.Mod;
@@ -41,7 +42,7 @@ public final class ModuleManager {
         synchronized (modules) {
             modules.add( e );
               if (e.getClass().isAnnotationPresent(ModuleExperimental.class)) {
-            	  Loader.instance().log("Module \"" + e.getName() + "\" is WIP! Use at own risk!");
+            	  Loader.instance().logWithCategory("Module \"" + e.getName() + "\" contains ModuleExperimental annotation, use it as your own risk!", EnumLogType.WARNING);
            }
         }
 	}

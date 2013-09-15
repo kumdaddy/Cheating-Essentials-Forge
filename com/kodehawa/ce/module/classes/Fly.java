@@ -12,11 +12,11 @@ import com.kodehawa.ce.module.enums.EnumGuiCategory;
 
 public class Fly extends CheatingEssentialsModule {
 
-	@ModuleLoader(type = "Module")
 	public Fly( ) {
 		super("Fly", "Fly like a bird!", "1.6.2", Keyboard.KEY_R,
 				EnumGuiCategory.PLAYER, true);
         super.setTick(true);
+        incompat(DynamicFly.class);
 	}
 
 	@Override
