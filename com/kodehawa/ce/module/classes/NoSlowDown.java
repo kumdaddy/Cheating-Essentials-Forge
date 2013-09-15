@@ -23,11 +23,9 @@ public class NoSlowDown extends CheatingEssentialsModule {
 		Object o = getPlayer();
 		ReflectorHelper.setField(Entity.class, o, 27, false);
 		if(getPlayer().isInWater()){
-			GL11.glScaled(Math.pow(1.2, -1), Math.pow(1.2, -1), Math.pow(1.2, -1));
 		}
 		if(getMinecraft().theWorld.getBlockId((int)getPlayer().posX, 
 				(int)getPlayer().posY, (int)getPlayer().posZ) == Block.slowSand.blockID){
-			GL11.glScaled(Math.pow(1.2, -1), Math.pow(1.2, -1), Math.pow(1.2, -1));
 		}
 	}
 }
