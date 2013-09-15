@@ -4,10 +4,12 @@ import net.minecraft.client.gui.GuiScreen;
 
 import org.lwjgl.input.Keyboard;
 
+import com.kodehawa.ce.module.annotations.ModuleTechnical;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
 import com.reeszrbteam.ce.gui.click.YouAlwaysWinClickGui;
 
+@ModuleTechnical
 public class Gui extends CheatingEssentialsModule {
 
     public static int guimode = 1;

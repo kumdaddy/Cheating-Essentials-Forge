@@ -6,16 +6,13 @@ import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.multiplayer.NetClientHandler;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
-import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet3Chat;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -25,6 +22,7 @@ import com.kodehawa.ce.event.events.EventKey;
 import com.kodehawa.ce.event.events.EventRender3D;
 import com.kodehawa.ce.forge.common.Loader;
 import com.kodehawa.ce.module.annotations.ModuleExperimental;
+import com.kodehawa.ce.module.annotations.ModuleTechnical;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
 import com.kodehawa.ce.module.enums.EnumLogType;
 import com.kodehawa.ce.module.handlers.ModuleManager;
@@ -96,15 +94,18 @@ public class CheatingEssentialsModule implements Listener, Tickable {
             if(this.getTick()){
             ModuleManager.getInstance().addToTick(this); 
             }
+           
             if(getType() == EnumGuiCategory.NONE){
                 ModuleManager.getInstance().enabledModules.remove(name);
             }
             if(getEvent()){
           	  MinecraftForge.EVENT_BUS.register(this);
             }
+            if(this.getClass().isAnnotationPresent(ModuleTechnical.class)){
+            	Loader.instance().logWithCategory("Module: "+getName()+" is a Technical Module!", EnumLogType.INFO);
+            }
             if(this.getClass().isAnnotationPresent(ModuleExperimental.class)){
             	Loader.instance().logWithCategory("Module: "+getName()+" is unestable and will work bad or not work at all!", EnumLogType.INFO);
-                getPlayer().sendChatMessage("Module: "+getName()+" will work bad or not work at all!");      
             }
         }
     	else{
@@ -304,7 +305,7 @@ public class CheatingEssentialsModule implements Listener, Tickable {
         }
 
         if ((getWorld() != null) && (getMinecraft() != null) && (getPlayer() != null)) {
-        	sendChatMessage("Disabling " + incompat.getName() + " because it is incompatible with " + getName());
+        	Loader.instance().log("Disabling " + incompat.getName() + " because it is incompatible with " + getName());
         }
         //Toggle it again for disabling.
         incompat.toggleModule();

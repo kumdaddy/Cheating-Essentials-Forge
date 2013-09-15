@@ -21,6 +21,7 @@ public class TickHandlerRGuiChest implements IScheduledTickHandler {
 	
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) {
+		if(Minecraft.getMinecraft().currentScreen != null)
 		if(Minecraft.getMinecraft().theWorld != null)
 		for(Object o : Minecraft.getMinecraft().theWorld.loadedTileEntityList) {
 			if(o instanceof TileEntityChest) {
@@ -31,6 +32,7 @@ public class TickHandlerRGuiChest implements IScheduledTickHandler {
 			} 
          }
 		}
+		if(Minecraft.getMinecraft().currentScreen != null)
 		if(Minecraft.getMinecraft().theWorld != null)
 		for(Object o : Minecraft.getMinecraft().theWorld.loadedTileEntityList) {
 			if(o instanceof TileEntityEnderChest) {

@@ -14,6 +14,7 @@ public final class BaseLoader {
     public BaseLoader( ){
     	ModuleManager.getInstance().modules.clear();
     	ModuleManager.getInstance().addModule(new CreativeFly( ) );
+    	ModuleManager.getInstance().addModule(new ChestRaider( ) );
     	ModuleManager.getInstance().addModule(new Fly( ) );
     	ModuleManager.getInstance().addModule(new FastPlace( ) );
     	ModuleManager.getInstance().addModule(new Day( ) );
@@ -28,6 +29,7 @@ public final class BaseLoader {
     	ModuleManager.getInstance().addModule(new FastBreak( ));
     	ModuleManager.getInstance().addModule(new ChestESP( ));
     	ModuleManager.getInstance().addModule(new BlockESP( ));
+        ModuleManager.getInstance().addModule(new PacketNoFall( ));
     	ModuleManager.getInstance().addModule(new MoarJump( ) );
     	ModuleManager.getInstance().addModule(new PlayerESP( ));
     	ModuleManager.getInstance().addModule(new DynamicFly( ));

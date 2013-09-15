@@ -3,6 +3,7 @@ package com.kodehawa.ce.forge.common;
 import java.util.Arrays;
 import java.util.logging.Level;
 
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -21,7 +22,6 @@ import com.kodehawa.ce.playerrelations.Friend;
 import com.kodehawa.ce.util.FileManager;
 
 import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
