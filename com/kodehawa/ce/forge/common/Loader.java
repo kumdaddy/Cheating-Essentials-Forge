@@ -13,6 +13,7 @@ import com.kodehawa.ce.forge.common.events.EventRegisterer;
 import com.kodehawa.ce.forge.common.item.CEItemHardcoreConsole;
 import com.kodehawa.ce.forge.common.item.CEItemHardcoreGui;
 import com.kodehawa.ce.forge.tick.TickHandler;
+import com.kodehawa.ce.forge.tick.TickHandlerRGuiChest;
 import com.kodehawa.ce.module.enums.EnumLogType;
 import com.kodehawa.ce.module.loader.BaseLoader;
 import com.kodehawa.ce.playerrelations.Enemy;
@@ -20,10 +21,10 @@ import com.kodehawa.ce.playerrelations.Friend;
 import com.kodehawa.ce.util.FileManager;
 
 import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -55,6 +56,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class Loader {
 	
     public static TickHandler tickHandler = new TickHandler();
+    public static TickHandlerRGuiChest tickHandlerChest = new TickHandlerRGuiChest();
     static final int MAJOR_VERSION = 3;
     static final int MINOR_VERSION = 3;
     static final int REVISION_VERSION = 2;
@@ -90,6 +92,7 @@ public class Loader {
     	FMLLog.log("Cheating Essentials", Level.INFO, "Loading mod instances...");
 	    initializeSingletons();
     	TickRegistry.registerScheduledTickHandler(tickHandler, Side.CLIENT);
+    	TickRegistry.registerScheduledTickHandler(tickHandlerChest, Side.CLIENT);
     }
        
     @EventHandler
