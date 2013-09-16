@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 
-import com.kodehawa.ce.chestfinder.AltAxisAlignedBB;
+import com.kodehawa.ce.vanilla.AltAxisAlignedBB;
 
 import cpw.mods.fml.client.FMLClientHandler;
 

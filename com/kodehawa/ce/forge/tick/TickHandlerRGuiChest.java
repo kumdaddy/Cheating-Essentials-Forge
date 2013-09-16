@@ -9,7 +9,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityEnderChest;
 
-import com.kodehawa.ce.core.RGuiChest;
+import com.kodehawa.ce.vanilla.RGuiChest;
 
 import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.TickType;

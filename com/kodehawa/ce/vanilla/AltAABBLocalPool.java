@@ -1,4 +1,4 @@
-package com.kodehawa.ce.chestfinder;
+package com.kodehawa.ce.vanilla;
 
 import net.minecraft.util.AABBPool;
 

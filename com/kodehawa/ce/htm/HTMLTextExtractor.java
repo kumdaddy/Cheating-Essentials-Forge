@@ -1,4 +1,4 @@
-package com.kodehawa.ce.core;
+package com.kodehawa.ce.htm;
 
 import java.io.IOException;
 import java.io.Reader;

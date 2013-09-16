@@ -6,9 +6,9 @@ import net.minecraft.entity.EntityLiving;
 
 import org.lwjgl.opengl.GL11;
 
-import com.kodehawa.ce.chestfinder.AltAxisAlignedBB;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
+import com.kodehawa.ce.vanilla.AltAxisAlignedBB;
 
 public class MobESP extends CheatingEssentialsModule{
 

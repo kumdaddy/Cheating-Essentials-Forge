@@ -6,9 +6,9 @@ import net.minecraft.entity.EntityLivingBase;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.ce.api.reflection.ReflectorHelper;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
+import com.kodehawa.ce.reflect.ReflectionHelper;
 
 public class DynamicFly extends CheatingEssentialsModule {
 
@@ -24,7 +24,7 @@ public class DynamicFly extends CheatingEssentialsModule {
 		Object o = getPlayer();
 		
 		thePlayer.jumpMovementFactor = 0.5F;
-		ReflectorHelper.setField(EntityLivingBase.class, o, 56, 0.5F);
+		ReflectionHelper.setField(EntityLivingBase.class, o, 56, 0.5F);
 		thePlayer.capabilities.isFlying = false;
 		thePlayer.setSneaking(false);
 		thePlayer.motionX = 0;

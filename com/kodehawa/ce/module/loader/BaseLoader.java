@@ -1,11 +1,11 @@
 package com.kodehawa.ce.module.loader;
 
-import com.kodehawa.ce.api.reflection.ReflectorHelper;
 import com.kodehawa.ce.forge.common.Loader;
 import com.kodehawa.ce.module.classes.*;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumLogType;
 import com.kodehawa.ce.module.handlers.ModuleManager;
+import com.kodehawa.ce.reflect.ReflectionHelper;
 
 public final class BaseLoader {
 
@@ -49,7 +49,7 @@ public final class BaseLoader {
     }
 
     public CheatingEssentialsModule[] initModulesFrom(String cPackage) {
-        for(Class classes : ReflectorHelper.getClassesInPackage(cPackage)) {
+        for(Class classes : ReflectionHelper.getClassesInPackage(cPackage)) {
             try {
                 CheatingEssentialsModule ceModule = (CheatingEssentialsModule)classes.newInstance();
                 ModuleManager.getInstance().modules.add(ceModule);

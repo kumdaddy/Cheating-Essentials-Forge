@@ -1,4 +1,4 @@
-package com.kodehawa.ce.core;
+package com.kodehawa.ce.vanilla;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;

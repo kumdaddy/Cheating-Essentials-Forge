@@ -3,22 +3,19 @@ package com.kodehawa.ce.forge.common;
 import java.util.Arrays;
 import java.util.logging.Level;
 
-import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.kodehawa.ce.api.reflection.ReflectorHelper;
 import com.kodehawa.ce.forge.common.events.EventRegisterer;
-import com.kodehawa.ce.forge.common.item.CEItemHardcoreConsole;
-import com.kodehawa.ce.forge.common.item.CEItemHardcoreGui;
 import com.kodehawa.ce.forge.tick.TickHandler;
 import com.kodehawa.ce.forge.tick.TickHandlerRGuiChest;
 import com.kodehawa.ce.module.enums.EnumLogType;
 import com.kodehawa.ce.module.loader.BaseLoader;
 import com.kodehawa.ce.playerrelations.Enemy;
 import com.kodehawa.ce.playerrelations.Friend;
+import com.kodehawa.ce.reflect.ReflectionHelper;
 import com.kodehawa.ce.util.FileManager;
 
 import cpw.mods.fml.common.FMLLog;
@@ -39,7 +36,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  * Forge Class Loader for {@link CheatingEssentials} in {@link MinecraftForge}, mostly created for
  * Optifine users and users that like to use other mods with it. It should not be loaded in
  * a server envirioment, but some cheats / hacks are compatible with it.
- * The {@link ReflectorHelper} class is for some cheats that need a private or unaccesible value.
+ * The {@link ReflectionHelper} class is for some cheats that need a private or unaccesible value.
  * This loader initialize the singleton instance of all classes that need it for load it in the
  * class patch. I'm planning to add a API for most easy mod development.
  * The hardcore feature are mostly items, see also: {@link CEItemHardcoreConsole} and {@link CEItemHardcoreGui}
@@ -121,7 +118,7 @@ public class Loader {
 		FMLLog.log("Cheating Essentials", Level.INFO, s);
 	}
 	
-	public void logWithCategory( String s, EnumLogType type){
+	public void logWithCategory( String s, EnumLogType type ){
 		FMLLog.log("Cheating Essentials", Level.INFO, "["+type+"]" + " " + s);
 	}
 }

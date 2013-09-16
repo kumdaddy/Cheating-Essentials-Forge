@@ -1,10 +1,11 @@
-package com.kodehawa.ce.core;
+package com.kodehawa.ce.htm;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class HTMLParser {
 

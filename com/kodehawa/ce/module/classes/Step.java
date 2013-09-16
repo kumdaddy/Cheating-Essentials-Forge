@@ -5,9 +5,9 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.ce.api.reflection.ReflectorHelper;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
+import com.kodehawa.ce.reflect.ReflectionHelper;
 
 public class Step extends CheatingEssentialsModule {
 
@@ -32,7 +32,7 @@ public class Step extends CheatingEssentialsModule {
 	public void onEnableModule(){
 		for(Object o : getMinecraft().theWorld.loadedEntityList){
 			if(o instanceof EntityPlayer){
-		        ReflectorHelper.setField(Entity.class, o, 42, STEP_HEIGHT);
+		        ReflectionHelper.setField(Entity.class, o, 42, STEP_HEIGHT);
 			}
 		}
 	}
@@ -41,7 +41,7 @@ public class Step extends CheatingEssentialsModule {
 	public void onDisableModule(){
 		for(Object o : getMinecraft().theWorld.loadedEntityList){
 			if(o instanceof EntityPlayer){
-		        ReflectorHelper.setField(Entity.class, o, 42, 0.5F);
+		        ReflectionHelper.setField(Entity.class, o, 42, 0.5F);
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-package com.kodehawa.ce.api.reflection;
+package com.kodehawa.ce.reflect;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -11,7 +11,7 @@ import java.util.List;
 
 import com.kodehawa.ce.forge.common.Loader;
 
-public class ReflectorHelper {
+public class ReflectionHelper {
 
     /**
      * Help in reflection methods and fields when used.

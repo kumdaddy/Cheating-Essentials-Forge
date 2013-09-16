@@ -4,9 +4,9 @@ import net.minecraft.client.Minecraft;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.ce.api.reflection.ReflectorHelper;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
+import com.kodehawa.ce.reflect.ReflectionHelper;
 
 public class FastPlace extends CheatingEssentialsModule {
 
@@ -23,12 +23,12 @@ public class FastPlace extends CheatingEssentialsModule {
 	public void onDisableModule(){
 		System.out.println(greeting[5] + " " + greeting[1]);
 		Object o = Minecraft.getMinecraft();
-		        ReflectorHelper.setField(Minecraft.class, o, 47, 0);
+		        ReflectionHelper.setField(Minecraft.class, o, 47, 0);
 	}
 	
 	@Override
 	public void tick() {
 		Object o = Minecraft.getMinecraft();
-		     ReflectorHelper.setField(Minecraft.class, o, 47, 0);
+		     ReflectionHelper.setField(Minecraft.class, o, 47, 0);
 		}
 	}

@@ -7,11 +7,11 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import org.lwjgl.opengl.GL11;
 
-import com.kodehawa.ce.chestfinder.AltAxisAlignedBB;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
 import com.kodehawa.ce.playerrelations.Enemy;
 import com.kodehawa.ce.playerrelations.Friend;
+import com.kodehawa.ce.vanilla.AltAxisAlignedBB;
 import com.reeszrbteam.ce.util.EntitySpectator;
 
 public class Tracers extends CheatingEssentialsModule{
