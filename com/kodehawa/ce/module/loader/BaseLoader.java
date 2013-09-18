@@ -13,7 +13,7 @@ public final class BaseLoader {
 	
     public BaseLoader( ){
     	ModuleManager.getInstance().modules.clear();
-    	ModuleManager.getInstance().addModule(new CreativeFly( ) );
+    	/*=> Disabled due to a bug ModuleManager.getInstance().addModule(new CreativeFly( ) ); <=*/
     	ModuleManager.getInstance().addModule(new ChestRaider( ) );
     	ModuleManager.getInstance().addModule(new Fly( ) );
     	ModuleManager.getInstance().addModule(new FastPlace( ) );

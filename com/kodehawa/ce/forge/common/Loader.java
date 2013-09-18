@@ -10,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.kodehawa.ce.forge.common.events.EventRegisterer;
 import com.kodehawa.ce.forge.tick.TickHandler;
-import com.kodehawa.ce.forge.tick.TickHandlerRGuiChest;
 import com.kodehawa.ce.module.enums.EnumLogType;
 import com.kodehawa.ce.module.loader.BaseLoader;
 import com.kodehawa.ce.playerrelations.Enemy;
@@ -53,7 +52,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class Loader {
 	
     public static TickHandler tickHandler = new TickHandler();
-    public static TickHandlerRGuiChest tickHandlerChest = new TickHandlerRGuiChest();
     static final int MAJOR_VERSION = 3;
     static final int MINOR_VERSION = 3;
     static final int REVISION_VERSION = 2;
@@ -89,7 +87,6 @@ public class Loader {
     	FMLLog.log("Cheating Essentials", Level.INFO, "Loading mod instances...");
 	    initializeSingletons();
     	TickRegistry.registerScheduledTickHandler(tickHandler, Side.CLIENT);
-    	TickRegistry.registerScheduledTickHandler(tickHandlerChest, Side.CLIENT);
     }
        
     @EventHandler

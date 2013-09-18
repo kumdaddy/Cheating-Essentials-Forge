@@ -101,12 +101,6 @@ public class CheatingEssentialsModule implements Listener, Tickable {
             if(getEvent()){
           	  MinecraftForge.EVENT_BUS.register(this);
             }
-            if(this.getClass().isAnnotationPresent(ModuleTechnical.class)){
-            	Loader.instance().logWithCategory("Module: "+getName()+" is a Technical Module!", EnumLogType.INFO);
-            }
-            if(this.getClass().isAnnotationPresent(ModuleExperimental.class)){
-            	Loader.instance().logWithCategory("Module: "+getName()+" is unestable and will work bad or not work at all!", EnumLogType.INFO);
-            }
         }
     	else{
     		onDisableModule();
