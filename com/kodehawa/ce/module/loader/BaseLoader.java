@@ -15,7 +15,6 @@ public final class BaseLoader {
     	ModuleManager.getInstance().modules.clear();
     	ModuleManager.getInstance().addModule(new CreativeFly( ) );
     	/*=> Disabled due to a bug: ModuleManager.getInstance().addModule(new ChestRaider( ) ); <=*/
-    	ModuleManager.getInstance().addModule(new Test());
     	ModuleManager.getInstance().addModule(new Fly( ) );
     	ModuleManager.getInstance().addModule(new FastPlace( ) );
     	ModuleManager.getInstance().addModule(new Day( ) );
