@@ -22,7 +22,7 @@ public class CommandFlySpeed extends CommandBase {
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
 		// TODO Auto-generated method stub
-		return "/flyspeed <value (0.05 to 0.7>";
+		return "command.ce.flyspeed";
 	}
 
 	@Override

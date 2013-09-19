@@ -25,11 +25,7 @@ public class CommandBind extends CommandBase {
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
-		return "/cbind add <Module> <Key> | bind del <Key> | bind clearall";
-	}
-	
-	public String syntax(){
-		return "/cbind add <Module> <Key> | del <Key> | clearall";	
+		return "command.ce.bind";
 	}
 	
 	@Override
@@ -69,7 +65,7 @@ public class CommandBind extends CommandBase {
 		}
 	} catch(Exception e) {
 		e.printStackTrace();
-		Utils.getInstance().addChatMessage("Usage: " + syntax());
+		Utils.getInstance().addChatMessage("Usage: " + getCommandUsage(icommandsender));
 		}
 	}
 }

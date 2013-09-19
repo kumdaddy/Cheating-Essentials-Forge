@@ -21,7 +21,7 @@ public class CommandBreadcrumb extends CommandBase {
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
-		return "/cbreadcrumb clear";
+		return "command.ce.breadcrumb";
 	}
 
 	@Override

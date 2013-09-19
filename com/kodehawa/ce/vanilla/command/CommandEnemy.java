@@ -22,7 +22,7 @@ public class CommandEnemy extends CommandBase {
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
 		// TODO Auto-generated method stub
-		return "/cenemy add <name> | del <name> | clear";
+		return "command.ce.enemy";
 	}
 
 	@Override

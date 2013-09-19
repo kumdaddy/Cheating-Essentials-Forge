@@ -21,7 +21,7 @@ public class CommandStepHeight extends CommandBase{
 
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
-		return "/cstepheight <number of blocks>";
+		return "command.ce.stepheight";
 	}
 
 	@Override

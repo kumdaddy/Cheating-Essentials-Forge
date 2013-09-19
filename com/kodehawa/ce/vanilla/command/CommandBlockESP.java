@@ -24,7 +24,7 @@ public class CommandBlockESP extends CommandBase {
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
 		// TODO Auto-generated method stub
-		return "/cblockesp add <blockname>| idadd <id> | del <blockname> | iddel <id> | clearall";
+		return "command.ce.blockesp";
 	}
 
 	@Override

@@ -16,7 +16,7 @@ public class CommandModuleEnable extends CommandBase {
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
 		// TODO Auto-generated method stub
-		return "/module t <module name>";
+		return "command.ce.moduletoggle";
 	}
 	
 	@Override

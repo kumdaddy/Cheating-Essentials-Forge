@@ -1,0 +1,8 @@
+command.ce.bind=/cbind <categoría> (Categorías son add <nombre modulo> <letra>, del <letra> y clearall).
+command.ce.blockesp=/cblockesp <categoría> (Categorías son add <nombre del bloque>, del <nombre del bloque>, idadd <id>, iddel <id> y clear)
+command.ce.breadcrumb=/cbreadcrumb clear.
+command.ce.enemy=/cenemy <categoría> (Categorías son add <nombre jugador>, del <nombre jugador> y clear).
+command.ce.flyspeed=/flyspeed <número desde 0.05 hasta 0.7>.
+command.ce.friend=/cfriend <categoría> (Categorías son add <nombre jugador>, del <nombre jugador> y clear).
+command.ce.moduletoggle=/module t <nombre del módulo>.
+command.ce.stepheight=/stepheight <número de bloques>.

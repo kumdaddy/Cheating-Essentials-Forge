@@ -1,0 +1,8 @@
+command.ce.bind=/cbind <category> (Categories are add <module name> <key name>, del <keyname> and clearall).
+command.ce.blockesp=/cblockesp <category> (Categories are add <blockname>, del <block name>, idadd <id>, iddel <id> and clear)
+command.ce.breadcrumb=/cbreadcrumb clear.
+command.ce.enemy=/cenemy <category> (Categories are add <player name>, del <player name> and clear).
+command.ce.flyspeed=/flyspeed <number since 0.05 up to 0.7>.
+command.ce.friend=/cfriend <category> (Categories are add <player name>, del <player name> and clear).
+command.ce.moduletoggle=/module t <module name>.
+command.ce.stepheight=/stepheight <block number>.

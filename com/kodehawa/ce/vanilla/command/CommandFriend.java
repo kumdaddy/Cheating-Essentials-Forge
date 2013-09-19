@@ -22,7 +22,7 @@ public class CommandFriend extends CommandBase {
 	@Override
 	public String getCommandUsage(ICommandSender icommandsender) {
 		// TODO Auto-generated method stub
-		return "/cfriend add <name> | del <name> | clear";
+		return "command.ce.friend";
 	}
 
 	@Override

@@ -4,7 +4,6 @@ import org.lwjgl.input.Keyboard;
 
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.handlers.ModuleManager;
-import com.kodehawa.ce.module.loader.BaseLoader;
 
 import cpw.mods.fml.client.FMLClientHandler;
 
@@ -15,17 +14,15 @@ public class KeyboardListener {
 	
 	public KeyboardListener(){
         keymap = new boolean[ 256 ];
-        BaseLoader.keyInit();
+        keyInit();
         handleKeys();
 	}
 	
-
-	/**
-	 * Module keybinding.
-	 * It handles the events and toggle the specified mod with the keybinding specified in the module class and CModLoader.
-	 * Also it handles the GUI key, that shows a hacked-client-style GUI. Sorry for that.
-	 * I'm making another GUI, promise :)
-	 */
+    public void keyInit(){
+        for(CheatingEssentialsModule m : ModuleManager.getInstance().modules){
+            m.getKeybinding();
+        }
+    }
 	
     public void handleKeys( ) {
     	//TODO: Module Keys
@@ -38,10 +35,6 @@ public class KeyboardListener {
           }
         }
     
-        /**
-        * Get key things.
-        * Like the old CheckKey :)
-        */
        public boolean getKeyStateFromMap( int i ) {
         if( FMLClientHandler.instance().getClient().currentScreen != null ) {
             return false;
@@ -53,7 +46,6 @@ public class KeyboardListener {
         }
     }
 
-	
 	public static KeyboardListener getInstance(){
 		if(instance == null){
 			instance = new KeyboardListener();
