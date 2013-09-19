@@ -1,6 +1,6 @@
 package com.kodehawa.ce.module.loader;
 
-import com.kodehawa.ce.forge.common.Loader;
+import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.handlers.ModuleManager;
 
@@ -22,7 +22,7 @@ public class DynamicModuleLoader {
     		ModuleManager.getInstance().modules.add(clazz1);
     	}
     	catch(Exception e){
-    		Loader.instance().log("Failed to load class: " + e.toString());
+    		CE_ForgeLoader.instance().log("Failed to load class: " + e.toString());
     	}
     }
 	

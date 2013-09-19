@@ -1,4 +1,4 @@
-package com.kodehawa.ce.forge.common;
+package com.kodehawa.ce.forge.loader;
 
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -9,6 +9,7 @@ import net.minecraftforge.common.MinecraftForge;
 import org.apache.commons.lang3.StringUtils;
 
 import com.kodehawa.ce.forge.common.events.EventRegisterer;
+import com.kodehawa.ce.forge.common.proxy.CommonProxy;
 import com.kodehawa.ce.forge.tick.TickHandler;
 import com.kodehawa.ce.module.enums.EnumLogType;
 import com.kodehawa.ce.module.loader.BaseLoader;
@@ -37,33 +38,27 @@ import cpw.mods.fml.relauncher.SideOnly;
  * a server envirioment, but some cheats / hacks are compatible with it.
  * The {@link ReflectionHelper} class is for some cheats that need a private or unaccesible value.
  * This loader initialize the singleton instance of all classes that need it for load it in the
- * class patch. I'm planning to add a API for most easy mod development.
- * The hardcore feature are mostly items, see also: {@link CEItemHardcoreConsole} and {@link CEItemHardcoreGui}
- * and now is mostly testing for future projects.
- * @version 3.3.2c
+ * class patch.
+ * @version 3.4.0R3
  * @author Kodehawa
  * @since 25/08/2013
  */
 
-@Mod(modid="Cheating-Essentials", name="Cheating Essentials", version="3.3.2c", useMetadata=true) //Gets mod data
+@Mod(modid="Cheating-Essentials", name="Cheating Essentials", version=CE_ForgeLoader.MOD_VERSION, useMetadata=true) //Gets mod data
 @NetworkMod(clientSideRequired=true, serverSideRequired=false) 
 @SideOnly(Side.CLIENT)
 
-public class Loader {
+public class CE_ForgeLoader {
 	
     public static TickHandler tickHandler = new TickHandler();
-    static final int MAJOR_VERSION = 3;
-    static final int MINOR_VERSION = 3;
-    static final int REVISION_VERSION = 2;
-    static final String REVISION_LETTER = "c";
 	
     @Instance("Cheating-Essentials")
-    public static Loader instance;
+    public static CE_ForgeLoader instance;
     
-    @SidedProxy(clientSide="com.kodehawa.ce.forge.common.ClientProxy", serverSide="com.kodehawa.ce.forge.common.CommonProxy")
+    @SidedProxy(clientSide="com.kodehawa.ce.forge.common.proxy.ClientProxy", serverSide="com.kodehawa.ce.forge.common.proxy.CommonProxy")
     public static CommonProxy proxyHandler;
    
-    public static Loader instance(){
+    public static CE_ForgeLoader instance(){
     	return instance;
     }
     
@@ -82,7 +77,7 @@ public class Loader {
 		/* ---------------------------------------------------------------------- */
 		
     	FMLLog.log("Cheating Essentials", Level.INFO,
-    			"Cheating Essentials Forge Loader: " + StringUtils.defaultString(Loader.class.getName()) +
+    			"Cheating Essentials Forge Loader: " + StringUtils.defaultString(CE_ForgeLoader.class.getName()) +
     			" in Minecraft Forge " + ForgeVersion.getVersion());
     	FMLLog.log("Cheating Essentials", Level.INFO, "Loading mod instances...");
 	    initializeSingletons();
@@ -107,8 +102,8 @@ public class Loader {
         BaseLoader.getInstance();
     }
 	
-	public static String getForgeCEVersion(){
-		return MAJOR_VERSION+"."+MINOR_VERSION+"."+REVISION_VERSION+REVISION_LETTER; //Return current version
+	public static final String getForgeCEVersion(){
+		return MaV + "." + M + "."+ R + RL; 
 	}
 	
 	public void log( String s ){
@@ -118,4 +113,10 @@ public class Loader {
 	public void logWithCategory( String s, EnumLogType type ){
 		FMLLog.log("Cheating Essentials", Level.INFO, "["+type+"]" + " " + s);
 	}
+	
+	static final String MaV = "3";
+    static final String M = "4";
+    static final String R = "0";
+    static final String RL = "R3";
+    public static final String MOD_VERSION = MaV + M + R + RL;
 }

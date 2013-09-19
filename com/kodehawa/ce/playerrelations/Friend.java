@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import com.kodehawa.ce.forge.common.Loader;
+import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
 
 import cpw.mods.fml.client.FMLClientHandler;
 
@@ -36,7 +36,7 @@ public class Friend {
     }
 
     public static void writeFriendList(){
-    	Loader.instance().log("Writing Friend file...");
+    	CE_ForgeLoader.instance().log("Writing Friend file...");
         try{
             FileWriter filewritter = new FileWriter(friendsFile);
             BufferedWriter bufferedwriter = new BufferedWriter(filewritter);
@@ -46,7 +46,7 @@ public class Friend {
             bufferedwriter.close();
         }
         catch (Exception e){
-        	Loader.instance().log("Can't write Friends file! " + e);
+        	CE_ForgeLoader.instance().log("Can't write Friends file! " + e);
         }
     }
 
@@ -63,8 +63,8 @@ public class Friend {
             }
             br.close( );
         } catch( Exception ex ) {
-        	Loader.instance().log("Can't load Friends list. Unreliable results!");
-        	Loader.instance().log( "Error in CE init: " + ex.toString( ) );
+        	CE_ForgeLoader.instance().log("Can't load Friends list. Unreliable results!");
+        	CE_ForgeLoader.instance().log( "Error in CE init: " + ex.toString( ) );
             ex.printStackTrace( );
             writeFriendList( );
         }

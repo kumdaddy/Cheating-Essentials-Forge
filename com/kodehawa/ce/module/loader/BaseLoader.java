@@ -1,6 +1,6 @@
 package com.kodehawa.ce.module.loader;
 
-import com.kodehawa.ce.forge.common.Loader;
+import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
 import com.kodehawa.ce.module.classes.*;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumLogType;
@@ -44,7 +44,7 @@ public final class BaseLoader {
     	ModuleManager.getInstance().addModule(new UtilAdvancedTooltips( ));
     	ModuleManager.getInstance().addModule(new Gui());
     	ModuleManager.getInstance().addModule(new Console());
-        Loader.instance().logWithCategory("Loaded " + ModuleManager.getInstance().modules.size() + " modules in Cheating Essentials", EnumLogType.MODULESTART );
+        CE_ForgeLoader.instance().logWithCategory("Loaded " + ModuleManager.getInstance().modules.size() + " modules in Cheating Essentials", EnumLogType.MODULESTART );
         disableModules();
     }
 
@@ -63,11 +63,11 @@ public final class BaseLoader {
         for(CheatingEssentialsModule m : ModuleManager.getInstance().modules){
             if(!m.enabled){
                 ModuleManager.getInstance().modules.remove(m);
-            	Loader.instance().logWithCategory("Disabled Module: " +m+ " for internal petition", EnumLogType.MODULEWARNING);
+            	CE_ForgeLoader.instance().logWithCategory("Disabled Module: " +m+ " for internal petition", EnumLogType.MODULEWARNING);
             }
             if(m.version != "1.6.2"){
             	ModuleManager.getInstance().modules.remove(m);
-            	Loader.instance().logWithCategory("Disabled Module: " +m+ ". Reached bad Minecraft version.", EnumLogType.MODULEWARNING);
+            	CE_ForgeLoader.instance().logWithCategory("Disabled Module: " +m+ ". Reached bad Minecraft version.", EnumLogType.MODULEWARNING);
             }
         }
     }

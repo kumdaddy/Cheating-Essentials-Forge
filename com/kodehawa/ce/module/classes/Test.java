@@ -1,10 +1,10 @@
 package com.kodehawa.ce.module.classes;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.block.Block;
+import net.minecraftforge.common.MinecraftForge;
 
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
-import com.kodehawa.ce.reflect.ReflectionHelper;
 
 /**
  * Test class, mostly used when I need to test something for add it or create a new module
@@ -27,7 +27,10 @@ public class Test extends CheatingEssentialsModule {
     public void onDisableModule(){}
     
 	@Override
-    public void tick(){}
+    public void tick(){
+		for(Block block : Block.blocksList)
+		MinecraftForge.setBlockHarvestLevel(block, 0, null, 0);
+	}
 
 	@Override
     public void onRenderInModule(){}

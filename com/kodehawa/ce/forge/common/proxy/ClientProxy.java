@@ -1,4 +1,5 @@
-package com.kodehawa.ce.forge.common;
+package com.kodehawa.ce.forge.common.proxy;
+
 
 public class ClientProxy extends CommonProxy {
 	

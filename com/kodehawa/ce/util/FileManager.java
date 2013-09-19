@@ -14,7 +14,7 @@ import net.minecraft.block.Block;
 
 import org.lwjgl.input.Keyboard;
 
-import com.kodehawa.ce.forge.common.Loader;
+import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
 import com.kodehawa.ce.module.classes.BlockESP;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.handlers.ModuleManager;
@@ -33,74 +33,29 @@ public class FileManager<E, T> {
         		mcDataDir + File.separator + "log");
         keyDir = new File(FMLClientHandler.instance().getClient().
         		mcDataDir, "/config/Cheating Essentials/CEKeybinds.txt");
-		mainDir = new File( FMLClientHandler.instance().getClient().
-				mcDataDir, "/config/Cheating Essentials/CEXrayBlockList.txt");
         someDir = new File( FMLClientHandler.instance().getClient().
         		mcDataDir, "/config/Cheating Essentials/CEBlockESPList.txt");
 
         if(!keyDir.exists()){
            keyDir.getParentFile().mkdirs();
-            try{
-              keyDir.createNewFile();
-              saveKeybinding();
-            }
+            try{ keyDir.createNewFile();  saveKeybinding(); }
             catch (IOException e){}
-        }
-
-        if(!mainDir.exists()){
-            mainDir.getParentFile().mkdirs();
-            try {
-				mainDir.createNewFile();
-                try {
-					saveXrayList();
-				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
-				} catch (NoSuchFieldException e) {
-					e.printStackTrace();
-				}
-			} catch (IOException e) {}
         }
         if(!someDir.exists()){
             someDir.getParentFile().mkdirs();
             try{ someDir.createNewFile();  saveBlockESPList(); }
             catch(IOException e){}
         }
-        try {
-			loadXrayList();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (NoSuchFieldException e) {
-			e.printStackTrace();
-		}
         loadBlockESPList();
         loadKeybindings();
     }
-	/**
-	 * Now with a configurable Xray :D
-	 * Write the entire file again when a block it's changed in-game
-	 */
-	
-    public static void saveXrayList( ) throws ClassNotFoundException, NoSuchFieldException  {
-        try {
-        	Loader.instance().log("Writting X-Ray list configuration file...");
-            File file = new File( mainDir, "" );
-            BufferedWriter bufferedwritter = new BufferedWriter( new FileWriter( file ) );
-            Class<?> clazz = Block.class;
-            Field field = clazz.getField("xrayBlocks");
-            bufferedwritter.close( );
-        	
-        } catch( Exception ex ) {
-        	Loader.instance().log("Can't write X-Ray configuration file! Custom blocks for X-Ray will be disabled!");
-        	Loader.instance().log("Error in CE init: " + ex.toString( ) );
-        }
-    }
-
+    
     /**
      * Save BlockESP configs. inb4flamewar
      */
     public static void saveBlockESPList(){
         try {
-        	Loader.instance().log("Writting BlockESP block list configuration file...");
+        	CE_ForgeLoader.instance().log("Writting BlockESP block list configuration file...");
             File file = new File( someDir, "" );
             BufferedWriter bufferedwritter = new BufferedWriter( new FileWriter( file ) );
             for( int i : BlockESP.espList ) {
@@ -109,8 +64,8 @@ public class FileManager<E, T> {
             bufferedwritter.close( );
 
         } catch( Exception ex ) {
-        	Loader.instance().log("Can't write BlockESP configuration file! Custom blocks for X-Ray will be disabled!");
-        	Loader.instance().log("Error in CE init: " + ex.toString( ) );
+        	CE_ForgeLoader.instance().log("Can't write BlockESP configuration file! Custom blocks for X-Ray will be disabled!");
+        	CE_ForgeLoader.instance().log("Error in CE init: " + ex.toString( ) );
         }
     }
 
@@ -119,7 +74,7 @@ public class FileManager<E, T> {
       */
     public static void saveKeybinding(){
         try{
-        	Loader.instance().log("Writing keybinding configuration file...");
+        	CE_ForgeLoader.instance().log("Writing keybinding configuration file...");
             File file = new File(keyDir, "");
             BufferedWriter bufferedwriter = new BufferedWriter( new FileWriter( file ));
             for(CheatingEssentialsModule m : ModuleManager.getInstance().modules){
@@ -129,8 +84,8 @@ public class FileManager<E, T> {
             bufferedwriter.close();
         }
         catch (Exception e){
-        	Loader.instance().log("Can't write Keybinding configuration file!");
-        	Loader.instance().log("Error in CE init: " + e.toString());
+        	CE_ForgeLoader.instance().log("Can't write Keybinding configuration file!");
+        	CE_ForgeLoader.instance().log("Error in CE init: " + e.toString());
         }
     }
 
@@ -139,7 +94,6 @@ public class FileManager<E, T> {
            File file = new File(keyDir, "");
            FileInputStream imput = new FileInputStream( file.getAbsolutePath() );
            DataInputStream stream = new DataInputStream( imput );
-           @SuppressWarnings("resource")
 		BufferedReader bufferedreader = new BufferedReader( new InputStreamReader( stream ));
            String apetecan;
            while( (apetecan = bufferedreader.readLine() ) != null ){
@@ -156,8 +110,8 @@ public class FileManager<E, T> {
         }
         catch (Exception e){
             saveKeybinding();
-            Loader.instance().log("Can't read Keybinding configuration file!");
-            Loader.instance().log("Error in CE init: " + e.toString());
+            CE_ForgeLoader.instance().log("Can't read Keybinding configuration file!");
+            CE_ForgeLoader.instance().log("Error in CE init: " + e.toString());
         }
     }
 
@@ -178,38 +132,11 @@ public class FileManager<E, T> {
             }
             br.close( );
         } catch( Exception ex ) {
-        	Loader.instance().log("Can't load Block ESP list. Unreliable results!");
-        	Loader.instance().log( "Error in CE init: " + ex.toString( ) );
+        	CE_ForgeLoader.instance().log("Can't load Block ESP list. Unreliable results!");
+        	CE_ForgeLoader.instance().log( "Error in CE init: " + ex.toString( ) );
             ex.printStackTrace( );
             saveBlockESPList( );
         }
-    }
-    
-    /**
-     * Load the integers of the Xray list. Only readed once
-     * If a error it's finded it saves the X-Ray list again for prevent errors.
-     */
-    
-    public static void loadXrayList( ) throws ClassNotFoundException, NoSuchFieldException {
-        try {
-        	File file = new File( mainDir, "" );
-            FileInputStream fstream = new FileInputStream( file.getAbsolutePath( ) );
-            DataInputStream in = new DataInputStream( fstream );
-            BufferedReader br = new BufferedReader( new InputStreamReader( in ) );
-            String line;
-            while( ( line = br.readLine( ) ) != null ) {
-                String curLine = line.toLowerCase( ).trim( );
-                int id = Integer.parseInt( curLine );
-                Class<?> clazz = Block.class;
-                Field field = clazz.getField("xrayBlocks");
-            }
-            br.close( );
-        } catch( Exception ex ) {
-        	Loader.instance().log("Can't load X-Ray list. Unreliable results!");
-        	Loader.instance().log( "Error in CE init: " + ex.toString( ) );
-            ex.printStackTrace( );
-            saveXrayList( );
-    } 
     }
     
     public static FileManager getInstance() {

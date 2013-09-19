@@ -1,14 +1,14 @@
 
 package com.kodehawa.ce.gui.api.components;
 
-import com.kodehawa.ce.forge.common.Loader;
+import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
 
 public abstract class Item
 {
     /**
      * Reference to the main class
      */
-    public Loader c;
+    public CE_ForgeLoader c;
     
 
     /**

@@ -30,7 +30,17 @@ public class CommandBlockESP extends BaseCommand {
 				int id = Integer.parseInt(args[1]);
 				BlockESP.espList.add(id);
                 FileManager.saveBlockESPList();
-				Utils.getInstance().addChatMessage("Added BlockESP id: " + id);
+                String ID = BlockFilter.IDtoBlockName(id);
+				Utils.getInstance().addChatMessage("Added BlockESP ID: " + id + "("+ID+")");
+				}
+			}
+			if(args[0].equalsIgnoreCase("iddel")) {
+				if(!args[1].equals("0")){
+				int id = Integer.parseInt(args[1]);
+				BlockESP.espList.remove(id);
+                FileManager.saveBlockESPList();
+                String ID = BlockFilter.IDtoBlockName(id);
+				Utils.getInstance().addChatMessage("Removed BlockESP ID: " + id + "("+ID+")");
 				}
 			}
 			if(args[0].equalsIgnoreCase("del")) {

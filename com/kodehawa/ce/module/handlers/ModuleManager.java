@@ -6,7 +6,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.kodehawa.ce.forge.common.Loader;
+import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
 import com.kodehawa.ce.module.annotations.ModuleExperimental;
 import com.kodehawa.ce.module.annotations.ModuleTechnical;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
@@ -44,12 +44,12 @@ public final class ModuleManager {
 	public void addModule(final CheatingEssentialsModule e) {
         synchronized (modules) {
             modules.add( e );
-            Loader.instance().log("Module Loaded: ".concat(StringUtils.capitalize(e.getName())));
+            CE_ForgeLoader.instance().log("Module Loaded: ".concat(StringUtils.capitalize(e.getName())));
               if (e.getClass().isAnnotationPresent(ModuleExperimental.class)) {
-            	  Loader.instance().log("Module \"".concat(e.getName()).concat("\" contains ModuleExperimental annotation, use it as your own risk!"));
+            	  CE_ForgeLoader.instance().log("Module \"".concat(e.getName()).concat("\" contains ModuleExperimental annotation, use it as your own risk!"));
            }
               if (e.getClass().isAnnotationPresent(ModuleTechnical.class)) {
-            	  Loader.instance().log("Module \"".concat(e.getName()).concat("\" is a technical module!"));
+            	  CE_ForgeLoader.instance().log("Module \"".concat(e.getName()).concat("\" is a technical module!"));
            }
         }
 	}

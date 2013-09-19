@@ -20,7 +20,7 @@ import com.kodehawa.ce.event.Event;
 import com.kodehawa.ce.event.Listener;
 import com.kodehawa.ce.event.events.EventKey;
 import com.kodehawa.ce.event.events.EventRender3D;
-import com.kodehawa.ce.forge.common.Loader;
+import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
 import com.kodehawa.ce.module.annotations.ModuleExperimental;
 import com.kodehawa.ce.module.annotations.ModuleTechnical;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
@@ -299,7 +299,7 @@ public class CheatingEssentialsModule implements Listener, Tickable {
         }
 
         if ((getWorld() != null) && (getMinecraft() != null) && (getPlayer() != null)) {
-        	Loader.instance().log("Disabling " + incompat.getName() + " because it is incompatible with " + getName());
+        	CE_ForgeLoader.instance().log("Disabling " + incompat.getName() + " because it is incompatible with " + getName());
         }
         //Toggle it again for disabling.
         incompat.toggleModule();

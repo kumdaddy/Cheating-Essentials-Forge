@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.kodehawa.ce.forge.common.Loader;
+import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
 
 public class ReflectionHelper {
 
@@ -69,7 +69,7 @@ public class ReflectionHelper {
                 try {
                     classes.add(Class.forName(cName.replace(".class", "")));
                 } catch ( ClassNotFoundException cException ) {
-                    Loader.instance().log("Can't load module classes");
+                    CE_ForgeLoader.instance().log("Can't load module classes");
                     cException.printStackTrace();
                 }
             }
@@ -104,12 +104,12 @@ public class ReflectionHelper {
         Field[] fields = c.getDeclaredFields();
         for (int i = 0; i < fields.length; i++){
             if (fields[i].getName().equals(str)){
-            	Loader.instance().log("Fix Reflection Usage: Use \""+i+"\" instead of \""+str+"\"!");
+            	CE_ForgeLoader.instance().log("Fix Reflection Usage: Use \""+i+"\" instead of \""+str+"\"!");
                 setField(c, o, i,val);
                 return;
             }
         }
-        Loader.instance().log("Fix Reflection Usage: No such field: \""+str+"\"!");
+        CE_ForgeLoader.instance().log("Fix Reflection Usage: No such field: \""+str+"\"!");
     }
    
     public static void setField(Class c, Object o, int num, Object val){

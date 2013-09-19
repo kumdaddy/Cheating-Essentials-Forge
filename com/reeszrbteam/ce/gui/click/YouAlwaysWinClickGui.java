@@ -4,8 +4,11 @@ import java.util.ArrayList;
 
 import net.minecraft.client.gui.GuiScreen;
 
+import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
 import com.reeszrbteam.ce.gui.click.elements.YAWWindow;
 import com.reeszrbteam.ce.gui.click.windows.*;
+
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class YouAlwaysWinClickGui extends GuiScreen
 {
@@ -20,11 +23,13 @@ public class YouAlwaysWinClickGui extends GuiScreen
 	public YAWWindow radar = new WindowRadar();
     public YAWWindow render = new WindowRender().init();
     public YAWWindow utils = new WindowUtils().init();
+    public YAWWindow actives = new WindowActives();
 	
 	public void initGui()
 	{
 		guiHub.setOpen(true);
 	}
+	
 	
 	public void onGuiClosed(){}
 

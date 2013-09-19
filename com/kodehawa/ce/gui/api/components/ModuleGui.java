@@ -9,7 +9,7 @@ import net.minecraft.util.MathHelper;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
-import com.kodehawa.ce.forge.common.Loader;
+import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
 import com.kodehawa.ce.gui.api.render.ModGuiUtils;
 import com.kodehawa.ce.module.core.CheatingEssentialsModule;
 import com.kodehawa.ce.module.enums.EnumGuiCategory;
@@ -139,7 +139,7 @@ public class ModuleGui extends GuiScreen
 
     public void makeWorldFrame()
     {
-        Frame wFrame = new Frame(Loader.instance(), 10, 10, 120, 20, 0x96777777, 0xaa000000, "World");
+        Frame wFrame = new Frame(CE_ForgeLoader.instance(), 10, 10, 120, 20, 0x96777777, 0xaa000000, "World");
 
         for (CheatingEssentialsModule m : ModuleManager.getInstance().modules)
         {
@@ -157,7 +157,7 @@ public class ModuleGui extends GuiScreen
 
     public void makeRenderFrame()
     {
-        Frame rFrame = new Frame(Loader.instance(), 130, 50, 120, 20, 0x96777777, 0xaa000000, "Render");
+        Frame rFrame = new Frame(CE_ForgeLoader.instance(), 130, 50, 120, 20, 0x96777777, 0xaa000000, "Render");
 
         for (CheatingEssentialsModule m : ModuleManager.getInstance().modules)
         {
@@ -175,7 +175,7 @@ public class ModuleGui extends GuiScreen
     
     
     public void makeF3UtilsFrame(){
-    	Frame f3Frame = new Frame(Loader.instance(), 10, 50, 120, 20, 0x96777777, 0xaa000000, "Utils");
+    	Frame f3Frame = new Frame(CE_ForgeLoader.instance(), 10, 50, 120, 20, 0x96777777, 0xaa000000, "Utils");
     	
     	for (CheatingEssentialsModule m : ModuleManager.getInstance().modules)
         {
@@ -194,7 +194,7 @@ public class ModuleGui extends GuiScreen
 
     public void makePlayerFrame()
     {
-        Frame pFrame = new Frame(Loader.instance(), 130, 10, 120, 20, 0x96777777, 0xaa000000, "Player");
+        Frame pFrame = new Frame(CE_ForgeLoader.instance(), 130, 10, 120, 20, 0x96777777, 0xaa000000, "Player");
 
         for (CheatingEssentialsModule m : ModuleManager.getInstance().modules)
         {
@@ -212,7 +212,7 @@ public class ModuleGui extends GuiScreen
 
     public void makeKeybindsFrame()
     {
-        Frame kFrame = new Frame(Loader.instance(), 10, 30, 120, 20, 0x96777777, 0xaa000000, "Keybinds")
+        Frame kFrame = new Frame(CE_ForgeLoader.instance(), 10, 30, 120, 20, 0x96777777, 0xaa000000, "Keybinds")
         {
             @Override
             public void update()
@@ -300,7 +300,7 @@ public class ModuleGui extends GuiScreen
     public void makeRadarFrame()
     {
         final Radar r = new Radar();
-        Frame rFrame = new Frame(Loader.instance(), 250, 30, 120, 20, 0x96777777, 0xaa000000, "Radar")
+        Frame rFrame = new Frame(CE_ForgeLoader.instance(), 250, 30, 120, 20, 0x96777777, 0xaa000000, "Radar")
         {
             @Override
             public void update()
@@ -324,7 +324,7 @@ public class ModuleGui extends GuiScreen
 
     public void makeActivesFrame()
     {
-        Frame aFrame = new Frame(Loader.instance(), 130, 30, 120, 20, 0x96777777, 0xaa000000, "Active Cheats")
+        Frame aFrame = new Frame(CE_ForgeLoader.instance(), 130, 30, 120, 20, 0x96777777, 0xaa000000, "Active Cheats")
         {
             @Override
             public void update()
@@ -405,7 +405,7 @@ public class ModuleGui extends GuiScreen
 
     public void makeInfoFrame()
     {
-        final Frame iFrame = new Frame(Loader.instance(), 250, 10, 120, 20, 0x96777777, 0xaa000000, "Player Info")
+        final Frame iFrame = new Frame(CE_ForgeLoader.instance(), 250, 10, 120, 20, 0x96777777, 0xaa000000, "Player Info")
         {
             @Override
             public void update()

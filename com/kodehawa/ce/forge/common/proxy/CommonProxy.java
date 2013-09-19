@@ -1,4 +1,4 @@
-package com.kodehawa.ce.forge.common;
+package com.kodehawa.ce.forge.common.proxy;
 
 
 public class CommonProxy {

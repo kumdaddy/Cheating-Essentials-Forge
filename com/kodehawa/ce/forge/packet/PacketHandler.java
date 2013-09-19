@@ -3,7 +3,7 @@ package com.kodehawa.ce.forge.packet;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
-import com.kodehawa.ce.forge.common.Loader;
+import com.kodehawa.ce.forge.loader.CE_ForgeLoader;
 
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -18,7 +18,7 @@ public class PacketHandler implements IPacketHandler {
 			Packet250CustomPayload packet, Player player) {
 		packet.channel="Cheating Essentials Packets";
    	    PacketDispatcher.sendPacketToServer(packet);
-   	    Loader.instance().log("#Sended Packet:" +packet+ " correctly.");
+   	    CE_ForgeLoader.instance().log("#Sended Packet:" +packet+ " correctly.");
 	}
 	
 	public static PacketHandler instance(){

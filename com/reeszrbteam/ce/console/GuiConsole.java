@@ -118,13 +118,13 @@ public class GuiConsole extends GuiScreen
         {
             String var6 = (String)this.cmds.get(var5);
  
-            /*if (var6.startsWith(this.message))
-            {*/
+            if (var6.startsWith(this.message))
+            {
                 CEUtils.drawBorderedRect(83 + 4, var4 - 6,83 + this.fontRenderer.getStringWidth(var6) + 8, var4 + 6, 1, -15066598, -14145496);
                 
             	this.drawString(this.fontRenderer, var6,83 + 6, var4 - 4, 16777215);
                 var4 += 14;
-            //}
+            }
         }
  
         CEUtils.drawBorderedRect( 83 + 4, 0, this.width - 60, 12, 1, -15066598, -14145496);
