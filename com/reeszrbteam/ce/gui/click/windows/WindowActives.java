@@ -10,7 +10,7 @@ import com.reeszrbteam.ce.util.CEUtils;
 public class WindowActives extends YAWWindow {
 
 	public WindowActives() {
-		super("E. Modules", 186, 33);
+		super("Actives", 186, 33);
 	}
 	
 	public void draw(int x, int y){

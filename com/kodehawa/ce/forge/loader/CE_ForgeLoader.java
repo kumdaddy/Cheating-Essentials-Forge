@@ -1,8 +1,14 @@
 package com.kodehawa.ce.forge.loader;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 
+import net.minecraft.command.CommandBase;
+import net.minecraft.command.ICommandManager;
+import net.minecraft.command.ServerCommandManager;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -17,6 +23,14 @@ import com.kodehawa.ce.playerrelations.Enemy;
 import com.kodehawa.ce.playerrelations.Friend;
 import com.kodehawa.ce.reflect.ReflectionHelper;
 import com.kodehawa.ce.util.FileManager;
+import com.kodehawa.ce.vanilla.command.CommandBind;
+import com.kodehawa.ce.vanilla.command.CommandBlockESP;
+import com.kodehawa.ce.vanilla.command.CommandBreadcrumb;
+import com.kodehawa.ce.vanilla.command.CommandEnemy;
+import com.kodehawa.ce.vanilla.command.CommandFlySpeed;
+import com.kodehawa.ce.vanilla.command.CommandFriend;
+import com.kodehawa.ce.vanilla.command.CommandModuleEnable;
+import com.kodehawa.ce.vanilla.command.CommandStepHeight;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -27,6 +41,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -93,6 +108,22 @@ public class CE_ForgeLoader {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
     	logWithCategory("Started Cheating Essentials "+getForgeCEVersion()+" in Minecraft 1.6.2 with Minecraft Forge " + ForgeVersion.getVersion(), EnumLogType.FINEST);
+    }
+    
+    @EventHandler
+    public void serverStarted(FMLServerStartedEvent evt){
+    	MinecraftServer mcServer = MinecraftServer.getServer(); 
+    	ICommandManager theCommand = mcServer.getCommandManager();
+    	ServerCommandManager setCommand = ((ServerCommandManager) theCommand); 
+    	/* Vanilla-based client commands */
+    	setCommand.registerCommand(new CommandBind());
+    	setCommand.registerCommand(new CommandBreadcrumb());
+    	setCommand.registerCommand(new CommandBlockESP());
+    	setCommand.registerCommand(new CommandStepHeight());
+    	setCommand.registerCommand(new CommandModuleEnable());
+    	setCommand.registerCommand(new CommandFriend());
+    	setCommand.registerCommand(new CommandEnemy());
+    	setCommand.registerCommand(new CommandFlySpeed());
     }
 
 	private void initializeSingletons(){

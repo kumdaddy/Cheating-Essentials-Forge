@@ -13,6 +13,7 @@ public class CommandBind extends BaseCommand{
 	public CommandBind() {
 		super("bind", "ReesZRB, Kodehawa", "1.6.2");
 	}
+	
 
 	@Override
 	public void runCommand(String s, String[] args) {
